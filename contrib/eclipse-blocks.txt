@@ -1,0 +1,9 @@
+# Block additions for the Eclipse patch, added to the patch in the next release.
+# One comment line per edit with your name, then one line per colour:
+#
+# Name: what the edit adds
+# colour: modid:block modid:block:meta modid:block:state=value
+#
+# Colours: white, weak white, orange, yellow, lime, green, cyan, light blue, blue,
+# purple, magenta, pink, red, brown
+# Emissive highlights: low white, medium red/orange, high blue/purple

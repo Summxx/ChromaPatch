@@ -1,0 +1,11 @@
+[{
+  "modid": "chromapatch",
+  "name": "Chroma Patch",
+  "description": "OBS07 edit of the Eclipse shader. Applies the edit to the official Eclipse zip in shaderpacks and writes a patched copy next to it. Eclipse is not included.",
+  "version": "@VERSION@",
+  "mcversion": "1.7.10",
+  "authorList": ["OBS07"],
+  "logoFile": "pack.png",
+  "url": "https://github.com/Summxx/ChromaPatch",
+  "credits": "Eclipse by Merlin1809 (based on Chocapic13's work), Eclipse edit by Kurama75"
+}]

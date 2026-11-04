@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="chromapatch"
+version="@VERSION@"
+displayName="Chroma Patch"
+logoFile="pack.png"
+displayURL="https://github.com/Summxx/ChromaPatch"
+authors="OBS07"
+credits="Eclipse by Merlin1809 (based on Chocapic13's work), Eclipse edit by Kurama75"
+description='''OBS07 edit of the Eclipse shader. Applies the edit to the official Eclipse zip in shaderpacks and writes a patched copy next to it. Eclipse is not included.'''
+displayTest="IGNORE_ALL_VERSION"

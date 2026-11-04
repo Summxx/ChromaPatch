@@ -1,0 +1,14 @@
+build/
+dist/
+*.key
+*.pem
+*.der
+.signing
+RELEASING.md
+__pycache__/
+tools/release.sh
+tools/keygen.sh
+tools/manifest.py
+tools/make_patch.py
+tools/check_names.sh
+tools/profiles/

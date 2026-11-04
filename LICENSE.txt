@@ -1,0 +1,15 @@
+Chroma Patch
+Copyright (c) 2026 OBS07
+All rights reserved.
+
+The source code is published for transparency and to allow verification of
+released jars. Reading the code and building it to verify a release is
+permitted. Redistribution of the mod or its patch data, modified or not, and
+reuse of the code in other projects require written permission.
+
+Chroma Patch does not contain Eclipse. Eclipse is by Merlin1809, based on
+Chocapic13's work. The Eclipse edit (KuraEdit) is by Kurama75.
+
+By submitting a contribution to this repository (pull request or issue),
+the contributor agrees that it is included in Chroma Patch under this
+license. Contributors are credited by the name they choose.
