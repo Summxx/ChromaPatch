@@ -149,7 +149,7 @@ The source code is public. Release jars are built from it by GitHub Actions, wit
 # Roadmap
 
 ### Automatic light block detection
-At load time the mod will scan every block in the modpack, detect light-emitting blocks and compute their colour from their texture. Modded lamps will then emit coloured light without hand-made block lists, in any modpack. 1.20.1 and 1.21.1 first, then 1.7.10.
+An experimental option to find light-emitting blocks that are missing from the block lists and give them a colour from their texture, so lamps from other modpacks emit coloured light too. Hand-made lists stay the reference and always take priority. Animated and emissive blocks need more work before this is usable, so it may change a lot or not ship. 1.20.1 and 1.21.1 first.
 
 ### More shaders
 Patches for other shaders, using the same method: the shader is downloaded from its authors and the mod applies the changes. New patches come with new versions of the mod.
@@ -171,12 +171,13 @@ Support for new Eclipse versions, fixes and improvements to the existing effects
 
 # Contributing
 
-Missing glowing blocks or wrong colours can be added with a pull request to [`contrib/eclipse-blocks.txt`](contrib/eclipse-blocks.txt). Add a comment line with your name and what the edit adds, then the block ids sorted by colour:
+Missing glowing blocks or wrong colours can be added with a pull request to [`contrib/eclipse-blocks.txt`](contrib/eclipse-blocks.txt). Add a comment line with your name and what the edit adds, then the block ids sorted by colour, or by exact Eclipse id when a block looks better on a specific one:
 
 ```
-# YourName: Chisel antiblocks
+# YourName: Chisel antiblocks and a GregTech coil
 white: chisel:antiBlock:0 chisel:antiBlock:8
 orange: chisel:antiBlock:1
+block.266: gregtech:gt.blockcasings5:21
 ```
 
 Accepted additions are included in the patch of the next release, and contributors are credited. Eclipse files cannot be posted, so only block ids go in pull requests. For other changes, open an issue or ask on [Discord](https://discord.gg/ZgXeQqePy3).
