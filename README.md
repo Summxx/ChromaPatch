@@ -18,9 +18,6 @@
   <a href="https://github.com/Summxx/ChromaPatch/releases">
     <img src="https://img.shields.io/github/v/release/Summxx/ChromaPatch?style=flat-square&color=blue" alt="Latest Release" />
   </a>
-  <a href="https://github.com/Summxx/ChromaPatch/releases">
-    <img src="https://img.shields.io/github/downloads/Summxx/ChromaPatch/total?style=flat-square&color=blue" alt="Total Downloads" />
-  </a>
   <img src="https://img.shields.io/static/v1?label=Minecraft&message=1.7.10%20%7C%201.20.1%20%7C%201.21.1&style=flat-square&color=2ea44f" alt="Minecraft versions" />
   <img src="https://img.shields.io/static/v1?label=Loader&message=Forge%20%7C%20NeoForge&style=flat-square&color=orange" alt="Loaders" />
   <a href="https://discord.gg/ZgXeQqePy3">
