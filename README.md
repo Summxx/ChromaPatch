@@ -194,6 +194,8 @@ The same changelog is shown in game: once after each new version, and in the new
 <!-- changelog -->
 
 ### Chroma Patch 1.0.1
+- Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1
+- New preset: KuraBalanced by KuramA
 - Includes Eclipse patch 1.0.1
 - Fixed jar builds depending on the JDK version
 
