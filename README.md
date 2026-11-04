@@ -105,6 +105,7 @@ All new settings are in the **Atmosphere** page of the shader options. Each effe
 | **OBS07 Normal (No Fog)** | Normal without night fog and light wells |
 | **OBS07 Performance** | For lower-end GPUs and large bases |
 | **OBS07 Performance (No Fog)** | Performance without night fog and light wells |
+| **KuraBalanced** | KuramA's settings: balanced quality, without the OBS07 atmosphere effects |
 
 ---
 
@@ -191,6 +192,15 @@ By opening a pull request, you agree that your contribution is included in Chrom
 The same changelog is shown in game: once after each new version, and in the new version notice.
 
 <!-- changelog -->
+
+### Chroma Patch 1.0.1
+- Includes Eclipse patch 1.0.1
+- Fixed jar builds depending on the JDK version
+
+### Eclipse patch 1.0.1
+- Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1 (GTNH block ids are now only used on 1.7.10)
+- New preset: KuraBalanced by KuramA
+- Presets now reset the Atmosphere settings, so switching presets no longer keeps values from the previous one
 
 ### Chroma Patch 1.0.0
 - First release for Forge 1.7.10, Forge 1.20.1 and NeoForge 1.21.1

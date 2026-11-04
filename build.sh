@@ -31,7 +31,7 @@ for L in forge1710:1.7.10 forge1201:1.20.1 neoforge1211:1.21.1; do
 	cp CHANGELOG.md "$OUT"/chromapatch/CHANGELOG.md
 	find "$OUT" \( -name '*.toml' -o -name '*.info' \) -exec sed -i "s/@VERSION@/$VERSION/g" {} +
 	[ -f LICENSE.txt ] && cp LICENSE.txt "$OUT"/
-	printf 'Manifest-Version: 1.0\nAutomatic-Module-Name: chromapatch\nImplementation-Version: %s\n' "$VERSION" > build/manifest-$NAME
+	printf 'Manifest-Version: 1.0\nAutomatic-Module-Name: chromapatch\nImplementation-Version: %s\nCreated-By: Chroma Patch build.sh\n' "$VERSION" > build/manifest-$NAME
 	JAR="dist/chromapatch-$VERSION-$NAME-$MC.jar"
 	rm -f "$JAR"
 	# fixed dates and sorted entries: same source, same jar bytes

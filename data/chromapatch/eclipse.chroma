@@ -1,7 +1,7 @@
 CHROMA 1
 @info 11
 id=eclipse
-version=1.0.0
+version=1.0.1
 engine=1
 base=Eclipse Unstable 3c18afc
 name=Eclipse
@@ -10,9 +10,9 @@ detect.contains=ECLIPSE
 detect.excludes=OBS07
 detect.excludes.in=shaders/lang/en_us.lang,shaders/block.properties
 output=Eclipse-Shader KuraEdit [OBS07-Chroma Patch]
-changelog=- Atmosphere page: lamp-lit night fog, godrays, dust, lamp light wells, glass light\n- Neon blocks glow in their colour and light their surroundings\n- Coloured light for ProjectRed, A Port Needed and coloured candle lamps\n- GTNH glowing blocks sorted by colour, including Chisel antiblocks and GregTech coils\n- CodeChicken microblock shading and light\n- A Port Needed shapes let coloured light through, tinted glass works like stained glass\n- Rain only wets surfaces exposed to the sky\n- Presets: OBS07 Ultimate, Normal and Performance, with or without fog
+changelog=- Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1 (GTNH block ids are now only used on 1.7.10)\n- New preset: KuraBalanced by KuramA\n- Presets now reset the Atmosphere settings, so switching presets no longer keeps values from the previous one
 @mod shaders/block.properties 23 - ca5992836dd4569eded627c861113ce0f2d9f1c8
-@hunk 6 351
+@hunk 6 376
 o 6f01fb7e64df 6f01fb7e64df
 o 236b2c747eac 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
@@ -26,8 +26,45 @@ o 236b2c747eac 236b2c747eac
 +
 +########################################################################################################################################################################
 +
++# OBS07: GTNH 1.7.10 ids, uppercase names are rejected on 1.13+
++#if MC_VERSION < 11300
++#define GTNH_510 ForgeMultipart:block
++#define GTNH_242 Botania:seaLamp
++#define GTNH_169 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp chisel:antiBlock:15 chisel:antiBlock:7 chisel:antiBlock:8 chisel:antiBlock:0 chisel:antiBlock:3 ExtraUtilities:greenscreen:0 ExtraUtilities:greenscreen:7 ExtraUtilities:greenscreen:8 ExtraUtilities:greenscreen:15
++#define GTNH_153 ExtraUtilities:color_lightgem:1 chisel:antiBlock:14 ExtraUtilities:greenscreen:1
++#define GTNH_161 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom chisel:antiBlock:5 ExtraUtilities:greenscreen:10
++#define GTNH_149 ExtraUtilities:color_lightgem:2 chisel:antiBlock:13 ExtraUtilities:greenscreen:2
++#define GTNH_157 ExtraUtilities:color_lightgem:6 chisel:antiBlock:9 ExtraUtilities:greenscreen:6
++#define GTNH_196 GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone
++#define GTNH_173 ExtraUtilities:color_lightgem:4 chisel:antiBlock:11 ExtraUtilities:greenscreen:4
++#define GTNH_117 ExtraUtilities:color_lightgem:11 Natura:blueGlowshroom chisel:antiBlock:4 ExtraUtilities:greenscreen:11
++#define GTNH_137 ExtraUtilities:color_lightgem:3 chisel:antiBlock:12 ExtraUtilities:greenscreen:3
++#define GTNH_125 ExtraUtilities:color_lightgem:9 chisel:antiBlock:6 ExtraUtilities:greenscreen:9
++#define GTNH_133 ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom chisel:antiBlock:2 ExtraUtilities:greenscreen:13
++#define GTNH_145 ExtraUtilities:color_lightgem:5 chisel:antiBlock:10 ExtraUtilities:greenscreen:5
++#define GTNH_165 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone chisel:antiBlock:1 ExtraUtilities:greenscreen:14
++#define GTNH_121 ExtraUtilities:color_lightgem:12 ExtraUtilities:greenscreen:12
++#else
++#define GTNH_510
++#define GTNH_242
++#define GTNH_169
++#define GTNH_153
++#define GTNH_161
++#define GTNH_149
++#define GTNH_157
++#define GTNH_196
++#define GTNH_173
++#define GTNH_117
++#define GTNH_137
++#define GTNH_125
++#define GTNH_133
++#define GTNH_145
++#define GTNH_165
++#define GTNH_121
++#endif
++
 +# OBS07: CB microblocks
-+block.510=cb_multipart:multipart ForgeMultipart:block
++block.510=GTNH_510 cb_multipart:multipart
 +# OBS07: APN and ProjectRed lamps use candle lights, APN tinted glass uses the stained glass ids
 +# KuramA: chisel antiblocks and GregTech coils glow
 +
@@ -43,15 +80,14 @@ o 236b2c747eac 236b2c747eac
 +
 +############################
 +# WHITE COLORED Glow
-+block.242=Botania:seaLamp sea_lantern \
++block.242=GTNH_242 sea_lantern \
 +flying_stuff:celestium_block \
 +humility-afm:jack_o_lantern_soul \
 +mcwlights:sea_lantern_slab \
 +additionalplacements:mcwlights.sea_lantern_slab 
 +
-+block.169=chisel:neonite:3 chisel:froglight:0 chisel:froglight:1 chisel:froglight:2 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp apn:chroma_lamp_white projectred_illumination:white_illumar_lamp:lit=true projectred_illumination:white_inverted_illumar_lamp:lit=true apn:chroma_lamp_light_gray projectred_illumination:light_gray_illumar_lamp:lit=true projectred_illumination:light_gray_inverted_illumar_lamp:lit=true apn:chroma_lamp_gray projectred_illumination:gray_illumar_lamp:lit=true projectred_illumination:gray_inverted_illumar_lamp:lit=true apn:chroma_lamp_black projectred_illumination:black_illumar_lamp:lit=true projectred_illumination:black_inverted_illumar_lamp:lit=true white_candle:candles=4:lit=true \
++block.169=GTNH_169 chisel:neonite:3 chisel:froglight:0 chisel:froglight:1 chisel:froglight:2 apn:chroma_lamp_white projectred_illumination:white_illumar_lamp:lit=true projectred_illumination:white_inverted_illumar_lamp:lit=true apn:chroma_lamp_light_gray projectred_illumination:light_gray_illumar_lamp:lit=true projectred_illumination:light_gray_inverted_illumar_lamp:lit=true apn:chroma_lamp_gray projectred_illumination:gray_illumar_lamp:lit=true projectred_illumination:gray_inverted_illumar_lamp:lit=true apn:chroma_lamp_black projectred_illumination:black_illumar_lamp:lit=true projectred_illumination:black_inverted_illumar_lamp:lit=true white_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:15 chisel:antiBlock:7 chisel:antiBlock:8 chisel:antiBlock:0 chisel:antiBlock:3 \
 +\
 +neoncraft:horizontal_bar_bottom_white neoncraft:horizontal_bar_top_white neoncraft:vertical_bar_left_white neoncraft:vertical_bar_right_white neoncraft:cornor_bar_left_top_white neoncraft:cornor_bar_left_bottom_white neoncraft:cornor_bar_right_top_white neoncraft:cornor_bar_right_bottom_white \
 +neoncraft:a_white neoncraft:b_white neoncraft:c_white neoncraft:d_white neoncraft:e_white neoncraft:f_white neoncraft:g_white neoncraft:h_white neoncraft:i_white neoncraft:j_white neoncraft:k_white neoncraft:l_white neoncraft:m_white neoncraft:n_white neoncraft:o_white neoncraft:p_white neoncraft:q_white neoncraft:r_white neoncraft:s_white neoncraft:t_white neoncraft:u_white neoncraft:v_white neoncraft:w_white neoncraft:x_white neoncraft:y_white neoncraft:z_white \
@@ -63,7 +99,7 @@ o 236b2c747eac 236b2c747eac
 +luminax:white_block luminax:white_stairs luminax:white_slab luminax:white_wall luminax:white_button \
 +luminax:light_gray_block luminax:light_gray_stairs luminax:light_gray_slab luminax:light_gray_wall luminax:light_gray_button \
 +gtceu:white_borderless_lamp gtceu:light_gray_borderless_lamp \
-+miniutilities:white_lapis_caelestis ExtraUtilities:greenscreen:0 ExtraUtilities:greenscreen:7 ExtraUtilities:greenscreen:8 ExtraUtilities:greenscreen:15 rgbblocks:antiblock cosmiccore:antiblock_white \
++miniutilities:white_lapis_caelestis rgbblocks:antiblock cosmiccore:antiblock_white \
 +blocksyouneed_luna:antiblock_white blocksyouneed_luna:antiblock_blinking_white_slow blocksyouneed_luna:antiblock_blinking_white_fast \
 +antiblocksrechiseled:bright_white antiblocksrechiseled:wool_white antiblocksrechiseled:slab_white_bright antiblocksrechiseled:slab_white_wool antiblocksrechiseled:stair_white_bright antiblocksrechiseled:stair_white_wool antiblocksrechiseled:button_bright_white antiblocksrechiseled:button_wool_white \
 +\
@@ -90,16 +126,15 @@ o 236b2c747eac 236b2c747eac
 +amendments:wall_lantern:light_level=15:lit=true \
 +mcwlights:striped_lantern mcwlights:covered_lantern mcwlights:chain_lantern mcwlights:tavern_lantern mcwlights:festive_lantern mcwlights:cross_lantern mcwlights:bell_lantern mcwlights:wall_lantern mcwlights:striped_wall_lantern mcwlights:covered_wall_lantern mcwlights:chain_wall_lantern mcwlights:tavern_wall_lantern mcwlights:festive_wall_lantern mcwlights:cross_wall_lantern mcwlights:bell_wall_lantern mcwlights:classic_street_lamp:lit=true:part=top mcwlights:classic_street_lamp:lit=true:part=base mcwlights:double_street_lamp:lit=true:part=top mcwlights:double_street_lamp:lit=true:part=base 
 +
-+block.153=chisel:neonite:0 chisel:froglight:7 chisel:froglight:9 ExtraUtilities:color_lightgem:1 apn:chroma_lamp_orange projectred_illumination:orange_illumar_lamp:lit=true projectred_illumination:orange_inverted_illumar_lamp:lit=true orange_candle:candles=4:lit=true \
++block.153=GTNH_153 chisel:neonite:0 chisel:froglight:7 chisel:froglight:9 apn:chroma_lamp_orange projectred_illumination:orange_illumar_lamp:lit=true projectred_illumination:orange_inverted_illumar_lamp:lit=true orange_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:14 \
 +\
 +neoncraft:horizontal_bar_bottom_orange neoncraft:horizontal_bar_top_orange neoncraft:vertical_bar_left_orange neoncraft:vertical_bar_right_orange neoncraft:cornor_bar_left_top_orange neoncraft:cornor_bar_left_bottom_orange neoncraft:cornor_bar_right_top_orange neoncraft:cornor_bar_right_bottom_orange \
 +neoncraft:a_orange neoncraft:b_orange neoncraft:c_orange neoncraft:d_orange neoncraft:e_orange neoncraft:f_orange neoncraft:g_orange neoncraft:h_orange neoncraft:i_orange neoncraft:j_orange neoncraft:k_orange neoncraft:l_orange neoncraft:m_orange neoncraft:n_orange neoncraft:o_orange neoncraft:p_orange neoncraft:q_orange neoncraft:r_orange neoncraft:s_orange neoncraft:t_orange neoncraft:u_orange neoncraft:v_orange neoncraft:w_orange neoncraft:x_orange neoncraft:y_orange neoncraft:z_orange \
 +neoncraft:orange_0 neoncraft:orange_1 neoncraft:orange_2 neoncraft:orange_3 neoncraft:orange_4 neoncraft:orange_5 neoncraft:orange_6 neoncraft:orange_7 neoncraft:orange_8 neoncraft:orange_9 \
 +\
 +luminax:orange_block luminax:orange_stairs luminax:orange_slab luminax:orange_wall luminax:orange_button \
-+miniutilities:orange_lapis_caelestis ExtraUtilities:greenscreen:1 cosmiccore:antiblock_orange gtceu:orange_borderless_lamp \
++miniutilities:orange_lapis_caelestis cosmiccore:antiblock_orange gtceu:orange_borderless_lamp \
 +blocksyouneed_luna:antiblock_orange blocksyouneed_luna:antiblock_blinking_orange_slow blocksyouneed_luna:antiblock_blinking_orange_fast \
 +antiblocksrechiseled:bright_orange antiblocksrechiseled:wool_orange antiblocksrechiseled:slab_orange_bright antiblocksrechiseled:slab_orange_wool antiblocksrechiseled:stair_orange_bright antiblocksrechiseled:stair_orange_wool antiblocksrechiseled:button_bright_orange antiblocksrechiseled:button_wool_orange \
 +\
@@ -118,13 +153,12 @@ o 236b2c747eac 236b2c747eac
 +# PURPLE COLORED Glow
 +block.185=crying_obsidian
 +
-+block.161=chisel:neonite:11 chisel:neonite:12 chisel:lantern:5 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom apn:chroma_lamp_purple projectred_illumination:purple_illumar_lamp:lit=true projectred_illumination:purple_inverted_illumar_lamp:lit=true purple_candle:candles=4:lit=true \
++block.161=GTNH_161 chisel:neonite:11 chisel:neonite:12 chisel:lantern:5 apn:chroma_lamp_purple projectred_illumination:purple_illumar_lamp:lit=true projectred_illumination:purple_inverted_illumar_lamp:lit=true purple_candle:candles=4:lit=true \
 +\
 +gregtech:gt.blockcasings5:24 \
-+chisel:antiBlock:5 \
 +\
 +luminax:purple_block luminax:purple_stairs luminax:purple_slab luminax:purple_wall luminax:purple_button \
-+cosmiccore:antiblock_purple miniutilities:purple_lapis_caelestis ExtraUtilities:greenscreen:10 gtceu:purple_borderless_lamp \
++cosmiccore:antiblock_purple miniutilities:purple_lapis_caelestis gtceu:purple_borderless_lamp \
 +blocksyouneed_luna:antiblock_purple blocksyouneed_luna:antiblock_blinking_purple_slow blocksyouneed_luna:antiblock_blinking_purple_fast \
 +antiblocksrechiseled:bright_purple antiblocksrechiseled:wool_purple antiblocksrechiseled:slab_purple_bright antiblocksrechiseled:slab_purple_wool antiblocksrechiseled:stair_purple_bright antiblocksrechiseled:stair_purple_wool antiblocksrechiseled:button_bright_purple antiblocksrechiseled:button_wool_purple \
 +\
@@ -135,14 +169,13 @@ o 236b2c747eac 236b2c747eac
 +
 +#######################
 +# MAGENTA COLORED Glow
-+block.149=chisel:neonite:13 chisel:neonite:14 ExtraUtilities:color_lightgem:2 apn:chroma_lamp_magenta projectred_illumination:magenta_illumar_lamp:lit=true projectred_illumination:magenta_inverted_illumar_lamp:lit=true magenta_candle:candles=4:lit=true \
++block.149=GTNH_149 chisel:neonite:13 chisel:neonite:14 apn:chroma_lamp_magenta projectred_illumination:magenta_illumar_lamp:lit=true projectred_illumination:magenta_inverted_illumar_lamp:lit=true magenta_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:13 \
 +\
 +malum:block_of_soul_stained_steel malum:wicked_spirited_glass \
 +\
 +luminax:magenta_block luminax:magenta_stairs luminax:magenta_slab luminax:magenta_wall luminax:magenta_button \
-+miniutilities:magenta_lapis_caelestis ExtraUtilities:greenscreen:2 cosmiccore:antiblock_magenta gtceu:magenta_borderless_lamp \
++miniutilities:magenta_lapis_caelestis cosmiccore:antiblock_magenta gtceu:magenta_borderless_lamp \
 +blocksyouneed_luna:antiblock_magenta blocksyouneed_luna:antiblock_blinking_magenta_slow blocksyouneed_luna:antiblock_blinking_magenta_fast \
 +antiblocksrechiseled:bright_magenta antiblocksrechiseled:wool_magenta antiblocksrechiseled:slab_magenta_bright antiblocksrechiseled:slab_magenta_wool antiblocksrechiseled:stair_magenta_bright antiblocksrechiseled:stair_magenta_wool antiblocksrechiseled:button_bright_magenta antiblocksrechiseled:button_wool_magenta \
 +\
@@ -152,17 +185,16 @@ o 236b2c747eac 236b2c747eac
 +
 +####################
 +# PINK COLORED Glow
-+block.157=chisel:neonite:15 ExtraUtilities:color_lightgem:6 apn:chroma_lamp_pink projectred_illumination:pink_illumar_lamp:lit=true projectred_illumination:pink_inverted_illumar_lamp:lit=true pink_candle:candles=4:lit=true \
++block.157=GTNH_157 chisel:neonite:15 apn:chroma_lamp_pink projectred_illumination:pink_illumar_lamp:lit=true projectred_illumination:pink_inverted_illumar_lamp:lit=true pink_candle:candles=4:lit=true \
 +\
 +gregtech:gt.blockcasings5:19 gregtech:gt.blockcasings5:25 \
-+chisel:antiBlock:9 \
 +\
 +neoncraft:horizontal_bar_bottom_magenta neoncraft:horizontal_bar_top_magenta neoncraft:vertical_bar_left_magenta neoncraft:vertical_bar_right_magenta neoncraft:cornor_bar_left_top_magenta neoncraft:cornor_bar_left_bottom_magenta neoncraft:cornor_bar_right_top_magenta neoncraft:cornor_bar_right_bottom_magenta \
 +neoncraft:a_magenta neoncraft:b_magenta neoncraft:c_magenta neoncraft:d_magenta neoncraft:e_magenta neoncraft:f_magenta neoncraft:g_magenta neoncraft:h_magenta neoncraft:i_magenta neoncraft:j_magenta neoncraft:k_magenta neoncraft:l_magenta neoncraft:m_magenta neoncraft:n_magenta neoncraft:omagenta neoncraft:p_magenta neoncraft:q_magenta neoncraft:r_magenta neoncraft:s_magenta neoncraft:t_magenta neoncraft:u_magenta neoncraft:v_magenta neoncraft:w_magenta neoncraft:x_magenta neoncraft:y_magenta neoncraft:z_magenta \
 +neoncraft:magenta_0 neoncraft:magenta_1 neoncraft:magenta_2 neoncraft:magenta_3 neoncraft:magenta_4 neoncraft:magenta_5 neoncraft:magenta_6 neoncraft:magenta_7 neoncraft:magenta_8 neoncraft:magenta_9 \
 +\
 +luminax:pink_block luminax:pink_stairs luminax:pink_slab luminax:pink_wall luminax:pink_button \
-+miniutilities:pink_lapis_caelestis ExtraUtilities:greenscreen:6 cosmiccore:antiblock_pink gtceu:pink_borderless_lamp \
++miniutilities:pink_lapis_caelestis cosmiccore:antiblock_pink gtceu:pink_borderless_lamp \
 +blocksyouneed_luna:antiblock_pink blocksyouneed_luna:antiblock_blinking_pink_slow blocksyouneed_luna:antiblock_blinking_pink_fast \
 +antiblocksrechiseled:bright_pink antiblocksrechiseled:wool_pink antiblocksrechiseled:slab_pink_bright antiblocksrechiseled:slab_pink_wool antiblocksrechiseled:stair_pink_bright antiblocksrechiseled:stair_pink_wool antiblocksrechiseled:button_bright_pink antiblocksrechiseled:button_wool_pink \
 +\
@@ -172,21 +204,20 @@ o 236b2c747eac 236b2c747eac
 +
 +######################
 +# YELLOW COLORED Glow 
-+block.196=chisel:glowstone GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone glowstone \
++block.196=GTNH_196 chisel:glowstone glowstone \
 +mcwlights:glowstone_slab \
 +additionalplacements:mcwlights.glowstone_slab 
 +
-+block.173=chisel:neonite:1 chisel:neonite:2 chisel:froglight:4 ExtraUtilities:color_lightgem:4 apn:chroma_lamp_yellow projectred_illumination:yellow_illumar_lamp:lit=true projectred_illumination:yellow_inverted_illumar_lamp:lit=true yellow_candle:candles=4:lit=true \
++block.173=GTNH_173 chisel:neonite:1 chisel:neonite:2 chisel:froglight:4 apn:chroma_lamp_yellow projectred_illumination:yellow_illumar_lamp:lit=true projectred_illumination:yellow_inverted_illumar_lamp:lit=true yellow_candle:candles=4:lit=true \
 +\
 +gregtech:gt.blockcasings5:23 \
-+chisel:antiBlock:11 \
 +\
 +neoncraft:horizontal_bar_bottom_yellow neoncraft:horizontal_bar_top_yellow neoncraft:vertical_bar_left_yellow neoncraft:vertical_bar_right_yellow neoncraft:cornor_bar_left_top_yellow neoncraft:cornor_bar_left_bottom_yellow neoncraft:cornor_bar_right_top_yellow neoncraft:cornor_bar_right_bottom_yellow \
 +neoncraft:a_yellow neoncraft:b_yellow neoncraft:c_yellow neoncraft:d_yellow neoncraft:e_yellow neoncraft:f_yellow neoncraft:g_yellow neoncraft:h_yellow neoncraft:i_yellow neoncraft:j_yellow neoncraft:k_yellow neoncraft:l_yellow neoncraft:m_yellow neoncraft:n_yellow neoncraft:o_yellow neoncraft:p_yellow neoncraft:q_yellow neoncraft:r_yellow neoncraft:s_yellow neoncraft:t_yellow neoncraft:u_yellow neoncraft:v_yellow neoncraft:w_yellow neoncraft:x_yellow neoncraft:y_yellow neoncraft:z_yellow \
 +neoncraft:yellow_0 neoncraft:yellow_1 neoncraft:yellow_2 neoncraft:yellow_3 neoncraft:yellow_4 neoncraft:yellow_5 neoncraft:yellow_6 neoncraft:yellow_7 neoncraft:yellow_8 neoncraft:yellow_9 \
 +\
 +luminax:yellow_block luminax:yellow_stairs luminax:yellow_slab luminax:yellow_wall luminax:yellow_button \
-+miniutilities:yellow_lapis_caelestis ExtraUtilities:greenscreen:4 cosmiccore:antiblock_yellow gtceu:yellow_borderless_lamp \
++miniutilities:yellow_lapis_caelestis cosmiccore:antiblock_yellow gtceu:yellow_borderless_lamp \
 +blocksyouneed_luna:antiblock_yellow blocksyouneed_luna:antiblock_blinking_yellow_slow blocksyouneed_luna:antiblock_blinking_yellow_fast \
 +antiblocksrechiseled:bright_yellow antiblocksrechiseled:wool_yellow antiblocksrechiseled:slab_yellow_bright antiblocksrechiseled:slab_yellow_wool antiblocksrechiseled:stair_yellow_bright antiblocksrechiseled:stair_yellow_wool antiblocksrechiseled:button_bright_yellow antiblocksrechiseled:button_wool_yellow \
 +\
@@ -196,12 +227,11 @@ o 236b2c747eac 236b2c747eac
 +
 +####################
 +# BLUE COLORED GLow
-+block.117=chisel:neonite:8 chisel:neonite:9 chisel:neonite:10 chisel:froglight:3 ExtraUtilities:color_lightgem:11 Natura:blueGlowshroom apn:chroma_lamp_blue projectred_illumination:blue_illumar_lamp:lit=true projectred_illumination:blue_inverted_illumar_lamp:lit=true blue_candle:candles=4:lit=true \
++block.117=GTNH_117 chisel:neonite:8 chisel:neonite:9 chisel:neonite:10 chisel:froglight:3 apn:chroma_lamp_blue projectred_illumination:blue_illumar_lamp:lit=true projectred_illumination:blue_inverted_illumar_lamp:lit=true blue_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:4 \
 +\
 +luminax:blue_block luminax:blue_stairs luminax:blue_slab luminax:blue_wall luminax:blue_button \
-+miniutilities:blue_lapis_caelestis ExtraUtilities:greenscreen:11 cosmiccore:antiblock_blue gtceu:blue_borderless_lamp \
++miniutilities:blue_lapis_caelestis cosmiccore:antiblock_blue gtceu:blue_borderless_lamp \
 +blocksyouneed_luna:antiblock_blue blocksyouneed_luna:antiblock_blinking_blue_slow blocksyouneed_luna:antiblock_blinking_blue_fast \
 +antiblocksrechiseled:bright_blue antiblocksrechiseled:wool_blue antiblocksrechiseled:slab_blue_bright antiblocksrechiseled:slab_blue_wool antiblocksrechiseled:stair_blue_bright antiblocksrechiseled:stair_blue_wool antiblocksrechiseled:button_bright_blue antiblocksrechiseled:button_wool_blue \
 +\
@@ -211,13 +241,12 @@ o 236b2c747eac 236b2c747eac
 +
 +##########################
 +# LIGHT BLUE COLORED GLow
-+block.137=chisel:neonite:7 ExtraUtilities:color_lightgem:3 apn:chroma_lamp_light_blue projectred_illumination:light_blue_illumar_lamp:lit=true projectred_illumination:light_blue_inverted_illumar_lamp:lit=true light_blue_candle:candles=4:lit=true \
++block.137=GTNH_137 chisel:neonite:7 apn:chroma_lamp_light_blue projectred_illumination:light_blue_illumar_lamp:lit=true projectred_illumination:light_blue_inverted_illumar_lamp:lit=true light_blue_candle:candles=4:lit=true \
 +\
 +gregtech:gt.blockcasings5:29 \
-+chisel:antiBlock:12 \
 +\
 +luminax:light_blue_block luminax:light_blue_stairs luminax:light_blue_slab luminax:light_blue_wall luminax:light_blue_button \
-+miniutilities:light_blue_lapis_caelestis ExtraUtilities:greenscreen:3 cosmiccore:antiblock_light_blue gtceu:light_blue_borderless_lamp \
++miniutilities:light_blue_lapis_caelestis cosmiccore:antiblock_light_blue gtceu:light_blue_borderless_lamp \
 +blocksyouneed_luna:antiblock_light_blue blocksyouneed_luna:antiblock_blinking_light_blue_slow blocksyouneed_luna:antiblock_blinking_light_blue_fast \
 +antiblocksrechiseled:bright_light_blue antiblocksrechiseled:wool_light_blue antiblocksrechiseled:slab_light_blue_bright antiblocksrechiseled:slab_light_blue_wool antiblocksrechiseled:stair_light_blue_bright antiblocksrechiseled:stair_light_blue_wool antiblocksrechiseled:button_bright_light_blue antiblocksrechiseled:button_wool_light_blue \
 +\
@@ -228,18 +257,17 @@ o 236b2c747eac 236b2c747eac
 +####################
 +# CYAN COLORED GLow
 +# ExtraUtilities:greenscreen:9 \
-+block.244=soul_fire soul_campfire:lit=true 
++block.244=soul_fire soul_campfire:lit=true
 +
-+block.125=chisel:neonite:6 chisel:froglight:6 chisel:lantern:4 ExtraUtilities:color_lightgem:9 apn:chroma_lamp_cyan projectred_illumination:cyan_illumar_lamp:lit=true projectred_illumination:cyan_inverted_illumar_lamp:lit=true cyan_candle:candles=4:lit=true \
++block.125=GTNH_125 chisel:neonite:6 chisel:froglight:6 chisel:lantern:4 apn:chroma_lamp_cyan projectred_illumination:cyan_illumar_lamp:lit=true projectred_illumination:cyan_inverted_illumar_lamp:lit=true cyan_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:6 \
 +\
 +neoncraft:horizontal_bar_bottom_lightblue neoncraft:horizontal_bar_top_lightblue neoncraft:vertical_bar_left_lightblue neoncraft:vertical_bar_right_lightblue neoncraft:cornor_bar_left_top_lightblue neoncraft:cornor_bar_left_bottom_lightblue neoncraft:cornor_bar_right_top_lightblue neoncraft:cornor_bar_right_bottom_lightblue \
 +neoncraft:a_light_blue neoncraft:b_light_blue neoncraft:c_light_blue neoncraft:d_light_blue neoncraft:e_light_blue neoncraft:f_light_blue neoncraft:g_light_blue neoncraft:h_light_blue neoncraft:i_light_blue neoncraft:j_light_blue neoncraft:k_light_blue neoncraft:l_light_blue neoncraft:m_light_blue neoncraft:n_light_blue neoncraft:o_light_blue neoncraft:p_light_blue neoncraft:q_light_blue neoncraft:r_light_blue neoncraft:s_light_blue neoncraft:t_light_blue neoncraft:u_light_blue neoncraft:v_light_blue neoncraft:w_light_blue neoncraft:x_light_blue neoncraft:y_light_blue neoncraft:z_light_blue \
 +neoncraft:lightblue_0 neoncraft:lightblue_1 neoncraft:lightblue_2 neoncraft:lightblue_3 neoncraft:lightblue_4 neoncraft:lightblue_5 neoncraft:lightblue_6 neoncraft:lightblue_7 neoncraft:lightblue_8 neoncraft:lightblue_9 \
 +\
 +luminax:cyan_block luminax:cyan_stairs luminax:cyan_slab luminax:cyan_wall luminax:cyan_button \
-+gtceu:cyan_borderless_lamp miniutilities:cyan_lapis_caelestis ExtraUtilities:greenscreen:9 cosmiccore:antiblock_cyan \
++gtceu:cyan_borderless_lamp miniutilities:cyan_lapis_caelestis cosmiccore:antiblock_cyan \
 +blocksyouneed_luna:antiblock_cyan blocksyouneed_luna:antiblock_blinking_cyan_slow blocksyouneed_luna:antiblock_blinking_cyan_fast \
 +antiblocksrechiseled:bright_cyan antiblocksrechiseled:wool_cyan antiblocksrechiseled:slab_cyan_bright antiblocksrechiseled:slab_cyan_wool antiblocksrechiseled:stair_cyan_bright antiblocksrechiseled:stair_cyan_wool antiblocksrechiseled:button_bright_cyan antiblocksrechiseled:button_wool_cyan \
 +\
@@ -252,12 +280,11 @@ o 236b2c747eac 236b2c747eac
 +# chisel:neonite:4 chisel:antiBlock:2 \
 +block.193=verdant_froglight
 +
-+block.133=ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom apn:chroma_lamp_green projectred_illumination:green_illumar_lamp:lit=true projectred_illumination:green_inverted_illumar_lamp:lit=true green_candle:candles=4:lit=true \
++block.133=GTNH_133 apn:chroma_lamp_green projectred_illumination:green_illumar_lamp:lit=true projectred_illumination:green_inverted_illumar_lamp:lit=true green_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:2 \
 +\
 +luminax:green_block luminax:green_stairs luminax:green_slab luminax:green_wall luminax:green_button \
-+miniutilities:green_lapis_caelestis ExtraUtilities:greenscreen:13 cosmiccore:antiblock_green gtceu:green_borderless_lamp \
++miniutilities:green_lapis_caelestis cosmiccore:antiblock_green gtceu:green_borderless_lamp \
 +blocksyouneed_luna:antiblock_green blocksyouneed_luna:antiblock_blinking_green_slow blocksyouneed_luna:antiblock_blinking_green_fast \
 +antiblocksrechiseled:bright_green antiblocksrechiseled:wool_green antiblocksrechiseled:slab_green_bright antiblocksrechiseled:slab_green_wool antiblocksrechiseled:stair_green_bright antiblocksrechiseled:stair_green_wool antiblocksrechiseled:button_bright_green antiblocksrechiseled:button_wool_green \
 +\
@@ -267,16 +294,15 @@ o 236b2c747eac 236b2c747eac
 +
 +####################
 +# LIME COLORED Glow 
-+block.145=chisel:neonite:4 chisel:neonite:5 chisel:froglight:5 ExtraUtilities:color_lightgem:5 apn:chroma_lamp_lime projectred_illumination:lime_illumar_lamp:lit=true projectred_illumination:lime_inverted_illumar_lamp:lit=true lime_candle:candles=4:lit=true \
++block.145=GTNH_145 chisel:neonite:4 chisel:neonite:5 chisel:froglight:5 apn:chroma_lamp_lime projectred_illumination:lime_illumar_lamp:lit=true projectred_illumination:lime_inverted_illumar_lamp:lit=true lime_candle:candles=4:lit=true \
 +\
 +gregtech:gt.blockcasings5:20 \
-+chisel:antiBlock:10 \
 +\
 +neoncraft:horizontal_bar_bottom_lime neoncraft:horizontal_bar_top_lime neoncraft:vertical_bar_left_lime neoncraft:vertical_bar_right_lime neoncraft:cornor_bar_left_top_lime neoncraft:cornor_bar_left_bottom_lime neoncraft:cornor_bar_right_top_lime neoncraft:cornor_bar_right_bottom_lime \
 +neoncraft:a_lime neoncraft:b_lime neoncraft:c_lime neoncraft:d_lime neoncraft:e_lime neoncraft:f_lime neoncraft:g_lime neoncraft:h_lime neoncraft:i_lime neoncraft:j_lime neoncraft:k_lime neoncraft:l_lime neoncraft:m_lime neoncraft:n_lime neoncraft:o_lime neoncraft:p_lime neoncraft:q_lime neoncraft:r_lime neoncraft:s_lime neoncraft:t_lime neoncraft:u_lime neoncraft:v_lime neoncraft:w_lime neoncraft:x_lime neoncraft:y_lime neoncraft:z_lime \
 +neoncraft:lime_0 neoncraft:lime_1 neoncraft:lime_2 neoncraft:lime_3 neoncraft:lime_4 neoncraft:lime_5 neoncraft:lime_6 neoncraft:lime_7 neoncraft:lime_8 neoncraft:lime_9 \
 +\
-+gtceu:lime_borderless_lamp miniutilities:lime_lapis_caelestis ExtraUtilities:greenscreen:5 cosmiccore:antiblock_lime \
++gtceu:lime_borderless_lamp miniutilities:lime_lapis_caelestis cosmiccore:antiblock_lime \
 +luminax:lime_block luminax:lime_stairs luminax:lime_slab luminax:lime_wall luminax:lime_button \
 +blocksyouneed_luna:antiblock_lime blocksyouneed_luna:antiblock_blinking_lime_slow blocksyouneed_luna:antiblock_blinking_lime_fast \
 +antiblocksrechiseled:bright_lime antiblocksrechiseled:wool_lime antiblocksrechiseled:slab_lime_bright antiblocksrechiseled:slab_lime_wool antiblocksrechiseled:stair_lime_bright antiblocksrechiseled:stair_lime_wool antiblocksrechiseled:button_bright_lime antiblocksrechiseled:button_wool_lime \
@@ -291,9 +317,8 @@ o 236b2c747eac 236b2c747eac
 +flying_stuff:molten_metal:lit=true \
 +mcwlights:lava_lamp:lit=true
 +
-+block.165=chisel:froglight:8 chisel:lantern:2 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone apn:chroma_lamp_red projectred_illumination:red_illumar_lamp:lit=true projectred_illumination:red_inverted_illumar_lamp:lit=true red_candle:candles=4:lit=true \
++block.165=GTNH_165 chisel:froglight:8 chisel:lantern:2 apn:chroma_lamp_red projectred_illumination:red_illumar_lamp:lit=true projectred_illumination:red_inverted_illumar_lamp:lit=true red_candle:candles=4:lit=true \
 +\
-+chisel:antiBlock:1 \
 +\
 +neoncraft:horizontal_bar_bottom_red neoncraft:horizontal_bar_top_red neoncraft:vertical_bar_left_red neoncraft:vertical_bar_right_red neoncraft:cornor_bar_left_top_red neoncraft:cornor_bar_left_bottom_red neoncraft:cornor_bar_right_top_red neoncraft:cornor_bar_right_bottom_red \
 +neoncraft:a_red neoncraft:b_red neoncraft:c_red neoncraft:d_red neoncraft:e_red neoncraft:f_red neoncraft:g_red neoncraft:h_red neoncraft:i_red neoncraft:j_red neoncraft:k_red neoncraft:l_red neoncraft:m_red neoncraft:n_red neoncraft:o_red neoncraft:p_red neoncraft:q_red neoncraft:r_red neoncraft:s_red neoncraft:t_red neoncraft:u_red neoncraft:v_red neoncraft:w_red neoncraft:x_red neoncraft:y_red neoncraft:z_red \
@@ -302,7 +327,7 @@ o 236b2c747eac 236b2c747eac
 +kubejs:signalum_casing cosmiccore:blood_cube \
 +\
 +luminax:red_block luminax:red_stairs luminax:red_slab luminax:red_wall luminax:red_button \
-+miniutilities:red_lapis_caelestis ExtraUtilities:greenscreen:14 cosmiccore:antiblock_red gtceu:red_borderless_lamp \
++miniutilities:red_lapis_caelestis cosmiccore:antiblock_red gtceu:red_borderless_lamp \
 +blocksyouneed_luna:antiblock_red blocksyouneed_luna:antiblock_blinking_red_slow blocksyouneed_luna:antiblock_blinking_red_fast \
 +antiblocksrechiseled:bright_red antiblocksrechiseled:wool_red antiblocksrechiseled:slab_red_bright antiblocksrechiseled:slab_red_wool antiblocksrechiseled:stair_red_bright antiblocksrechiseled:stair_red_wool antiblocksrechiseled:button_bright_red antiblocksrechiseled:button_wool_red \
 +\
@@ -444,7 +469,7 @@ o 20ddb1f8fa6d 20ddb1f8fa6d
 =0
 =1
 =2
-+block.121=ExtraUtilities:color_lightgem:12 apn:chroma_lamp_brown ExtraUtilities:greenscreen:12 projectred_illumination:brown_illumar_lamp:lit=true projectred_illumination:brown_inverted_illumar_lamp:lit=true brown_candle:candles=4:lit=true \
++block.121=GTNH_121 apn:chroma_lamp_brown projectred_illumination:brown_illumar_lamp:lit=true projectred_illumination:brown_inverted_illumar_lamp:lit=true brown_candle:candles=4:lit=true \
 =4
 =5
 =6
@@ -927,20 +952,16 @@ o 8dce37066edf 8dce37066edf
 =2
 +
 +
-@props shaders/block.properties 999
+@props shaders/block.properties 954
 add layer.translucent 1
-|block.510=cb_multipart:multipart ForgeMultipart:block
-ins block.242 - Botania:seaLamp
-ins block.169 - chisel:neonite:3
+|block.510=GTNH_510 cb_multipart:multipart
+ins block.242 - GTNH_242
+ins block.169 - GTNH_169
+ins block.169 GTNH_169 chisel:neonite:3
 ins block.169 chisel:neonite:3 chisel:froglight:0
 ins block.169 chisel:froglight:0 chisel:froglight:1
 ins block.169 chisel:froglight:1 chisel:froglight:2
-ins block.169 chisel:froglight:2 ExtraUtilities:color_lightgem:0
-ins block.169 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7
-ins block.169 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8
-ins block.169 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15
-ins block.169 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp
-ins block.169 appliedenergistics2:tile.BlockQuartzLamp apn:chroma_lamp_white
+ins block.169 chisel:froglight:2 apn:chroma_lamp_white
 ins block.169 apn:chroma_lamp_white projectred_illumination:white_illumar_lamp:lit=true
 ins block.169 projectred_illumination:white_illumar_lamp:lit=true projectred_illumination:white_inverted_illumar_lamp:lit=true
 ins block.169 projectred_illumination:white_inverted_illumar_lamp:lit=true apn:chroma_lamp_light_gray
@@ -952,12 +973,7 @@ ins block.169 projectred_illumination:gray_illumar_lamp:lit=true projectred_illu
 ins block.169 projectred_illumination:gray_inverted_illumar_lamp:lit=true apn:chroma_lamp_black
 ins block.169 apn:chroma_lamp_black projectred_illumination:black_illumar_lamp:lit=true
 ins block.169 projectred_illumination:black_illumar_lamp:lit=true projectred_illumination:black_inverted_illumar_lamp:lit=true
-ins block.169 white_candle:candles=4:lit=true chisel:antiBlock:15
-ins block.169 chisel:antiBlock:15 chisel:antiBlock:7
-ins block.169 chisel:antiBlock:7 chisel:antiBlock:8
-ins block.169 chisel:antiBlock:8 chisel:antiBlock:0
-ins block.169 chisel:antiBlock:0 chisel:antiBlock:3
-ins block.169 chisel:antiBlock:3 neoncraft:horizontal_bar_bottom_white
+ins block.169 white_candle:candles=4:lit=true neoncraft:horizontal_bar_bottom_white
 ins block.169 neoncraft:horizontal_bar_bottom_white neoncraft:horizontal_bar_top_white
 ins block.169 neoncraft:horizontal_bar_top_white neoncraft:vertical_bar_left_white
 ins block.169 neoncraft:vertical_bar_left_white neoncraft:vertical_bar_right_white
@@ -1023,11 +1039,7 @@ ins block.169 luminax:light_gray_wall luminax:light_gray_button
 ins block.169 luminax:light_gray_button gtceu:white_borderless_lamp
 ins block.169 gtceu:white_borderless_lamp gtceu:light_gray_borderless_lamp
 ins block.169 gtceu:light_gray_borderless_lamp miniutilities:white_lapis_caelestis
-ins block.169 miniutilities:white_lapis_caelestis ExtraUtilities:greenscreen:0
-ins block.169 ExtraUtilities:greenscreen:0 ExtraUtilities:greenscreen:7
-ins block.169 ExtraUtilities:greenscreen:7 ExtraUtilities:greenscreen:8
-ins block.169 ExtraUtilities:greenscreen:8 ExtraUtilities:greenscreen:15
-ins block.169 ExtraUtilities:greenscreen:15 rgbblocks:antiblock
+ins block.169 miniutilities:white_lapis_caelestis rgbblocks:antiblock
 ins block.169 rgbblocks:antiblock cosmiccore:antiblock_white
 ins block.169 cosmiccore:antiblock_white blocksyouneed_luna:antiblock_white
 ins block.169 blocksyouneed_luna:antiblock_white blocksyouneed_luna:antiblock_blinking_white_slow
@@ -1065,15 +1077,14 @@ ins block.198 lantern gregtech:gt.blockcasings5:18
 ins block.198 gregtech:gt.blockcasings5:18 gregtech:gt.blockcasings5:16
 ins block.198 gregtech:gt.blockcasings5:16 gregtech:gt.blockcasings5:17
 ins block.198 gregtech:gt.blockcasings5:17 gregtech:gt.blockcasings5:28
-ins block.153 - chisel:neonite:0
+ins block.153 - GTNH_153
+ins block.153 GTNH_153 chisel:neonite:0
 ins block.153 chisel:neonite:0 chisel:froglight:7
 ins block.153 chisel:froglight:7 chisel:froglight:9
-ins block.153 chisel:froglight:9 ExtraUtilities:color_lightgem:1
-ins block.153 ExtraUtilities:color_lightgem:1 apn:chroma_lamp_orange
+ins block.153 chisel:froglight:9 apn:chroma_lamp_orange
 ins block.153 apn:chroma_lamp_orange projectred_illumination:orange_illumar_lamp:lit=true
 ins block.153 projectred_illumination:orange_illumar_lamp:lit=true projectred_illumination:orange_inverted_illumar_lamp:lit=true
-ins block.153 orange_candle:candles=4:lit=true chisel:antiBlock:14
-ins block.153 chisel:antiBlock:14 neoncraft:horizontal_bar_bottom_orange
+ins block.153 orange_candle:candles=4:lit=true neoncraft:horizontal_bar_bottom_orange
 ins block.153 neoncraft:horizontal_bar_bottom_orange neoncraft:horizontal_bar_top_orange
 ins block.153 neoncraft:horizontal_bar_top_orange neoncraft:vertical_bar_left_orange
 ins block.153 neoncraft:vertical_bar_left_orange neoncraft:vertical_bar_right_orange
@@ -1123,8 +1134,7 @@ ins block.153 luminax:orange_stairs luminax:orange_slab
 ins block.153 luminax:orange_slab luminax:orange_wall
 ins block.153 luminax:orange_wall luminax:orange_button
 ins block.153 luminax:orange_button miniutilities:orange_lapis_caelestis
-ins block.153 miniutilities:orange_lapis_caelestis ExtraUtilities:greenscreen:1
-ins block.153 ExtraUtilities:greenscreen:1 cosmiccore:antiblock_orange
+ins block.153 miniutilities:orange_lapis_caelestis cosmiccore:antiblock_orange
 ins block.153 cosmiccore:antiblock_orange gtceu:orange_borderless_lamp
 ins block.153 gtceu:orange_borderless_lamp blocksyouneed_luna:antiblock_orange
 ins block.153 blocksyouneed_luna:antiblock_orange blocksyouneed_luna:antiblock_blinking_orange_slow
@@ -1166,25 +1176,22 @@ ins block.153 gtocore:naquadriatictaranium_coil_block:active=true gtocore:starme
 ins block.153 gtocore:starmetal_coil_block:active=true gtocore:infinity_coil_block:active=true
 ins block.153 gtocore:infinity_coil_block:active=true gtocore:hypogen_coil_block:active=true
 ins block.153 gtocore:hypogen_coil_block:active=true gtocore:eternity_coil_block:active=true
-ins block.161 - chisel:neonite:11
+ins block.161 - GTNH_161
+ins block.161 GTNH_161 chisel:neonite:11
 ins block.161 chisel:neonite:11 chisel:neonite:12
 ins block.161 chisel:neonite:12 chisel:lantern:5
-ins block.161 chisel:lantern:5 ExtraUtilities:color_lightgem:10
-ins block.161 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom
-ins block.161 Natura:purpleGlowshroom apn:chroma_lamp_purple
+ins block.161 chisel:lantern:5 apn:chroma_lamp_purple
 ins block.161 apn:chroma_lamp_purple projectred_illumination:purple_illumar_lamp:lit=true
 ins block.161 projectred_illumination:purple_illumar_lamp:lit=true projectred_illumination:purple_inverted_illumar_lamp:lit=true
 ins block.161 purple_candle:candles=4:lit=true gregtech:gt.blockcasings5:24
-ins block.161 gregtech:gt.blockcasings5:24 chisel:antiBlock:5
-ins block.161 chisel:antiBlock:5 luminax:purple_block
+ins block.161 gregtech:gt.blockcasings5:24 luminax:purple_block
 ins block.161 luminax:purple_block luminax:purple_stairs
 ins block.161 luminax:purple_stairs luminax:purple_slab
 ins block.161 luminax:purple_slab luminax:purple_wall
 ins block.161 luminax:purple_wall luminax:purple_button
 ins block.161 luminax:purple_button cosmiccore:antiblock_purple
 ins block.161 cosmiccore:antiblock_purple miniutilities:purple_lapis_caelestis
-ins block.161 miniutilities:purple_lapis_caelestis ExtraUtilities:greenscreen:10
-ins block.161 ExtraUtilities:greenscreen:10 gtceu:purple_borderless_lamp
+ins block.161 miniutilities:purple_lapis_caelestis gtceu:purple_borderless_lamp
 ins block.161 gtceu:purple_borderless_lamp blocksyouneed_luna:antiblock_purple
 ins block.161 blocksyouneed_luna:antiblock_purple blocksyouneed_luna:antiblock_blinking_purple_slow
 ins block.161 blocksyouneed_luna:antiblock_blinking_purple_slow blocksyouneed_luna:antiblock_blinking_purple_fast
@@ -1196,14 +1203,13 @@ ins block.161 antiblocksrechiseled:slab_purple_wool antiblocksrechiseled:stair_p
 ins block.161 antiblocksrechiseled:stair_purple_bright antiblocksrechiseled:stair_purple_wool
 ins block.161 antiblocksrechiseled:stair_purple_wool antiblocksrechiseled:button_bright_purple
 ins block.161 antiblocksrechiseled:button_bright_purple antiblocksrechiseled:button_wool_purple
-ins block.149 - chisel:neonite:13
+ins block.149 - GTNH_149
+ins block.149 GTNH_149 chisel:neonite:13
 ins block.149 chisel:neonite:13 chisel:neonite:14
-ins block.149 chisel:neonite:14 ExtraUtilities:color_lightgem:2
-ins block.149 ExtraUtilities:color_lightgem:2 apn:chroma_lamp_magenta
+ins block.149 chisel:neonite:14 apn:chroma_lamp_magenta
 ins block.149 apn:chroma_lamp_magenta projectred_illumination:magenta_illumar_lamp:lit=true
 ins block.149 projectred_illumination:magenta_illumar_lamp:lit=true projectred_illumination:magenta_inverted_illumar_lamp:lit=true
-ins block.149 magenta_candle:candles=4:lit=true chisel:antiBlock:13
-ins block.149 chisel:antiBlock:13 malum:block_of_soul_stained_steel
+ins block.149 magenta_candle:candles=4:lit=true malum:block_of_soul_stained_steel
 ins block.149 malum:block_of_soul_stained_steel malum:wicked_spirited_glass
 ins block.149 malum:wicked_spirited_glass luminax:magenta_block
 ins block.149 luminax:magenta_block luminax:magenta_stairs
@@ -1211,8 +1217,7 @@ ins block.149 luminax:magenta_stairs luminax:magenta_slab
 ins block.149 luminax:magenta_slab luminax:magenta_wall
 ins block.149 luminax:magenta_wall luminax:magenta_button
 ins block.149 luminax:magenta_button miniutilities:magenta_lapis_caelestis
-ins block.149 miniutilities:magenta_lapis_caelestis ExtraUtilities:greenscreen:2
-ins block.149 ExtraUtilities:greenscreen:2 cosmiccore:antiblock_magenta
+ins block.149 miniutilities:magenta_lapis_caelestis cosmiccore:antiblock_magenta
 ins block.149 cosmiccore:antiblock_magenta gtceu:magenta_borderless_lamp
 ins block.149 gtceu:magenta_borderless_lamp blocksyouneed_luna:antiblock_magenta
 ins block.149 blocksyouneed_luna:antiblock_magenta blocksyouneed_luna:antiblock_blinking_magenta_slow
@@ -1225,15 +1230,14 @@ ins block.149 antiblocksrechiseled:slab_magenta_wool antiblocksrechiseled:stair_
 ins block.149 antiblocksrechiseled:stair_magenta_bright antiblocksrechiseled:stair_magenta_wool
 ins block.149 antiblocksrechiseled:stair_magenta_wool antiblocksrechiseled:button_bright_magenta
 ins block.149 antiblocksrechiseled:button_bright_magenta antiblocksrechiseled:button_wool_magenta
-ins block.157 - chisel:neonite:15
-ins block.157 chisel:neonite:15 ExtraUtilities:color_lightgem:6
-ins block.157 ExtraUtilities:color_lightgem:6 apn:chroma_lamp_pink
+ins block.157 - GTNH_157
+ins block.157 GTNH_157 chisel:neonite:15
+ins block.157 chisel:neonite:15 apn:chroma_lamp_pink
 ins block.157 apn:chroma_lamp_pink projectred_illumination:pink_illumar_lamp:lit=true
 ins block.157 projectred_illumination:pink_illumar_lamp:lit=true projectred_illumination:pink_inverted_illumar_lamp:lit=true
 ins block.157 pink_candle:candles=4:lit=true gregtech:gt.blockcasings5:19
 ins block.157 gregtech:gt.blockcasings5:19 gregtech:gt.blockcasings5:25
-ins block.157 gregtech:gt.blockcasings5:25 chisel:antiBlock:9
-ins block.157 chisel:antiBlock:9 neoncraft:horizontal_bar_bottom_magenta
+ins block.157 gregtech:gt.blockcasings5:25 neoncraft:horizontal_bar_bottom_magenta
 ins block.157 neoncraft:horizontal_bar_bottom_magenta neoncraft:horizontal_bar_top_magenta
 ins block.157 neoncraft:horizontal_bar_top_magenta neoncraft:vertical_bar_left_magenta
 ins block.157 neoncraft:vertical_bar_left_magenta neoncraft:vertical_bar_right_magenta
@@ -1283,8 +1287,7 @@ ins block.157 luminax:pink_stairs luminax:pink_slab
 ins block.157 luminax:pink_slab luminax:pink_wall
 ins block.157 luminax:pink_wall luminax:pink_button
 ins block.157 luminax:pink_button miniutilities:pink_lapis_caelestis
-ins block.157 miniutilities:pink_lapis_caelestis ExtraUtilities:greenscreen:6
-ins block.157 ExtraUtilities:greenscreen:6 cosmiccore:antiblock_pink
+ins block.157 miniutilities:pink_lapis_caelestis cosmiccore:antiblock_pink
 ins block.157 cosmiccore:antiblock_pink gtceu:pink_borderless_lamp
 ins block.157 gtceu:pink_borderless_lamp blocksyouneed_luna:antiblock_pink
 ins block.157 blocksyouneed_luna:antiblock_pink blocksyouneed_luna:antiblock_blinking_pink_slow
@@ -1297,22 +1300,17 @@ ins block.157 antiblocksrechiseled:slab_pink_wool antiblocksrechiseled:stair_pin
 ins block.157 antiblocksrechiseled:stair_pink_bright antiblocksrechiseled:stair_pink_wool
 ins block.157 antiblocksrechiseled:stair_pink_wool antiblocksrechiseled:button_bright_pink
 ins block.157 antiblocksrechiseled:button_bright_pink antiblocksrechiseled:button_wool_pink
-ins block.196 - chisel:glowstone
-ins block.196 chisel:glowstone GalaxySpace:ceresglowstone
-ins block.196 GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone
-ins block.196 GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone
-ins block.196 GalaxySpace:ioglowstone GalaxySpace:plutoglowstone
-ins block.196 GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone
-ins block.173 - chisel:neonite:1
+ins block.196 - GTNH_196
+ins block.196 GTNH_196 chisel:glowstone
+ins block.173 - GTNH_173
+ins block.173 GTNH_173 chisel:neonite:1
 ins block.173 chisel:neonite:1 chisel:neonite:2
 ins block.173 chisel:neonite:2 chisel:froglight:4
-ins block.173 chisel:froglight:4 ExtraUtilities:color_lightgem:4
-ins block.173 ExtraUtilities:color_lightgem:4 apn:chroma_lamp_yellow
+ins block.173 chisel:froglight:4 apn:chroma_lamp_yellow
 ins block.173 apn:chroma_lamp_yellow projectred_illumination:yellow_illumar_lamp:lit=true
 ins block.173 projectred_illumination:yellow_illumar_lamp:lit=true projectred_illumination:yellow_inverted_illumar_lamp:lit=true
 ins block.173 yellow_candle:candles=4:lit=true gregtech:gt.blockcasings5:23
-ins block.173 gregtech:gt.blockcasings5:23 chisel:antiBlock:11
-ins block.173 chisel:antiBlock:11 neoncraft:horizontal_bar_bottom_yellow
+ins block.173 gregtech:gt.blockcasings5:23 neoncraft:horizontal_bar_bottom_yellow
 ins block.173 neoncraft:horizontal_bar_bottom_yellow neoncraft:horizontal_bar_top_yellow
 ins block.173 neoncraft:horizontal_bar_top_yellow neoncraft:vertical_bar_left_yellow
 ins block.173 neoncraft:vertical_bar_left_yellow neoncraft:vertical_bar_right_yellow
@@ -1362,8 +1360,7 @@ ins block.173 luminax:yellow_stairs luminax:yellow_slab
 ins block.173 luminax:yellow_slab luminax:yellow_wall
 ins block.173 luminax:yellow_wall luminax:yellow_button
 ins block.173 luminax:yellow_button miniutilities:yellow_lapis_caelestis
-ins block.173 miniutilities:yellow_lapis_caelestis ExtraUtilities:greenscreen:4
-ins block.173 ExtraUtilities:greenscreen:4 cosmiccore:antiblock_yellow
+ins block.173 miniutilities:yellow_lapis_caelestis cosmiccore:antiblock_yellow
 ins block.173 cosmiccore:antiblock_yellow gtceu:yellow_borderless_lamp
 ins block.173 gtceu:yellow_borderless_lamp blocksyouneed_luna:antiblock_yellow
 ins block.173 blocksyouneed_luna:antiblock_yellow blocksyouneed_luna:antiblock_blinking_yellow_slow
@@ -1376,24 +1373,21 @@ ins block.173 antiblocksrechiseled:slab_yellow_wool antiblocksrechiseled:stair_y
 ins block.173 antiblocksrechiseled:stair_yellow_bright antiblocksrechiseled:stair_yellow_wool
 ins block.173 antiblocksrechiseled:stair_yellow_wool antiblocksrechiseled:button_bright_yellow
 ins block.173 antiblocksrechiseled:button_bright_yellow antiblocksrechiseled:button_wool_yellow
-ins block.117 - chisel:neonite:8
+ins block.117 - GTNH_117
+ins block.117 GTNH_117 chisel:neonite:8
 ins block.117 chisel:neonite:8 chisel:neonite:9
 ins block.117 chisel:neonite:9 chisel:neonite:10
 ins block.117 chisel:neonite:10 chisel:froglight:3
-ins block.117 chisel:froglight:3 ExtraUtilities:color_lightgem:11
-ins block.117 ExtraUtilities:color_lightgem:11 Natura:blueGlowshroom
-ins block.117 Natura:blueGlowshroom apn:chroma_lamp_blue
+ins block.117 chisel:froglight:3 apn:chroma_lamp_blue
 ins block.117 apn:chroma_lamp_blue projectred_illumination:blue_illumar_lamp:lit=true
 ins block.117 projectred_illumination:blue_illumar_lamp:lit=true projectred_illumination:blue_inverted_illumar_lamp:lit=true
-ins block.117 blue_candle:candles=4:lit=true chisel:antiBlock:4
-ins block.117 chisel:antiBlock:4 luminax:blue_block
+ins block.117 blue_candle:candles=4:lit=true luminax:blue_block
 ins block.117 luminax:blue_block luminax:blue_stairs
 ins block.117 luminax:blue_stairs luminax:blue_slab
 ins block.117 luminax:blue_slab luminax:blue_wall
 ins block.117 luminax:blue_wall luminax:blue_button
 ins block.117 luminax:blue_button miniutilities:blue_lapis_caelestis
-ins block.117 miniutilities:blue_lapis_caelestis ExtraUtilities:greenscreen:11
-ins block.117 ExtraUtilities:greenscreen:11 cosmiccore:antiblock_blue
+ins block.117 miniutilities:blue_lapis_caelestis cosmiccore:antiblock_blue
 ins block.117 cosmiccore:antiblock_blue gtceu:blue_borderless_lamp
 ins block.117 gtceu:blue_borderless_lamp blocksyouneed_luna:antiblock_blue
 ins block.117 blocksyouneed_luna:antiblock_blue blocksyouneed_luna:antiblock_blinking_blue_slow
@@ -1406,21 +1400,19 @@ ins block.117 antiblocksrechiseled:slab_blue_wool antiblocksrechiseled:stair_blu
 ins block.117 antiblocksrechiseled:stair_blue_bright antiblocksrechiseled:stair_blue_wool
 ins block.117 antiblocksrechiseled:stair_blue_wool antiblocksrechiseled:button_bright_blue
 ins block.117 antiblocksrechiseled:button_bright_blue antiblocksrechiseled:button_wool_blue
-ins block.137 - chisel:neonite:7
-ins block.137 chisel:neonite:7 ExtraUtilities:color_lightgem:3
-ins block.137 ExtraUtilities:color_lightgem:3 apn:chroma_lamp_light_blue
+ins block.137 - GTNH_137
+ins block.137 GTNH_137 chisel:neonite:7
+ins block.137 chisel:neonite:7 apn:chroma_lamp_light_blue
 ins block.137 apn:chroma_lamp_light_blue projectred_illumination:light_blue_illumar_lamp:lit=true
 ins block.137 projectred_illumination:light_blue_illumar_lamp:lit=true projectred_illumination:light_blue_inverted_illumar_lamp:lit=true
 ins block.137 light_blue_candle:candles=4:lit=true gregtech:gt.blockcasings5:29
-ins block.137 gregtech:gt.blockcasings5:29 chisel:antiBlock:12
-ins block.137 chisel:antiBlock:12 luminax:light_blue_block
+ins block.137 gregtech:gt.blockcasings5:29 luminax:light_blue_block
 ins block.137 luminax:light_blue_block luminax:light_blue_stairs
 ins block.137 luminax:light_blue_stairs luminax:light_blue_slab
 ins block.137 luminax:light_blue_slab luminax:light_blue_wall
 ins block.137 luminax:light_blue_wall luminax:light_blue_button
 ins block.137 luminax:light_blue_button miniutilities:light_blue_lapis_caelestis
-ins block.137 miniutilities:light_blue_lapis_caelestis ExtraUtilities:greenscreen:3
-ins block.137 ExtraUtilities:greenscreen:3 cosmiccore:antiblock_light_blue
+ins block.137 miniutilities:light_blue_lapis_caelestis cosmiccore:antiblock_light_blue
 ins block.137 cosmiccore:antiblock_light_blue gtceu:light_blue_borderless_lamp
 ins block.137 gtceu:light_blue_borderless_lamp blocksyouneed_luna:antiblock_light_blue
 ins block.137 blocksyouneed_luna:antiblock_light_blue blocksyouneed_luna:antiblock_blinking_light_blue_slow
@@ -1433,15 +1425,14 @@ ins block.137 antiblocksrechiseled:slab_light_blue_wool antiblocksrechiseled:sta
 ins block.137 antiblocksrechiseled:stair_light_blue_bright antiblocksrechiseled:stair_light_blue_wool
 ins block.137 antiblocksrechiseled:stair_light_blue_wool antiblocksrechiseled:button_bright_light_blue
 ins block.137 antiblocksrechiseled:button_bright_light_blue antiblocksrechiseled:button_wool_light_blue
-ins block.125 - chisel:neonite:6
+ins block.125 - GTNH_125
+ins block.125 GTNH_125 chisel:neonite:6
 ins block.125 chisel:neonite:6 chisel:froglight:6
 ins block.125 chisel:froglight:6 chisel:lantern:4
-ins block.125 chisel:lantern:4 ExtraUtilities:color_lightgem:9
-ins block.125 ExtraUtilities:color_lightgem:9 apn:chroma_lamp_cyan
+ins block.125 chisel:lantern:4 apn:chroma_lamp_cyan
 ins block.125 apn:chroma_lamp_cyan projectred_illumination:cyan_illumar_lamp:lit=true
 ins block.125 projectred_illumination:cyan_illumar_lamp:lit=true projectred_illumination:cyan_inverted_illumar_lamp:lit=true
-ins block.125 cyan_candle:candles=4:lit=true chisel:antiBlock:6
-ins block.125 chisel:antiBlock:6 neoncraft:horizontal_bar_bottom_lightblue
+ins block.125 cyan_candle:candles=4:lit=true neoncraft:horizontal_bar_bottom_lightblue
 ins block.125 neoncraft:horizontal_bar_bottom_lightblue neoncraft:horizontal_bar_top_lightblue
 ins block.125 neoncraft:horizontal_bar_top_lightblue neoncraft:vertical_bar_left_lightblue
 ins block.125 neoncraft:vertical_bar_left_lightblue neoncraft:vertical_bar_right_lightblue
@@ -1492,8 +1483,7 @@ ins block.125 luminax:cyan_slab luminax:cyan_wall
 ins block.125 luminax:cyan_wall luminax:cyan_button
 ins block.125 luminax:cyan_button gtceu:cyan_borderless_lamp
 ins block.125 gtceu:cyan_borderless_lamp miniutilities:cyan_lapis_caelestis
-ins block.125 miniutilities:cyan_lapis_caelestis ExtraUtilities:greenscreen:9
-ins block.125 ExtraUtilities:greenscreen:9 cosmiccore:antiblock_cyan
+ins block.125 miniutilities:cyan_lapis_caelestis cosmiccore:antiblock_cyan
 ins block.125 cosmiccore:antiblock_cyan blocksyouneed_luna:antiblock_cyan
 ins block.125 blocksyouneed_luna:antiblock_cyan blocksyouneed_luna:antiblock_blinking_cyan_slow
 ins block.125 blocksyouneed_luna:antiblock_blinking_cyan_slow blocksyouneed_luna:antiblock_blinking_cyan_fast
@@ -1505,20 +1495,17 @@ ins block.125 antiblocksrechiseled:slab_cyan_wool antiblocksrechiseled:stair_cya
 ins block.125 antiblocksrechiseled:stair_cyan_bright antiblocksrechiseled:stair_cyan_wool
 ins block.125 antiblocksrechiseled:stair_cyan_wool antiblocksrechiseled:button_bright_cyan
 ins block.125 antiblocksrechiseled:button_bright_cyan antiblocksrechiseled:button_wool_cyan
-ins block.133 - ExtraUtilities:color_lightgem:13
-ins block.133 ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom
-ins block.133 Natura:greenGlowshroom apn:chroma_lamp_green
+ins block.133 - GTNH_133
+ins block.133 GTNH_133 apn:chroma_lamp_green
 ins block.133 apn:chroma_lamp_green projectred_illumination:green_illumar_lamp:lit=true
 ins block.133 projectred_illumination:green_illumar_lamp:lit=true projectred_illumination:green_inverted_illumar_lamp:lit=true
-ins block.133 green_candle:candles=4:lit=true chisel:antiBlock:2
-ins block.133 chisel:antiBlock:2 luminax:green_block
+ins block.133 green_candle:candles=4:lit=true luminax:green_block
 ins block.133 luminax:green_block luminax:green_stairs
 ins block.133 luminax:green_stairs luminax:green_slab
 ins block.133 luminax:green_slab luminax:green_wall
 ins block.133 luminax:green_wall luminax:green_button
 ins block.133 luminax:green_button miniutilities:green_lapis_caelestis
-ins block.133 miniutilities:green_lapis_caelestis ExtraUtilities:greenscreen:13
-ins block.133 ExtraUtilities:greenscreen:13 cosmiccore:antiblock_green
+ins block.133 miniutilities:green_lapis_caelestis cosmiccore:antiblock_green
 ins block.133 cosmiccore:antiblock_green gtceu:green_borderless_lamp
 ins block.133 gtceu:green_borderless_lamp blocksyouneed_luna:antiblock_green
 ins block.133 blocksyouneed_luna:antiblock_green blocksyouneed_luna:antiblock_blinking_green_slow
@@ -1531,16 +1518,15 @@ ins block.133 antiblocksrechiseled:slab_green_wool antiblocksrechiseled:stair_gr
 ins block.133 antiblocksrechiseled:stair_green_bright antiblocksrechiseled:stair_green_wool
 ins block.133 antiblocksrechiseled:stair_green_wool antiblocksrechiseled:button_bright_green
 ins block.133 antiblocksrechiseled:button_bright_green antiblocksrechiseled:button_wool_green
-ins block.145 - chisel:neonite:4
+ins block.145 - GTNH_145
+ins block.145 GTNH_145 chisel:neonite:4
 ins block.145 chisel:neonite:4 chisel:neonite:5
 ins block.145 chisel:neonite:5 chisel:froglight:5
-ins block.145 chisel:froglight:5 ExtraUtilities:color_lightgem:5
-ins block.145 ExtraUtilities:color_lightgem:5 apn:chroma_lamp_lime
+ins block.145 chisel:froglight:5 apn:chroma_lamp_lime
 ins block.145 apn:chroma_lamp_lime projectred_illumination:lime_illumar_lamp:lit=true
 ins block.145 projectred_illumination:lime_illumar_lamp:lit=true projectred_illumination:lime_inverted_illumar_lamp:lit=true
 ins block.145 lime_candle:candles=4:lit=true gregtech:gt.blockcasings5:20
-ins block.145 gregtech:gt.blockcasings5:20 chisel:antiBlock:10
-ins block.145 chisel:antiBlock:10 neoncraft:horizontal_bar_bottom_lime
+ins block.145 gregtech:gt.blockcasings5:20 neoncraft:horizontal_bar_bottom_lime
 ins block.145 neoncraft:horizontal_bar_bottom_lime neoncraft:horizontal_bar_top_lime
 ins block.145 neoncraft:horizontal_bar_top_lime neoncraft:vertical_bar_left_lime
 ins block.145 neoncraft:vertical_bar_left_lime neoncraft:vertical_bar_right_lime
@@ -1586,8 +1572,7 @@ ins block.145 neoncraft:lime_7 neoncraft:lime_8
 ins block.145 neoncraft:lime_8 neoncraft:lime_9
 ins block.145 neoncraft:lime_9 gtceu:lime_borderless_lamp
 ins block.145 gtceu:lime_borderless_lamp miniutilities:lime_lapis_caelestis
-ins block.145 miniutilities:lime_lapis_caelestis ExtraUtilities:greenscreen:5
-ins block.145 ExtraUtilities:greenscreen:5 cosmiccore:antiblock_lime
+ins block.145 miniutilities:lime_lapis_caelestis cosmiccore:antiblock_lime
 ins block.145 cosmiccore:antiblock_lime luminax:lime_block
 ins block.145 luminax:lime_block luminax:lime_stairs
 ins block.145 luminax:lime_stairs luminax:lime_slab
@@ -1604,16 +1589,13 @@ ins block.145 antiblocksrechiseled:slab_lime_wool antiblocksrechiseled:stair_lim
 ins block.145 antiblocksrechiseled:stair_lime_bright antiblocksrechiseled:stair_lime_wool
 ins block.145 antiblocksrechiseled:stair_lime_wool antiblocksrechiseled:button_bright_lime
 ins block.145 antiblocksrechiseled:button_bright_lime antiblocksrechiseled:button_wool_lime
-ins block.165 - chisel:froglight:8
+ins block.165 - GTNH_165
+ins block.165 GTNH_165 chisel:froglight:8
 ins block.165 chisel:froglight:8 chisel:lantern:2
-ins block.165 chisel:lantern:2 ExtraUtilities:color_lightgem:14
-ins block.165 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp
-ins block.165 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone
-ins block.165 BloodArsenal:blood_infused_glowstone apn:chroma_lamp_red
+ins block.165 chisel:lantern:2 apn:chroma_lamp_red
 ins block.165 apn:chroma_lamp_red projectred_illumination:red_illumar_lamp:lit=true
 ins block.165 projectred_illumination:red_illumar_lamp:lit=true projectred_illumination:red_inverted_illumar_lamp:lit=true
-ins block.165 red_candle:candles=4:lit=true chisel:antiBlock:1
-ins block.165 chisel:antiBlock:1 neoncraft:horizontal_bar_bottom_red
+ins block.165 red_candle:candles=4:lit=true neoncraft:horizontal_bar_bottom_red
 ins block.165 neoncraft:horizontal_bar_bottom_red neoncraft:horizontal_bar_top_red
 ins block.165 neoncraft:horizontal_bar_top_red neoncraft:vertical_bar_left_red
 ins block.165 neoncraft:vertical_bar_left_red neoncraft:vertical_bar_right_red
@@ -1665,8 +1647,7 @@ ins block.165 luminax:red_stairs luminax:red_slab
 ins block.165 luminax:red_slab luminax:red_wall
 ins block.165 luminax:red_wall luminax:red_button
 ins block.165 luminax:red_button miniutilities:red_lapis_caelestis
-ins block.165 miniutilities:red_lapis_caelestis ExtraUtilities:greenscreen:14
-ins block.165 ExtraUtilities:greenscreen:14 cosmiccore:antiblock_red
+ins block.165 miniutilities:red_lapis_caelestis cosmiccore:antiblock_red
 ins block.165 cosmiccore:antiblock_red gtceu:red_borderless_lamp
 ins block.165 gtceu:red_borderless_lamp blocksyouneed_luna:antiblock_red
 ins block.165 blocksyouneed_luna:antiblock_red blocksyouneed_luna:antiblock_blinking_red_slow
@@ -1884,10 +1865,9 @@ ins block.50 apn:shape_sphere_quarter apn:shape_sphere_quarter_r8
 ins block.50 apn:shape_sphere_quarter_r8 apn:shape_stairs_inner_corner
 ins block.50 apn:shape_stairs_inner_corner apn:shape_stairs
 ins block.50 apn:shape_stairs apn:shape_stairs_outer_corner
-ins block.121 - ExtraUtilities:color_lightgem:12
-ins block.121 ExtraUtilities:color_lightgem:12 apn:chroma_lamp_brown
-ins block.121 apn:chroma_lamp_brown ExtraUtilities:greenscreen:12
-ins block.121 ExtraUtilities:greenscreen:12 projectred_illumination:brown_illumar_lamp:lit=true
+ins block.121 - GTNH_121
+ins block.121 GTNH_121 apn:chroma_lamp_brown
+ins block.121 apn:chroma_lamp_brown projectred_illumination:brown_illumar_lamp:lit=true
 ins block.121 projectred_illumination:brown_illumar_lamp:lit=true projectred_illumination:brown_inverted_illumar_lamp:lit=true
 ins block.135 - gtceu:auto_maintenance_hatch
 add block.164 1
@@ -2498,7 +2478,7 @@ o 1f84edc0733c b7b1b5820ca4
 =4
 =5
 @mod shaders/lang/en_us.lang 2 1 fc4064a44d3f7c4548f074b9d35ad7d2a27a187a
-@hunk 17 11
+@hunk 17 12
 o 82234ec3d4f6 82234ec3d4f6
 o da39a3ee5e6b da39a3ee5e6b
 o cf573b4abd9d cf573b4abd9d
@@ -2524,6 +2504,7 @@ o e1b9ec914919 e1b9ec914919
 +profile.OBS07_PERFORMANCE_NOFOG=§6OBS07 Preset§r: §aPerformance §7(No Fog)
 +profile.OBS07_NORMAL=§6OBS07 Preset§r: §bNormal
 +profile.OBS07_NORMAL_NOFOG=§6OBS07 Preset§r: §bNormal §7(No Fog)
++profile.KURA_BALANCED=§dKuraBalanced
 =14
 =15
 =16
@@ -2592,7 +2573,7 @@ o cf5fe1ebaf71 cf5fe1ebaf71
 +option.OBS07_DARK_GLASS_LIGHT.comment = Sunlight let through by dark tinted glass. 0 = blocks it.
 +option.OBS07_GLASS_SUN = Sunlit Glass
 +option.OBS07_GLASS_SUN.comment = Soft sunlit patch on tinted glass. 0 = off.
-@props shaders/lang/en_us.lang 121
+@props shaders/lang/en_us.lang 123
 del profile.POTATO
 del profile.VERY_LOW
 del profile.LOW
@@ -2614,6 +2595,8 @@ add profile.OBS07_PERFORMANCE_NOFOG 1
 |profile.OBS07_NORMAL=§6OBS07 Preset§r: §bNormal
 add profile.OBS07_NORMAL 1
 |profile.OBS07_NORMAL_NOFOG=§6OBS07 Preset§r: §bNormal §7(No Fog)
+add profile.OBS07_NORMAL_NOFOG 1
+|profile.KURA_BALANCED=§dKuraBalanced
 add option.DOF_DISPERSION_MULT.comment 1
 |screen.Atmosphere = Atmosphere
 add screen.Atmosphere 1
@@ -3392,7 +3375,7 @@ o 0b000dbedeec da39a3ee5e6b
 =4
 =5
 @mod shaders/shaders.properties 4 - e0dcaff975cc0ad191894af7b1f2a2d975796452
-@hunk 17 12
+@hunk 17 13
 o 0729c156884a 0729c156884a
 o 0df5cd77c1f5 0df5cd77c1f5
 o da39a3ee5e6b da39a3ee5e6b
@@ -3414,11 +3397,12 @@ o 046068fb4f07 046068fb4f07
 =1
 =2
 +# OBS07 presets
-+profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
-+profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
-+profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0
-+profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
-+profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0
++profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75
 =14
 =15
 =16
@@ -3489,7 +3473,7 @@ o 4a57eaf9806c 4a57eaf9806c
 =3
 =4
 =5
-@props shaders/shaders.properties 61
+@props shaders/shaders.properties 63
 del profile.POTATO
 del profile.VERY_LOW
 del profile.LOW
@@ -3502,15 +3486,17 @@ del profile.ALTERNATE_HIGH_GRASS
 del profile.VERY_HIGH
 del profile.ULTRA
 add - 1
-|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
+|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_ULTIMATE 1
-|profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
+|profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_PERFORMANCE 1
-|profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0
+|profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_PERFORMANCE_NOFOG 1
-|profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0
+|profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_NORMAL 1
-|profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0
+|profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+add profile.OBS07_NORMAL_NOFOG 1
+|profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75
 ins sliders LPV_NORMAL_STRENGTH OBS07_LIGHT_FOG_MOTION
 ins sliders OBS07_LIGHT_FOG_MOTION OBS07_LIGHT_FOG_DAY
 ins sliders OBS07_LIGHT_FOG_DAY OBS07_GODRAYS

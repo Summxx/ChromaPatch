@@ -1,5 +1,14 @@
 # Changelog
 
+## Chroma Patch 1.0.1
+- Includes Eclipse patch 1.0.1
+- Fixed jar builds depending on the JDK version
+
+## Eclipse patch 1.0.1
+- Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1 (GTNH block ids are now only used on 1.7.10)
+- New preset: KuraBalanced by KuramA
+- Presets now reset the Atmosphere settings, so switching presets no longer keeps values from the previous one
+
 ## Chroma Patch 1.0.0
 - First release for Forge 1.7.10, Forge 1.20.1 and NeoForge 1.21.1
 - Applies the OBS07 edit to the official Eclipse zip in shaderpacks
