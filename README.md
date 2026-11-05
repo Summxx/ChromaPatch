@@ -53,6 +53,7 @@ The edit adds an atmosphere pass (lit night fog, godrays, dust, lamp light wells
 3. Download **Eclipse** from its [official GitHub page](https://github.com/Merlin1809/Eclipse-Shader) (Code > Download ZIP) and put the zip in `shaderpacks/`, without extracting it.
 4. Start the game. **`Eclipse-Shader KuraEdit [OBS07-Chroma Patch].zip`** is created in `shaderpacks/`. On the first launch, a welcome page on the title screen shows whether the patch was applied and what it adds.
 5. Select it in the shader menu, then a preset in the profile list (see [Presets](#presets)).
+6. On GTNH, add KuramA's resource packs from [GTNH 2.9.X Shader Edits and PBR Packs](https://github.com/KuramA-777/GTNH-2.9.X-Shader-Edits-and-PBR-Packs). They add the neon emission and reflections that make GTNH look its best with the shader.
 
 Patching takes a few seconds on the first launch and only runs again when the Eclipse zip or the patch changes. To update Eclipse, add the new zip to `shaderpacks/` and restart: the newest Eclipse zip is used.
 
@@ -68,7 +69,7 @@ Night fog takes the colour of nearby lamps and moves with the wind. Moonlight an
 
 ### Neon glow
 
-Neon blocks glow in their own colour and light the area around them: NeonCraft bars and letters on 1.20.1, Chisel neonite and froglight, Extra Utilities lightgems and other glowing decoration blocks on GTNH. The glow is saturated and reflects on wet ground and water.
+Neon blocks glow in their own colour and light the area around them: NeonCraft bars and letters on 1.20.1, Chisel neonite and froglight, Extra Utilities lightgems and other glowing decoration blocks on GTNH. The glow is saturated and reflects on wet ground and water. On GTNH, most neon blocks need the emission maps from [KuramA's resource packs](https://github.com/KuramA-777/GTNH-2.9.X-Shader-Edits-and-PBR-Packs).
 
 <img src="docs/screenshots/gtnh-2.png" alt="Neon strips reflected in the water" width="100%"/>
 
@@ -192,6 +193,25 @@ By opening a pull request, you agree that your contribution is included in Chrom
 The same changelog is shown in game: once after each new version, and in the new version notice.
 
 <!-- changelog -->
+
+### Chroma Patch 1.0.2
+- GTNH: glowing blocks, microblocks and lamps light their surroundings again (Angelica ignored their ids since 1.0.1)
+- Coloured lamps now light in their own colour without a preset (they were orange)
+- Lamp light wells no longer flicker and are softer in dark places
+- New GTNH glowing blocks by KuramA, glowing microblocks and ArchitectureCraft shapes
+- Includes Eclipse patch 1.0.2
+
+### Eclipse patch 1.0.2
+- GTNH: block ids work again with Angelica, most GTNH lamps gave no light since 1.0.1
+- Coloured candle light is on by default and in every preset
+- GTNH glowing blocks by KuramA: Thaumcraft, AE2 crafting units and controller, Galacticraft glowstone torch, Extra Utilities and ArchitectureCraft shapes
+- GTNH: ProjectRed lamps light in their own colour, white lamps glow without drowning other colours from far away
+- Glowing microblocks and ArchitectureCraft shapes glow like their full block and light their surroundings, a bit less far than a full lamp
+- ArchitectureCraft glow shapes give white light, Ztones Lave no longer glows
+- ArchitectureCraft slopes are shaded correctly
+- Lamp light wells: no more flickering, they pass through slopes, slabs and covers, no well under ceiling panels
+- Glowing Blocks Give Light: machines with several glowing faces no longer flicker between colours
+- GTNH: Storage Drawers items are no longer dark, no more puddles indoors
 
 ### Chroma Patch 1.0.1
 - Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1

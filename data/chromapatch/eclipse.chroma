@@ -1,7 +1,7 @@
 CHROMA 1
 @info 11
 id=eclipse
-version=1.0.1
+version=1.0.2
 engine=1
 base=Eclipse Unstable 3c18afc
 name=Eclipse
@@ -10,9 +10,9 @@ detect.contains=ECLIPSE
 detect.excludes=OBS07
 detect.excludes.in=shaders/lang/en_us.lang,shaders/block.properties
 output=Eclipse-Shader KuraEdit [OBS07-Chroma Patch]
-changelog=- Fixed a crash when selecting the patched pack on Forge 1.20.1 and NeoForge 1.21.1 (GTNH block ids are now only used on 1.7.10)\n- New preset: KuraBalanced by KuramA\n- Presets now reset the Atmosphere settings, so switching presets no longer keeps values from the previous one
+changelog=- GTNH: block ids work again with Angelica, most GTNH lamps gave no light since 1.0.1\n- Coloured candle light is on by default and in every preset\n- GTNH glowing blocks by KuramA: Thaumcraft, AE2 crafting units and controller, Galacticraft glowstone torch, Extra Utilities and ArchitectureCraft shapes\n- GTNH: ProjectRed lamps light in their own colour, white lamps glow without drowning other colours from far away\n- Glowing microblocks and ArchitectureCraft shapes glow like their full block and light their surroundings, a bit less far than a full lamp\n- ArchitectureCraft glow shapes give white light, Ztones Lave no longer glows\n- ArchitectureCraft slopes are shaded correctly\n- Lamp light wells: no more flickering, they pass through slopes, slabs and covers, no well under ceiling panels\n- Glowing Blocks Give Light: machines with several glowing faces no longer flicker between colours\n- GTNH: Storage Drawers items are no longer dark, no more puddles indoors
 @mod shaders/block.properties 23 - ca5992836dd4569eded627c861113ce0f2d9f1c8
-@hunk 6 376
+@hunk 6 388
 o 6f01fb7e64df 6f01fb7e64df
 o 236b2c747eac 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
@@ -26,26 +26,30 @@ o 236b2c747eac 236b2c747eac
 +
 +########################################################################################################################################################################
 +
-+# OBS07: GTNH 1.7.10 ids, uppercase names are rejected on 1.13+
-+#if MC_VERSION < 11300
-+#define GTNH_510 ForgeMultipart:block
++# OBS07: GTNH 1.7.10 ids, uppercase names are rejected on 1.13+ (Angelica reports a 26.x MC_VERSION)
++#if defined IS_ANGELICA || MC_VERSION < 11300
++#define GTNH_510 ForgeMultipart:block ArchitectureCraft:shape chisel:glowstone
++#define GTNH_195 Thaumcraft:blockMetalDevice:13 Thaumcraft:blockMetalDevice:8
++#define GTNH_266 appliedenergistics2:tile.BlockCraftingStorage appliedenergistics2:tile.BlockAdvancedCraftingStorage appliedenergistics2:tile.BlockSingularityCraftingStorage appliedenergistics2:tile.BlockCraftingUnit appliedenergistics2:tile.BlockAdvancedCraftingUnit appliedenergistics2:tile.BlockController appliedenergistics2:tile.BlockCreativeEnergyController
 +#define GTNH_242 Botania:seaLamp
-+#define GTNH_169 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp chisel:antiBlock:15 chisel:antiBlock:7 chisel:antiBlock:8 chisel:antiBlock:0 chisel:antiBlock:3 ExtraUtilities:greenscreen:0 ExtraUtilities:greenscreen:7 ExtraUtilities:greenscreen:8 ExtraUtilities:greenscreen:15
-+#define GTNH_153 ExtraUtilities:color_lightgem:1 chisel:antiBlock:14 ExtraUtilities:greenscreen:1
-+#define GTNH_161 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom chisel:antiBlock:5 ExtraUtilities:greenscreen:10
-+#define GTNH_149 ExtraUtilities:color_lightgem:2 chisel:antiBlock:13 ExtraUtilities:greenscreen:2
-+#define GTNH_157 ExtraUtilities:color_lightgem:6 chisel:antiBlock:9 ExtraUtilities:greenscreen:6
-+#define GTNH_196 GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone
-+#define GTNH_173 ExtraUtilities:color_lightgem:4 chisel:antiBlock:11 ExtraUtilities:greenscreen:4
-+#define GTNH_117 ExtraUtilities:color_lightgem:11 Natura:blueGlowshroom chisel:antiBlock:4 ExtraUtilities:greenscreen:11
-+#define GTNH_137 ExtraUtilities:color_lightgem:3 chisel:antiBlock:12 ExtraUtilities:greenscreen:3
-+#define GTNH_125 ExtraUtilities:color_lightgem:9 chisel:antiBlock:6 ExtraUtilities:greenscreen:9
-+#define GTNH_133 ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom chisel:antiBlock:2 ExtraUtilities:greenscreen:13
-+#define GTNH_145 ExtraUtilities:color_lightgem:5 chisel:antiBlock:10 ExtraUtilities:greenscreen:5
-+#define GTNH_165 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone chisel:antiBlock:1 ExtraUtilities:greenscreen:14
-+#define GTNH_121 ExtraUtilities:color_lightgem:12 ExtraUtilities:greenscreen:12
++#define GTNH_169 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp chisel:antiBlock:15 chisel:antiBlock:7 chisel:antiBlock:8 chisel:antiBlock:0 chisel:antiBlock:3 ExtraUtilities:greenscreen:0 ProjRed|Illumination:projectred.illumination.lamp:0 ExtraUtilities:greenscreen:7 ProjRed|Illumination:projectred.illumination.lamp:7 ExtraUtilities:greenscreen:8 ProjRed|Illumination:projectred.illumination.lamp:8 ExtraUtilities:greenscreen:15 ProjRed|Illumination:projectred.illumination.lamp:15
++#define GTNH_153 ExtraUtilities:color_lightgem:1 chisel:antiBlock:14 ExtraUtilities:greenscreen:1 ProjRed|Illumination:projectred.illumination.lamp:1
++#define GTNH_161 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom chisel:antiBlock:5 ExtraUtilities:greenscreen:10 ProjRed|Illumination:projectred.illumination.lamp:10
++#define GTNH_149 ExtraUtilities:color_lightgem:2 chisel:antiBlock:13 ExtraUtilities:greenscreen:2 ProjRed|Illumination:projectred.illumination.lamp:2
++#define GTNH_157 ExtraUtilities:color_lightgem:6 chisel:antiBlock:9 ExtraUtilities:greenscreen:6 ProjRed|Illumination:projectred.illumination.lamp:6
++#define GTNH_196 GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone ExtraUtilities:decorativeBlock2:7 Thaumcraft:blockMetalDevice:7 GalacticraftCore:tile.glowstoneTorch
++#define GTNH_173 ExtraUtilities:color_lightgem:4 chisel:antiBlock:11 ExtraUtilities:greenscreen:4 ProjRed|Illumination:projectred.illumination.lamp:4
++#define GTNH_117 ExtraUtilities:color_lightgem:11 Natura:blueGlowshroom chisel:antiBlock:4 ExtraUtilities:greenscreen:11 ProjRed|Illumination:projectred.illumination.lamp:11
++#define GTNH_137 ExtraUtilities:color_lightgem:3 chisel:antiBlock:12 ExtraUtilities:greenscreen:3 ProjRed|Illumination:projectred.illumination.lamp:3
++#define GTNH_125 ExtraUtilities:color_lightgem:9 chisel:antiBlock:6 ExtraUtilities:greenscreen:9 ProjRed|Illumination:projectred.illumination.lamp:9
++#define GTNH_133 ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom chisel:antiBlock:2 ExtraUtilities:greenscreen:13 ProjRed|Illumination:projectred.illumination.lamp:13
++#define GTNH_145 ExtraUtilities:color_lightgem:5 chisel:antiBlock:10 ExtraUtilities:greenscreen:5 ProjRed|Illumination:projectred.illumination.lamp:5
++#define GTNH_165 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone chisel:antiBlock:1 ExtraUtilities:greenscreen:14 ProjRed|Illumination:projectred.illumination.lamp:14
++#define GTNH_121 ExtraUtilities:color_lightgem:12 ExtraUtilities:greenscreen:12 ProjRed|Illumination:projectred.illumination.lamp:12
 +#else
 +#define GTNH_510
++#define GTNH_195
++#define GTNH_266
 +#define GTNH_242
 +#define GTNH_169
 +#define GTNH_153
@@ -63,10 +67,18 @@ o 236b2c747eac 236b2c747eac
 +#define GTNH_121
 +#endif
 +
++# OBS07: Ztones Lave is a building block, plain solid without light
++#if defined IS_ANGELICA || MC_VERSION < 11300
++block.1=Ztones:tile.laveBlock Ztones:tile.laveBlock_12
++# OBS07: ArchitectureCraft glow shapes give white light, plain surface
++block.1720=ArchitectureCraft:shapeSE
++#endif
++
 +# OBS07: CB microblocks
 +block.510=GTNH_510 cb_multipart:multipart
 +# OBS07: APN and ProjectRed lamps use candle lights, APN tinted glass uses the stained glass ids
 +# KuramA: chisel antiblocks and GregTech coils glow
++# KuramA: GTNH Thaumcraft, AE2 crafting, ProjectRed lamps, ArchitectureCraft shapes and chisel glowstone
 +
 +########################
 +# Colored Lights Below #
@@ -75,7 +87,7 @@ o 236b2c747eac 236b2c747eac
 +
 +##########################
 +# Weak WHITE COLORED Glow
-+block.195=flying_stuff:celestium_spike flying_stuff:celestium_antenna
++block.195=GTNH_195 flying_stuff:celestium_spike flying_stuff:celestium_antenna
 +
 +
 +############################
@@ -204,7 +216,7 @@ o 236b2c747eac 236b2c747eac
 +
 +######################
 +# YELLOW COLORED Glow 
-+block.196=GTNH_196 chisel:glowstone glowstone \
++block.196=GTNH_196 glowstone \
 +mcwlights:glowstone_slab \
 +additionalplacements:mcwlights.glowstone_slab 
 +
@@ -338,7 +350,7 @@ o 236b2c747eac 236b2c747eac
 +############################################
 +# EDIT for low white Emissive Highlighting #
 +############################################
-+block.266=sculk sculk_sensor sculk_catalyst calibrated_sculk_sensor sculk_shrieker \
++block.266=GTNH_266 sculk sculk_sensor sculk_catalyst calibrated_sculk_sensor sculk_shrieker \
 +\
 +gregtech:gt.blockcasings5:27 gregtech:gt.blockcasings5:26 gregtech:gt.blockcasings5:22 gregtech:gt.blockcasings5:21 \
 +\
@@ -952,9 +964,14 @@ o 8dce37066edf 8dce37066edf
 =2
 +
 +
-@props shaders/block.properties 954
+@props shaders/block.properties 959
 add layer.translucent 1
+|block.1=Ztones:tile.laveBlock Ztones:tile.laveBlock_12
+add block.1 1
+|block.1720=ArchitectureCraft:shapeSE
+add block.1720 1
 |block.510=GTNH_510 cb_multipart:multipart
+ins block.195 - GTNH_195
 ins block.242 - GTNH_242
 ins block.169 - GTNH_169
 ins block.169 GTNH_169 chisel:neonite:3
@@ -1301,7 +1318,6 @@ ins block.157 antiblocksrechiseled:stair_pink_bright antiblocksrechiseled:stair_
 ins block.157 antiblocksrechiseled:stair_pink_wool antiblocksrechiseled:button_bright_pink
 ins block.157 antiblocksrechiseled:button_bright_pink antiblocksrechiseled:button_wool_pink
 ins block.196 - GTNH_196
-ins block.196 GTNH_196 chisel:glowstone
 ins block.173 - GTNH_173
 ins block.173 GTNH_173 chisel:neonite:1
 ins block.173 chisel:neonite:1 chisel:neonite:2
@@ -1660,6 +1676,7 @@ ins block.165 antiblocksrechiseled:slab_red_wool antiblocksrechiseled:stair_red_
 ins block.165 antiblocksrechiseled:stair_red_bright antiblocksrechiseled:stair_red_wool
 ins block.165 antiblocksrechiseled:stair_red_wool antiblocksrechiseled:button_bright_red
 ins block.165 antiblocksrechiseled:button_bright_red antiblocksrechiseled:button_wool_red
+ins block.266 - GTNH_266
 ins block.266 sculk_shrieker gregtech:gt.blockcasings5:27
 ins block.266 gregtech:gt.blockcasings5:27 gregtech:gt.blockcasings5:26
 ins block.266 gregtech:gt.blockcasings5:26 gregtech:gt.blockcasings5:22
@@ -1907,7 +1924,28 @@ ins block.314 - apn:tinted_glass_8
 ins block.315 - apn:tinted_glass_11
 ins block.317 - apn:tinted_glass_1
 ins block.317 apn:tinted_glass_1 apn:tinted_glass_13
-@mod shaders/dimensions/all_solid.fsh 2 - 004e3b7c7e38e5651bf6f5cc09ed9ca4543a0cd3
+@mod shaders/dimensions/all_solid.fsh 4 - 004e3b7c7e38e5651bf6f5cc09ed9ca4543a0cd3
+@hunk 6 14
+o da39a3ee5e6b da39a3ee5e6b
+o d8891bc035d6 c8c925bfdac7
+o da39a3ee5e6b da39a3ee5e6b
+o 1346812fa085 b5809d72914c
+o 998d41259466 e6e5083fd837
+o 1a92e933b2a7 94c857f0d14c
+=0
+=1
+=2
++	#if defined BLOCKENTITIES && (defined IS_ANGELICA || MC_VERSION < 11300)
++		// OBS07: 1.7.10 flat TESR items (drawers) keep a stale normal, use the face normal
++		vec3 obs07Pos = toScreenSpace(FragCoord*vec3(texelSize/RENDER_SCALE,1.0));
++		vec3 obs07Face = normalize(cross(dFdx(obs07Pos), dFdy(obs07Pos)));
++		if (dot(obs07Face, obs07Pos) > 0.0) obs07Face = -obs07Face;
++		if (dot(normal, obs07Face) < 0.5) normal = obs07Face;
++	#endif
++
+=3
+=4
+=5
 @hunk 7 7
 o da39a3ee5e6b da39a3ee5e6b
 o 5f4a2640dfd1 74ea3ba2b070
@@ -1962,8 +2000,74 @@ o 0f68a2a53a04 23e71241822b
 =3
 =4
 =5
-@mod shaders/dimensions/all_solid.vsh 1 - 33f1b4954707b2c789bbb244f5c1d8443791128f
-@hunk 6 22
+@hunk 7 13
+o eb52fc32e84d 093044d6f78d
+o 6f1eb8ebfe97 236b2c747eac
+o 6ff6be9c6493 60ba4b2daa4e
+o 442623a75e56 b2a015b95610
+o c616fd38216f c2b7df6201fd
+o b23bdc264426 236b2c747eac
+o da39a3ee5e6b da39a3ee5e6b
+=0
+=1
+=2
++			float obs07Emission = getEmission(Albedo.rgb);
++			#ifdef IS_ANGELICA
++				// OBS07: no candles on 1.7.10, white lamps glow by brightness instead of colour
++				// fades with distance so small white lamps do not drown the colours far away
++				if (data_in.blockID == 169) obs07Emission = max(obs07Emission, pow(max(max(Albedo.r, Albedo.g), Albedo.b), 3.5) * 0.5 * mix(1.0, 0.25, smoothstep(12.0, 48.0, length(playerpos))));
++			#endif
++			EMISSIVE *= obs07Emission;
+=4
+=5
+=6
+@mod shaders/dimensions/all_solid.vsh 2 - 33f1b4954707b2c789bbb244f5c1d8443791128f
+@hunk 6 38
+o 97e23716d5b4 c2b7df6201fd
+o 236b2c747eac 236b2c747eac
+o da39a3ee5e6b da39a3ee5e6b
+o d29583deed9f d29583deed9f
+o d29583deed9f d29583deed9f
+o d29583deed9f d29583deed9f
+=0
+=1
+=2
++#if defined IS_ANGELICA && !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
++	// OBS07: nearest candle light id to a glowing microblock face colour, white when pale, 0 without PBR emission
++	uniform sampler2D gtexture;
++	uniform sampler2D specular;
++
++	int Obs07FaceLamp() {
++		vec2 midUV = mc_midTexCoord.xy;
++		float emission = max(textureLod(specular, midUV, 0.0).a, textureLod(specular, midUV, 2.0).a);
++		if (emission <= 0.0 || emission > 0.999) return 0;
++
++		vec3 c = textureLod(gtexture, mc_midTexCoord.xy, 4.0).rgb * gl_Color.rgb;
++		c /= max(max(c.r, c.g), max(c.b, 0.001));
++		if (min(min(c.r, c.g), c.b) > 0.7) return 169;
++
++		const vec3 dyeColor[12] = vec3[12](
++			vec3(1.00, 0.51, 0.12), vec3(1.00, 0.39, 0.95), vec3(0.27, 0.82, 1.00), vec3(1.00, 0.85, 0.24),
++			vec3(0.64, 1.00, 0.16), vec3(1.00, 0.57, 0.70), vec3(0.14, 1.00, 1.00), vec3(0.75, 0.27, 1.00),
++			vec3(0.35, 0.40, 1.00), vec3(1.00, 0.64, 0.38), vec3(0.76, 1.00, 0.18), vec3(1.00, 0.26, 0.22)
++		);
++		const int dyeLight[12] = int[12](153, 149, 137, 173, 145, 157, 125, 161, 117, 121, 133, 165);
++
++		int best = 169;
++		float bestDist = 1e9;
++		for (int i = 0; i < 12; i++) {
++			vec3 d = c - dyeColor[i];
++			float dist = dot(d, d);
++			if (dist < bestDist) { bestDist = dist; best = dyeLight[i]; }
++		}
++		return best;
++	}
++#endif
++
+=3
+=4
+=5
+@hunk 6 29
 o 2e97284f70ab b0f2fbc88717
 o 47240ebe1e12 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
@@ -1979,11 +2083,18 @@ o acf8a60ada05 0c43d0ea9585
 +
 +	#if !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
 +	if (data_out.blockID == 510) {
-+		float cbShade = gl_Normal.y > 0.5 ? 1.0 : (gl_Normal.y < -0.5 ? 0.5 : (abs(gl_Normal.z) > 0.5 ? 0.8 : 0.6));
++		// vanilla face shade for any normal, slopes (ArchitectureCraft) included
++		vec3 cbN = gl_Normal * gl_Normal;
++		float cbShade = cbN.x * 0.6 + cbN.y * (gl_Normal.y > 0.0 ? 1.0 : 0.5) + cbN.z * 0.8;
++		if (dot(cbN, vec3(1.0)) < 0.5) cbShade = 0.6; // no normal given
 +		float cbMax = max(max(gl_Color.r, gl_Color.g), gl_Color.b);
 +		data_out.color.rgb = gl_Color.rgb / max(cbMax, 0.001);
 +		data_out.color.a = clamp(cbMax / cbShade, 0.0, 1.0);
 +		data_out.blockID = 0;
++		#ifdef IS_ANGELICA
++			// OBS07: 1.7.10 microblock faces with PBR emission glow like their full block
++			data_out.blockID = Obs07FaceLamp();
++		#endif
 +	}
 +	#endif
 +
@@ -2122,7 +2233,7 @@ o 34a5baf03305 7eaaffd95eb9
 =4
 =5
 =6
-@hunk 7 13
+@hunk 7 18
 o 633f569da4ae fe9ca1123ac7
 o 4783dd6923ff e5c3be79eca7
 o da39a3ee5e6b da39a3ee5e6b
@@ -2135,7 +2246,12 @@ o da39a3ee5e6b da39a3ee5e6b
 =2
 +		// OBS07: voxel roof test, sky light only keeps caves dry
 +		#ifdef IS_LPV_ENABLED
-+			lightmap = smoothstep(0.3, 0.6, lightmap) * obs07RainMask;
++			#if defined IS_ANGELICA || MC_VERSION < 11300
++				// OBS07: 1.7.10 voxels miss some modded roofs, keep the sky light test too
++				lightmap = smoothstep(0.85, 1.0, lightmap) * obs07RainMask;
++			#else
++				lightmap = smoothstep(0.3, 0.6, lightmap) * obs07RainMask;
++			#endif
 +			float effectStrength = lightmap;
 +		#else
 +			float effectStrength = smoothstep(0.85, 1.0, lightmap);
@@ -2477,6 +2593,53 @@ o 1f84edc0733c b7b1b5820ca4
 =3
 =4
 =5
+@mod shaders/dimensions/setup.csh 3 - 4fa246a5cb06d31235f6afe64bd3e9f1e43d1288
+@hunk 6 10
+o c8de938528c0 d9a6d3a1bd72
+o 205b8af6e6e9 9b967118b40f
+o da39a3ee5e6b da39a3ee5e6b
+o b690635011a3 df5bac26bb9b
+o b94b2b64fb19 89d71f75440b
+o 32a78f1ceb90 ba0548dbfe5c
+=0
+=1
+=2
++        // OBS07: 1700-1717 = glowing microblocks and shapes, same light as the 4 candle ids
++        int obs07StoreId = blockId;
++        if (blockId >= 1700 && blockId < 1718) blockId = 109 + (blockId - 1700) * 4;
++
+=3
+=4
+=5
+@hunk 6 9
+o 2a9adda6eab3 c2b7df6201fd
+o da39a3ee5e6b da39a3ee5e6b
+o da39a3ee5e6b da39a3ee5e6b
+o fbbaa2bd9e27 d9286d733030
+o 801c4cd6bc46 40e56ec4fae5
+o da39a3ee5e6b da39a3ee5e6b
+=0
+=1
+=2
++        // OBS07: microblocks and shapes light less far than a full lamp, signs made of many parts would flood
++        if (obs07StoreId != blockId) lightRange *= 0.6;
++
+=3
+=4
+=5
+@hunk 6 6
+o 335ee0710bc0 8165aa11a960
+o 49d51865d4aa ebb00b46ed9a
+o da39a3ee5e6b da39a3ee5e6b
+o a02fd90dfa97 c27e930f4975
+o 2db6b22735f5 236b2c747eac
+o c2b7df6201fd c2b7df6201fd
+=0
+=1
+=2
++        imageStore(imgBlockData, obs07StoreId, uvec4(lightColorRange, tintColorMask, 0u, 0u));
+=4
+=5
 @mod shaders/lang/en_us.lang 2 1 fc4064a44d3f7c4548f074b9d35ad7d2a27a187a
 @hunk 17 12
 o 82234ec3d4f6 82234ec3d4f6
@@ -2773,7 +2936,7 @@ add option.OBS07_GLASS_SUN 1
 |	float g2 = g * g;
 |	return (1.0 - g2) / (4.0 * 3.14159265 * pow(1.0 + g2 - 2.0 * g * cosTheta, 1.5));
 |}
-@new shaders/lib/obs07_atmosphere_final.glsl 372 1
+@new shaders/lib/obs07_atmosphere_final.glsl 388 1
 |// OBS07: dust motes and lamp wells, full resolution (composite4)
 |
 |const bool shadowHardwareFiltering = true;
@@ -2891,9 +3054,15 @@ add option.OBS07_GLASS_SUN 1
 |	return id != 0 && id != 50; // 50 = BLOCK_LPV_IGNORE
 |}
 |
-|// 4 candle lights, see voxel_write
+|// 4 candle lights, 1700+ = glowing microblocks and shapes, see voxel_write
+|int Obs07LampIndex(int id){
+|	if (id >= 109 && id <= 177 && (id - 109) % 4 == 0) return (id - 109) / 4;
+|	if (id >= 1700 && id < 1718) return id - 1700;
+|	return -1;
+|}
+|
 |bool Obs07IsLamp(int id){
-|	return id >= 109 && id <= 177 && (id - 109) % 4 == 0;
+|	return Obs07LampIndex(id) >= 0;
 |}
 |
 |vec3 Obs07LampColor(int id){
@@ -2903,7 +3072,7 @@ add option.OBS07_GLASS_SUN 1
 |		vec3(0.439, 0.89, 0.0), vec3(0.757, 0.098, 0.812), vec3(1.0, 0.459, 0.0), vec3(1.0, 0.553, 0.718),
 |		vec3(0.569, 0.0, 1.0), vec3(0.859, 0.0, 0.0), vec3(1.0), vec3(1.0, 0.878, 0.0), vec3(1.0, 0.4, 0.1)
 |	);
-|	return lampColor[clamp((id - 109) / 4, 0, 17)];
+|	return lampColor[clamp(Obs07LampIndex(id), 0, 17)];
 |}
 |
 |// light strips do not count as walls
@@ -2914,8 +3083,10 @@ add option.OBS07_GLASS_SUN 1
 |
 |// single recessed lamp, dir 1 = floor, -1 = ceiling
 |bool Obs07BeamLamp(ivec3 lampCell, int dir){
-|	if (!Obs07IsLamp(obs07Voxel(lampCell))) return false;
-|	if (Obs07Solid(lampCell + ivec3(0, dir, 0))) return false;
+|	int lampId = obs07Voxel(lampCell);
+|	if (!Obs07IsLamp(lampId)) return false;
+|	if (lampId >= 1700 && dir < 0) return false; // microblock lamps: floor wells only, a ceiling panel is not a hole
+|	if (Obs07Solid(lampCell + ivec3(0, dir, 0))) return false; // slopes, slabs and covers let it through
 |
 |	int sides = int(Obs07Wall(lampCell + ivec3(1, 0, 0))) + int(Obs07Wall(lampCell - ivec3(1, 0, 0))) +
 |	            int(Obs07Wall(lampCell + ivec3(0, 0, 1))) + int(Obs07Wall(lampCell - ivec3(0, 0, 1)));
@@ -3062,7 +3233,12 @@ add option.OBS07_GLASS_SUN 1
 |	float otherLight = max(around - above * 0.35, 0.0) / max(above, 1e-4);
 |	light *= mix(1.0, 0.6, smoothstep(0.1, 0.6, otherLight));
 |
-|	return Obs07LampColor(obs07Voxel(lampCell)) * light;
+|	int lampId = obs07Voxel(lampCell);
+|	vec3 lampColor = Obs07LampColor(lampId);
+|	#ifdef IS_ANGELICA
+|		lampColor *= 0.6 / max(luma(lampColor), 0.6); // GTNH: pale lamps were too strong
+|	#endif
+|	return lampColor * light;
 |}
 |
 |void Obs07LampBeam(inout vec3 color, vec3 playerPos){
@@ -3095,7 +3271,7 @@ add option.OBS07_GLASS_SUN 1
 |				int dir = d == 0 ? 1 : -1;
 |				ivec3 surface = ivec3(-1);
 |				for (int k = 1; k <= OBS07_LAMP_BEAM_HEIGHT; k++){
-|					if (Obs07Solid(cell - ivec3(0, k * dir, 0))){
+|					if (obs07Voxel(cell - ivec3(0, k * dir, 0)) != 0){ // covers count, lamps can sit among them
 |						surface = cell - ivec3(0, k * dir, 0);
 |						break;
 |					}
@@ -3143,6 +3319,9 @@ add option.OBS07_GLASS_SUN 1
 |
 |	scattering *= Obs07NightFogAmount() * mix(OBS07_LIGHT_FOG_DAY, 1.0, Obs07Night());
 |	scattering *= mix(1.0, 0.5, smoothstep(0.3, 1.0, luma(color) * exposureSSBO));
+|	#ifdef IS_ANGELICA
+|		scattering *= mix(0.4, 1.0, smoothstep(0.02, 0.2, luma(color) * exposureSSBO)); // GTNH: softer in dark places
+|	#endif
 |	scattering *= 1.0 + OBS07_LAMP_BEAM_FOG * OBS07_LIGHT_FOG;
 |	color += scattering * (TORCH_AMOUNT * 0.25 * OBS07_LAMP_BEAM * LPV_VL_FOG_ILLUMINATION_BRIGHTNESS / 50.0);
 |}
@@ -3169,7 +3348,7 @@ o 78f6e292231c 6774f4804bf7
 =3
 =4
 =5
-@mod shaders/lib/settings.glsl 2 - 9cb2ea4d8600fdbfd6b7174c964e95dec1223bb0
+@mod shaders/lib/settings.glsl 3 - 9cb2ea4d8600fdbfd6b7174c964e95dec1223bb0
 @hunk 7 7
 o d62566921250 d62566921250
 o da39a3ee5e6b da39a3ee5e6b
@@ -3221,8 +3400,23 @@ o d92c3b3c194e d92c3b3c194e
 =3
 =4
 =5
+@hunk 7 7
+o 0da1f64c0480 0da1f64c0480
+o baf073722c97 baf073722c97
+o fa6018a6b6d4 fa6018a6b6d4
+o f52f088891de f52f088891de
+o 687bb0a27a74 687bb0a27a74
+o a9ee8d9b4094 a9ee8d9b4094
+o a73e0a79c3b3 a73e0a79c3b3
+=0
+=1
+=2
++#define LPV_COLORED_CANDLES
+=4
+=5
+=6
 @mod shaders/lib/voxel_write.glsl 3 - cfcad1824276e7e8e9cd1c0a9e951fb2b527a9e8
-@hunk 9 53
+@hunk 9 59
 o 4b6e43576fb2 4b6e43576fb2
 o 2f026e13b1b5 2f026e13b1b5
 o da39a3ee5e6b da39a3ee5e6b
@@ -3267,6 +3461,11 @@ o 7afcdf85cdff 3512b2936533
 +		return best;
 +	}
 +
++	// glowing microblocks and shapes light like a lamp, floor wells only (see setup)
++	uint Obs07ShapeLamp(uint id) {
++		return (id >= 109u && id <= 177u) ? 1700u + (id - 109u) / 4u : id;
++	}
++
 +	uint Obs07MicroblockLight() {
 +		vec2 midUV = mc_midTexCoord.xy;
 +		float emission = max(textureLod(specular, midUV, 0.0).a, textureLod(specular, midUV, 2.0).a);
@@ -3282,10 +3481,12 @@ o 7afcdf85cdff 3512b2936533
 =5
 +	bool obs07Microblock = false;
 +	bool obs07Shared = false;
++	bool obs07Unlisted = false;
 =6
 =7
 =8
-@hunk 11 56
+@hunk 12 62
+o b23bdc264426 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
 o 52f48674eff4 66e880d1b395
 o da39a3ee5e6b da39a3ee5e6b
@@ -3300,6 +3501,8 @@ o da39a3ee5e6b da39a3ee5e6b
 =0
 =1
 =2
++		if (voxelId == 1720u) voxelId = 1715u; // OBS07: glow shapes give white shape light
++
 +		// OBS07: AE2 full bright parts (screens, controller, smart cable channels) give light, cables let it pass
 +		if (voxelId == 291u || voxelId == 215u || voxelId == 266u) {
 +			#ifdef OBS07_MICROBLOCK_LPV
@@ -3321,6 +3524,7 @@ o da39a3ee5e6b da39a3ee5e6b
 +			obs07Microblock = true;
 +			#ifdef OBS07_MICROBLOCK_LPV
 +				voxelId = Obs07MicroblockLight();
++				voxelId = Obs07ShapeLamp(voxelId);
 +			#endif
 +		}
 +
@@ -3332,27 +3536,30 @@ o da39a3ee5e6b da39a3ee5e6b
 +				#ifdef IRIS_FEATURE_BLOCK_EMISSION_ATTRIBUTE
 +					if (obs07ShapeLight == 0u && at_midBlock.w > 0) obs07ShapeLight = uint(BLOCK_LIGHT_1 + at_midBlock.w - 1);
 +				#endif
-+				if (obs07ShapeLight != 0u) voxelId = obs07ShapeLight;
++				if (obs07ShapeLight != 0u) voxelId = Obs07ShapeLamp(obs07ShapeLight);
 +			}
 +		#endif
 +		#endif
-+
 =3
 =4
 =5
 =6
+=7
 +		// OBS07: unlisted blocks with PBR emission give light
 +		#ifdef OBS07_EMISSIVE_LPV
 +		#ifdef OBS07_MICROBLOCK_LPV
-+			if (voxelId == 0u && !obs07Microblock) voxelId = Obs07MicroblockLight();
++			if (voxelId == 0u && !obs07Microblock) {
++				voxelId = Obs07MicroblockLight();
++				obs07Unlisted = true; // glowing faces win over the others
++			}
 +		#endif
 +		#endif
 +
 +		// OBS07: non glowing microblocks let light pass (50 = BLOCK_LPV_IGNORE)
 +		if (voxelId == 0u) voxelId = obs07Microblock ? 50u : 1u;
-=8
 =9
 =10
+=11
 @hunk 6 14
 o 47240ebe1e12 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
@@ -3365,7 +3572,7 @@ o 0b000dbedeec da39a3ee5e6b
 =2
 +		// OBS07: glowing parts win
 +		#if defined BEACON_FLOODFILL && defined IS_LPV_ENABLED
-+		if (obs07Microblock) {
++		if (obs07Microblock || obs07Unlisted) {
 +			if (clamp(voxelPos, ivec3(0), ivec3(VoxelSize-1u)) == voxelPos) imageAtomicMax(imgVoxelMask, voxelPos, voxelId);
 +		} else if (obs07Shared) {
 +			if (clamp(voxelPos, ivec3(0), ivec3(VoxelSize-1u)) == voxelPos) imageAtomicCompSwap(imgVoxelMask, voxelPos, 0u, voxelId);
@@ -3397,7 +3604,7 @@ o 046068fb4f07 046068fb4f07
 =1
 =2
 +# OBS07 presets
-+profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
++profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 +profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 +profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 +profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
@@ -3486,7 +3693,7 @@ del profile.ALTERNATE_HIGH_GRASS
 del profile.VERY_HIGH
 del profile.ULTRA
 add - 1
-|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV !LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_ULTIMATE 1
 |profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
 add profile.OBS07_PERFORMANCE 1
