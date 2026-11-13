@@ -1,18 +1,18 @@
 CHROMA 1
 @info 11
 id=eclipse
-version=1.0.2
+version=1.0.3
 engine=1
-base=Eclipse Unstable 3c18afc
+base=Eclipse Unstable e89e6c6
 name=Eclipse
 detect.file=shaders/lang/en_us.lang
 detect.contains=ECLIPSE
 detect.excludes=OBS07
 detect.excludes.in=shaders/lang/en_us.lang,shaders/block.properties
 output=Eclipse-Shader KuraEdit [OBS07-Chroma Patch]
-changelog=- GTNH: block ids work again with Angelica, most GTNH lamps gave no light since 1.0.1\n- Coloured candle light is on by default and in every preset\n- GTNH glowing blocks by KuramA: Thaumcraft, AE2 crafting units and controller, Galacticraft glowstone torch, Extra Utilities and ArchitectureCraft shapes\n- GTNH: ProjectRed lamps light in their own colour, white lamps glow without drowning other colours from far away\n- Glowing microblocks and ArchitectureCraft shapes glow like their full block and light their surroundings, a bit less far than a full lamp\n- ArchitectureCraft glow shapes give white light, Ztones Lave no longer glows\n- ArchitectureCraft slopes are shaded correctly\n- Lamp light wells: no more flickering, they pass through slopes, slabs and covers, no well under ceiling panels\n- Glowing Blocks Give Light: machines with several glowing faces no longer flicker between colours\n- GTNH: Storage Drawers items are no longer dark, no more puddles indoors
+changelog=- The base Eclipse look is back by default: night light fog, fog drift, godrays, dust and lamp light wells are off in Ultimate, about twice the frame rate in our tests\n- New preset Atmosphere: our night fog, godrays, dust and light wells, light fog at night only\n- New preset Ultimate Vanilla: only the base Eclipse effects (no coloured translucent shadows, no glass light) for the best frame rate, modded and neon light support stays\n- Lamp light wells are skipped by day, faster with Atmosphere\n- Brighter nights: stronger moonlight and outdoor minimum light\n- Less fog in Ultimate (fog density 0.85)\n- Floodfill size 8 by default and in Ultimate, coloured light reaches further\n- New option Night Vision Strength, night vision is no longer barely visible (also with fixed exposure presets like KuraBalanced)\n- New option Far Lights Glow (Distant Horizons), off by default: far lights no longer show as strong white blobs\n- Animated glowing textures (GregTech tank screens) no longer make their light blink\n- Glowing microblocks and shapes light 80% as far as a full lamp (was 60%)\n- Every preset now also resets coloured translucent shadows and glass light\n- The patch version is shown at the top of the shader options, under the Eclipse version
 @mod shaders/block.properties 23 - ca5992836dd4569eded627c861113ce0f2d9f1c8
-@hunk 6 388
+@hunk 6 391
 o 6f01fb7e64df 6f01fb7e64df
 o 236b2c747eac 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
@@ -34,7 +34,7 @@ o 236b2c747eac 236b2c747eac
 +#define GTNH_242 Botania:seaLamp
 +#define GTNH_169 ExtraUtilities:color_lightgem:0 ExtraUtilities:color_lightgem:7 ExtraUtilities:color_lightgem:8 ExtraUtilities:color_lightgem:15 appliedenergistics2:tile.BlockQuartzLamp chisel:antiBlock:15 chisel:antiBlock:7 chisel:antiBlock:8 chisel:antiBlock:0 chisel:antiBlock:3 ExtraUtilities:greenscreen:0 ProjRed|Illumination:projectred.illumination.lamp:0 ExtraUtilities:greenscreen:7 ProjRed|Illumination:projectred.illumination.lamp:7 ExtraUtilities:greenscreen:8 ProjRed|Illumination:projectred.illumination.lamp:8 ExtraUtilities:greenscreen:15 ProjRed|Illumination:projectred.illumination.lamp:15
 +#define GTNH_153 ExtraUtilities:color_lightgem:1 chisel:antiBlock:14 ExtraUtilities:greenscreen:1 ProjRed|Illumination:projectred.illumination.lamp:1
-+#define GTNH_161 ExtraUtilities:color_lightgem:10 Natura:purpleGlowshroom chisel:antiBlock:5 ExtraUtilities:greenscreen:10 ProjRed|Illumination:projectred.illumination.lamp:10
++#define GTNH_161 ExtraUtilities:color_lightgem:10 BiomesOPlenty:coral1:15 Natura:purpleGlowshroom chisel:antiBlock:5 ExtraUtilities:greenscreen:10 ProjRed|Illumination:projectred.illumination.lamp:10
 +#define GTNH_149 ExtraUtilities:color_lightgem:2 chisel:antiBlock:13 ExtraUtilities:greenscreen:2 ProjRed|Illumination:projectred.illumination.lamp:2
 +#define GTNH_157 ExtraUtilities:color_lightgem:6 chisel:antiBlock:9 ExtraUtilities:greenscreen:6 ProjRed|Illumination:projectred.illumination.lamp:6
 +#define GTNH_196 GalaxySpace:ceresglowstone GalaxySpace:enceladusglowstone GalaxySpace:ioglowstone GalaxySpace:plutoglowstone GalaxySpace:proteusglowstone ExtraUtilities:decorativeBlock2:7 Thaumcraft:blockMetalDevice:7 GalacticraftCore:tile.glowstoneTorch
@@ -43,7 +43,7 @@ o 236b2c747eac 236b2c747eac
 +#define GTNH_137 ExtraUtilities:color_lightgem:3 chisel:antiBlock:12 ExtraUtilities:greenscreen:3 ProjRed|Illumination:projectred.illumination.lamp:3
 +#define GTNH_125 ExtraUtilities:color_lightgem:9 chisel:antiBlock:6 ExtraUtilities:greenscreen:9 ProjRed|Illumination:projectred.illumination.lamp:9
 +#define GTNH_133 ExtraUtilities:color_lightgem:13 Natura:greenGlowshroom chisel:antiBlock:2 ExtraUtilities:greenscreen:13 ProjRed|Illumination:projectred.illumination.lamp:13
-+#define GTNH_145 ExtraUtilities:color_lightgem:5 chisel:antiBlock:10 ExtraUtilities:greenscreen:5 ProjRed|Illumination:projectred.illumination.lamp:5
++#define GTNH_145 ExtraUtilities:color_lightgem:5 TwilightForest:tile.TFFireflyJar chisel:antiBlock:10 ExtraUtilities:greenscreen:5 ProjRed|Illumination:projectred.illumination.lamp:5
 +#define GTNH_165 ExtraUtilities:color_lightgem:14 BloodArsenal:blood_lamp BloodArsenal:blood_infused_glowstone chisel:antiBlock:1 ExtraUtilities:greenscreen:14 ProjRed|Illumination:projectred.illumination.lamp:14
 +#define GTNH_121 ExtraUtilities:color_lightgem:12 ExtraUtilities:greenscreen:12 ProjRed|Illumination:projectred.illumination.lamp:12
 +#else
@@ -66,6 +66,9 @@ o 236b2c747eac 236b2c747eac
 +#define GTNH_165
 +#define GTNH_121
 +#endif
++
++
++
 +
 +# OBS07: Ztones Lave is a building block, plain solid without light
 +#if defined IS_ANGELICA || MC_VERSION < 11300
@@ -1924,8 +1927,27 @@ ins block.314 - apn:tinted_glass_8
 ins block.315 - apn:tinted_glass_11
 ins block.317 - apn:tinted_glass_1
 ins block.317 apn:tinted_glass_1 apn:tinted_glass_13
-@mod shaders/dimensions/all_solid.fsh 4 - 004e3b7c7e38e5651bf6f5cc09ed9ca4543a0cd3
-@hunk 6 14
+@mod shaders/dimensions/DH_solid.vsh 1 - ac88c4924bff001fc99dbb6a7ba2eb1caf566c00
+@hunk 7 10
+o ac9231da4082 da39a3ee5e6b
+o da39a3ee5e6b da39a3ee5e6b
+o 3e0c2f281380 32948b7d04f8
+o c39ee2f066e3 edcb86bf2f4d
+o da39a3ee5e6b da39a3ee5e6b
+o aba3390fef22 428f656f4920
+o ab5ab6988fd8 ff931d227d94
+=0
+=1
+=2
++	// OBS07: off by default, far lights were plain white blobs
++	#ifdef OBS07_DH_LIGHT_GLOW
++		if(dhMaterialId == DH_BLOCK_ILLUMINATED || gl_MultiTexCoord1.x >= 0.95) EMISSIVE = 0.5;
++	#endif
+=4
+=5
+=6
+@mod shaders/dimensions/all_solid.fsh 5 - 004e3b7c7e38e5651bf6f5cc09ed9ca4543a0cd3
+@hunk 6 15
 o da39a3ee5e6b da39a3ee5e6b
 o d8891bc035d6 c8c925bfdac7
 o da39a3ee5e6b da39a3ee5e6b
@@ -1940,12 +1962,33 @@ o 1a92e933b2a7 94c857f0d14c
 +		vec3 obs07Pos = toScreenSpace(FragCoord*vec3(texelSize/RENDER_SCALE,1.0));
 +		vec3 obs07Face = normalize(cross(dFdx(obs07Pos), dFdy(obs07Pos)));
 +		if (dot(obs07Face, obs07Pos) > 0.0) obs07Face = -obs07Face;
-+		if (dot(normal, obs07Face) < 0.5) normal = obs07Face;
++		// NaN check too: Angelica builds the Thaumcraft jar liquid without normals
++		if (!(dot(normal, obs07Face) >= 0.5)) normal = obs07Face;
 +	#endif
 +
 =3
 =4
 =5
+@hunk 7 12
+o da39a3ee5e6b da39a3ee5e6b
+o 471a042b2a45 1e4e6cdbfce6
+o 62a03737e878 a40d81b1cb67
+o 9739b3e6df0c 1b7a0b29ea49
+o da39a3ee5e6b da39a3ee5e6b
+o 058ad4480afd 33d7b19106f9
+o 9d4a302527e6 370651fe2fd1
+=0
+=1
+=2
++			#if defined BLOCKENTITIES && defined IS_ANGELICA
++				// OBS07: texture alpha only, Angelica's batched jar liquid has a wrong vertex alpha
++				float entityAlbedo = clamp((Albedo.a - 0.1) * 10.0 / 9.0, 0.0, 1.0);
++			#else
++				float entityAlbedo = clamp((Albedo.a*Color.a - 0.1) * 10.0 / 9.0, 0.0, 1.0);
++			#endif
+=4
+=5
+=6
 @hunk 7 7
 o da39a3ee5e6b da39a3ee5e6b
 o 5f4a2640dfd1 74ea3ba2b070
@@ -2000,7 +2043,7 @@ o 0f68a2a53a04 23e71241822b
 =3
 =4
 =5
-@hunk 7 13
+@hunk 7 16
 o eb52fc32e84d 093044d6f78d
 o 6f1eb8ebfe97 236b2c747eac
 o 6ff6be9c6493 60ba4b2daa4e
@@ -2014,8 +2057,11 @@ o da39a3ee5e6b da39a3ee5e6b
 +			float obs07Emission = getEmission(Albedo.rgb);
 +			#ifdef IS_ANGELICA
 +				// OBS07: no candles on 1.7.10, white lamps glow by brightness instead of colour
-+				// fades with distance so small white lamps do not drown the colours far away
-+				if (data_in.blockID == 169) obs07Emission = max(obs07Emission, pow(max(max(Albedo.r, Albedo.g), Albedo.b), 3.5) * 0.5 * mix(1.0, 0.25, smoothstep(12.0, 48.0, length(playerpos))));
++				// capped near PBR neon strength (white lamp EMISSIVE is 7.5), lower far away so white does not drown the colours
++				if (data_in.blockID == 169) {
++					float obs07WhiteCap = mix(0.6, 0.2, smoothstep(8.0, 40.0, length(playerpos))) / 7.5;
++					obs07Emission = max(obs07Emission, min(pow(max(max(Albedo.r, Albedo.g), Albedo.b), 3.5) * 0.5, obs07WhiteCap));
++				}
 +			#endif
 +			EMISSIVE *= obs07Emission;
 =4
@@ -2103,7 +2149,47 @@ o acf8a60ada05 0c43d0ea9585
 =3
 =4
 =5
-@mod shaders/dimensions/all_translucent.fsh 1 - 7497bb6d34e3108ea141db41d919bf3aa08b294a
+@mod shaders/dimensions/all_translucent.fsh 3 - b8992cfdb446d822ce3ca9f4c30bdd37ca3871e1
+@hunk 6 10
+o 79d2d3293ac3 2adf5facda49
+o 47240ebe1e12 236b2c747eac
+o da39a3ee5e6b da39a3ee5e6b
+o b9575cf1705a 92b206d05515
+o c16580fe35e4 f70d9b76036f
+o 47240ebe1e12 236b2c747eac
+=0
+=1
+=2
++	#if defined IS_ANGELICA && !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
++		flat int obs07Jar;
++	#endif
++
+=3
+=4
+=5
+@hunk 6 16
+o da39a3ee5e6b da39a3ee5e6b
+o c957745e8222 393d91cae115
+o da39a3ee5e6b da39a3ee5e6b
+o a5789c1349c6 6d12a3405578
+o 49bc42ab97ac aca6cc196701
+o 02dc13fa8595 dde06adc6fbb
+=0
+=1
+=2
++	bool obs07IsJar = false;
++	#if defined IS_ANGELICA && !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
++		// OBS07: thin jar glass, show the liquid inside like vanilla
++		if (obs07Jar == 1) {
++			obs07IsJar = true;
++			gl_FragData[0].a *= 0.35;
++			UnchangedAlpha = gl_FragData[0].a;
++		}
++	#endif
++
+=3
+=4
+=5
 @hunk 6 11
 o da39a3ee5e6b da39a3ee5e6b
 o 725f2716b572 5506ebb0138d
@@ -2116,20 +2202,39 @@ o 47240ebe1e12 236b2c747eac
 =2
 +	#ifdef OVERWORLD_SHADER
 +		// OBS07: sunlit patch on glass
-+		if (!isWater && !isEntity && OBS07_GLASS_SUN > 0.0) FinalColor += Direct_lighting * (Albedo * 0.5 + 0.12) * (UnchangedAlpha * OBS07_GLASS_SUN);
++		if (!isWater && !isEntity && !obs07IsJar && OBS07_GLASS_SUN > 0.0) FinalColor += Direct_lighting * (Albedo * 0.5 + 0.12) * (UnchangedAlpha * OBS07_GLASS_SUN);
 +	#endif
 +
 =3
 =4
 =5
-@mod shaders/dimensions/all_translucent.vsh 1 - 3aad671ea0d51cae0fb431e9f14e18c6d92ae3f8
-@hunk 6 14
+@mod shaders/dimensions/all_translucent.vsh 2 - 3aad671ea0d51cae0fb431e9f14e18c6d92ae3f8
+@hunk 6 10
+o 79d2d3293ac3 2adf5facda49
+o 47240ebe1e12 236b2c747eac
+o da39a3ee5e6b da39a3ee5e6b
+o b9575cf1705a 92b206d05515
+o c16580fe35e4 f70d9b76036f
+o 47240ebe1e12 236b2c747eac
+=0
+=1
+=2
++	#if defined IS_ANGELICA && !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
++		flat int obs07Jar;
++	#endif
++
+=3
+=4
+=5
+@hunk 8 21
 o 24944842b5f6 13841c69d280
 o b9638f646eba 81780fde37e8
 o da39a3ee5e6b da39a3ee5e6b
 o 7d5b199c2873 94834c60df10
 o da39a3ee5e6b da39a3ee5e6b
 o f9fc89cb26df 12f28e203c6c
+o da39a3ee5e6b da39a3ee5e6b
+o 71e9430e31a2 ab0f6637aeb7
 =0
 =1
 =2
@@ -2143,8 +2248,15 @@ o f9fc89cb26df 12f28e203c6c
 +
 =3
 =4
++	#if defined IS_ANGELICA && !defined ENTITIES && !defined BLOCKENTITIES && !defined HAND
++		// OBS07: 1731 = mod jars (glass part)
++		obs07Jar = mc_Entity.x == 1731.0 ? 1 : 0;
++	#endif
++
 =5
-@mod shaders/dimensions/composite1.fsh 5 - ecf35611961d9856fa0862fc8b7b2e824167885b
+=6
+=7
+@mod shaders/dimensions/composite1.fsh 5 - b22c56da5a7769d38fc239bd4b0379b86962b708
 @hunk 6 7
 o c610d94de31d af7037717806
 o af0146365f3e 595f82de692f
@@ -2622,7 +2734,7 @@ o da39a3ee5e6b da39a3ee5e6b
 =1
 =2
 +        // OBS07: microblocks and shapes light less far than a full lamp, signs made of many parts would flood
-+        if (obs07StoreId != blockId) lightRange *= 0.6;
++        if (obs07StoreId != blockId) lightRange *= 0.8;
 +
 =3
 =4
@@ -2640,8 +2752,12 @@ o c2b7df6201fd c2b7df6201fd
 +        imageStore(imgBlockData, obs07StoreId, uvec4(lightColorRange, tintColorMask, 0u, 0u));
 =4
 =5
-@mod shaders/lang/en_us.lang 2 1 fc4064a44d3f7c4548f074b9d35ad7d2a27a187a
-@hunk 17 12
+@mod shaders/lang/en_us.lang 3 1 81e51bad4155c184ee21681b13244c74796f2e8b
+@hunk 21 21
+o 7a327aa78313 7a327aa78313
+o 43253c154696 79ebdb38c818
+o 753d36b25a4c 0d17d7844d7e
+o da39a3ee5e6b da39a3ee5e6b
 o 82234ec3d4f6 82234ec3d4f6
 o da39a3ee5e6b da39a3ee5e6b
 o cf573b4abd9d cf573b4abd9d
@@ -2662,16 +2778,40 @@ o e1b9ec914919 e1b9ec914919
 =0
 =1
 =2
++option.OBS07_PATCH_LABEL = §6OBS07 Chroma Patch§r
++    prefix.OBS07_PATCH_LABEL = V
++    value.OBS07_PATCH_LABEL.0 = 1.0.3
+=3
+=4
+=5
+=6
 +profile.OBS07_ULTIMATE=§6OBS07 Preset§r: §c§lU§6§ll§e§lt§a§li§b§lm§9§la§d§lt§5§le§r
++profile.OBS07_ULTIMATE_VANILLA=§6OBS07 Preset§r: §fUltimate §7Vanilla
++profile.OBS07_ATMOSPHERE=§6OBS07 Preset§r: §dAtmosphere
 +profile.OBS07_PERFORMANCE=§6OBS07 Preset§r: §aPerformance
 +profile.OBS07_PERFORMANCE_NOFOG=§6OBS07 Preset§r: §aPerformance §7(No Fog)
 +profile.OBS07_NORMAL=§6OBS07 Preset§r: §bNormal
 +profile.OBS07_NORMAL_NOFOG=§6OBS07 Preset§r: §bNormal §7(No Fog)
 +profile.KURA_BALANCED=§dKuraBalanced
-=14
-=15
-=16
-@hunk 4 60
+=18
+=19
+=20
+@hunk 6 8
+o da39a3ee5e6b da39a3ee5e6b
+o a4e44375cd2d a4e44375cd2d
+o 5245db092aa8 5245db092aa8
+o a648d9736376 a648d9736376
+o da39a3ee5e6b da39a3ee5e6b
+o 1e64ba85cbfe 1e64ba85cbfe
+=0
+=1
+=2
++option.OBS07_DH_LIGHT_GLOW = Far Lights Glow
++option.OBS07_DH_LIGHT_GLOW.comment = Light blocks on LOD chunks glow. LODs have no block colour data, so the glow is a plain strong white.
+=3
+=4
+=5
+@hunk 4 64
 o 5a2c9c8de1b0 5a2c9c8de1b0
 o efa371a1666e efa371a1666e
 o 4b534dfe89ed 4b534dfe89ed
@@ -2732,11 +2872,15 @@ o cf5fe1ebaf71 cf5fe1ebaf71
 +
 +option.OBS07_EMISSIVE_LPV = Glowing Blocks Give Light
 +option.OBS07_EMISSIVE_LPV.comment = Blocks that only glow through the resource pack (neon strips, modded lamps) light their surroundings.
++option.OBS07_VANILLA_LIGHT_FALLBACK = Keep Vanilla Block Light
++option.OBS07_VANILLA_LIGHT_FALLBACK.comment = GTNH only. Light sources Floodfill cannot see (invisible light blocks, Nitor, gases, fireflies) still light their surroundings.
++option.OBS07_NIGHT_VISION = Night Vision Strength
++option.OBS07_NIGHT_VISION.comment = How bright dark places get with Night Vision. 0.02 = original Eclipse.
 +option.OBS07_DARK_GLASS_LIGHT = Dark Glass Light
 +option.OBS07_DARK_GLASS_LIGHT.comment = Sunlight let through by dark tinted glass. 0 = blocks it.
 +option.OBS07_GLASS_SUN = Sunlit Glass
 +option.OBS07_GLASS_SUN.comment = Soft sunlit patch on tinted glass. 0 = off.
-@props shaders/lang/en_us.lang 123
+@props shaders/lang/en_us.lang 145
 del profile.POTATO
 del profile.VERY_LOW
 del profile.LOW
@@ -2748,9 +2892,19 @@ del profile.HIGH_GRASS
 del profile.ALTERNATE_HIGH_GRASS
 del profile.VERY_HIGH
 del profile.ULTRA
+add value.SHADER_VERSION_LABEL.482 1
+|option.OBS07_PATCH_LABEL = §6OBS07 Chroma Patch§r
+add option.OBS07_PATCH_LABEL 1
+|    prefix.OBS07_PATCH_LABEL = V
+add prefix.OBS07_PATCH_LABEL 1
+|    value.OBS07_PATCH_LABEL.0 = 1.0.3
 add iris_extension.keybind.key0.name 1
 |profile.OBS07_ULTIMATE=§6OBS07 Preset§r: §c§lU§6§ll§e§lt§a§li§b§lm§9§la§d§lt§5§le§r
 add profile.OBS07_ULTIMATE 1
+|profile.OBS07_ULTIMATE_VANILLA=§6OBS07 Preset§r: §fUltimate §7Vanilla
+add profile.OBS07_ULTIMATE_VANILLA 1
+|profile.OBS07_ATMOSPHERE=§6OBS07 Preset§r: §dAtmosphere
+add profile.OBS07_ATMOSPHERE 1
 |profile.OBS07_PERFORMANCE=§6OBS07 Preset§r: §aPerformance
 add profile.OBS07_PERFORMANCE 1
 |profile.OBS07_PERFORMANCE_NOFOG=§6OBS07 Preset§r: §aPerformance §7(No Fog)
@@ -2760,6 +2914,10 @@ add profile.OBS07_NORMAL 1
 |profile.OBS07_NORMAL_NOFOG=§6OBS07 Preset§r: §bNormal §7(No Fog)
 add profile.OBS07_NORMAL_NOFOG 1
 |profile.KURA_BALANCED=§dKuraBalanced
+add option.DH_SUBSURFACE_SCATTERING 1
+|option.OBS07_DH_LIGHT_GLOW = Far Lights Glow
+add option.OBS07_DH_LIGHT_GLOW 1
+|option.OBS07_DH_LIGHT_GLOW.comment = Light blocks on LOD chunks glow. LODs have no block colour data, so the glow is a plain strong white.
 add option.DOF_DISPERSION_MULT.comment 1
 |screen.Atmosphere = Atmosphere
 add screen.Atmosphere 1
@@ -2853,6 +3011,14 @@ add option.OBS07_DUST_MOTES_IN_BEAM 1
 add option.OBS07_EMISSIVE_LPV 1
 |option.OBS07_EMISSIVE_LPV.comment = Blocks that only glow through the resource pack (neon strips, modded lamps) light their surroundings.
 add option.OBS07_EMISSIVE_LPV.comment 1
+|option.OBS07_VANILLA_LIGHT_FALLBACK = Keep Vanilla Block Light
+add option.OBS07_VANILLA_LIGHT_FALLBACK 1
+|option.OBS07_VANILLA_LIGHT_FALLBACK.comment = GTNH only. Light sources Floodfill cannot see (invisible light blocks, Nitor, gases, fireflies) still light their surroundings.
+add option.OBS07_VANILLA_LIGHT_FALLBACK.comment 1
+|option.OBS07_NIGHT_VISION = Night Vision Strength
+add option.OBS07_NIGHT_VISION 1
+|option.OBS07_NIGHT_VISION.comment = How bright dark places get with Night Vision. 0.02 = original Eclipse.
+add option.OBS07_NIGHT_VISION.comment 1
 |option.OBS07_DARK_GLASS_LIGHT = Dark Glass Light
 add option.OBS07_DARK_GLASS_LIGHT 1
 |option.OBS07_DARK_GLASS_LIGHT.comment = Sunlight let through by dark tinted glass. 0 = blocks it.
@@ -2860,6 +3026,51 @@ add option.OBS07_DARK_GLASS_LIGHT.comment 1
 |option.OBS07_GLASS_SUN = Sunlit Glass
 add option.OBS07_GLASS_SUN 1
 |option.OBS07_GLASS_SUN.comment = Soft sunlit patch on tinted glass. 0 = off.
+@mod shaders/lib/diffuse_lighting.glsl 2 - d72bfe7a0f7573730cdd6ed4e9e80647116bd8cf
+@hunk 6 21
+o 2c105d69e964 c2b7df6201fd
+o b374f13d126c 6bc77eb3be7d
+o da39a3ee5e6b da39a3ee5e6b
+o 7e626057a32b 0e5832bba5b0
+o da39a3ee5e6b da39a3ee5e6b
+o 39d29b4eed75 99a73816a092
+=0
+=1
+=2
++        #ifdef OBS07_VANILLA_LIGHT_FALLBACK
++        #if defined IS_ANGELICA || MC_VERSION < 11300
++            // OBS07: lights the voxels never see (invisible light blocks, gases, fireflies) keep their vanilla light
++            vec3 obs07Vanilla = lightmapCurve * lightColor * smoothstep(0.45, 0.9, lightmap);
++            // compare strongest channels so saturated blue or purple lamps count as lit
++            float obs07Lpv = max(max(lpvSample.r, lpvSample.g), lpvSample.b);
++            float obs07Missing = 1.0 - clamp(obs07Lpv / max(0.25 * max(max(obs07Vanilla.r, obs07Vanilla.g), obs07Vanilla.b), 1e-5), 0.0, 1.0);
++            #if defined Hand_Held_lights && (!defined PH_ENABLE_HANDHELD_LIGHT || !defined PHOTONICS_LIGHT_PASS)
++                // dynamic lights forced on also put the held light in the lightmap
++                if (heldItemId > 999 || heldItemId2 > 999) obs07Missing *= smoothstep(6.0, 10.0, length(playerPos));
++            #endif
++            lpvSample.rgb += obs07Vanilla * obs07Missing;
++        #endif
++        #endif
++
+=3
+=4
+=5
+@hunk 6 9
+o cd8016890080 7881929660eb
+o 7800b79b48f9 d694a5ef000a
+o da39a3ee5e6b da39a3ee5e6b
+o f152e02a425e 52cb3d506447
+o c2b7df6201fd c2b7df6201fd
+o da39a3ee5e6b da39a3ee5e6b
+=0
+=1
+=2
++    // OBS07: night vision lifts dark places to a floor, also with fixed exposure
++    indirectLight = max(indirectLight, minimumLightColor * nightVision * OBS07_NIGHT_VISION);
++
+=3
+=4
+=5
 @new shaders/lib/obs07_atmosphere.glsl 75 1
 |// OBS07: atmosphere helpers
 |
@@ -2936,7 +3147,7 @@ add option.OBS07_GLASS_SUN 1
 |	float g2 = g * g;
 |	return (1.0 - g2) / (4.0 * 3.14159265 * pow(1.0 + g2 - 2.0 * g * cosTheta, 1.5));
 |}
-@new shaders/lib/obs07_atmosphere_final.glsl 388 1
+@new shaders/lib/obs07_atmosphere_final.glsl 392 1
 |// OBS07: dust motes and lamp wells, full resolution (composite4)
 |
 |const bool shadowHardwareFiltering = true;
@@ -3242,6 +3453,10 @@ add option.OBS07_GLASS_SUN 1
 |}
 |
 |void Obs07LampBeam(inout vec3 color, vec3 playerPos){
+|	// nothing to add by day: skip the march
+|	float beamAmount = Obs07NightFogAmount() * mix(OBS07_LIGHT_FOG_DAY, 1.0, Obs07Night());
+|	if (beamAmount <= 0.001) return;
+|
 |	float rayLength = min(length(playerPos), 32.0);
 |	vec3 rayDir = playerPos / max(length(playerPos), 1e-6);
 |	rayDir = mix(rayDir, vec3(1e-5), lessThan(abs(rayDir), vec3(1e-5)));
@@ -3317,7 +3532,7 @@ add option.OBS07_GLASS_SUN 1
 |		t = tNext;
 |	}
 |
-|	scattering *= Obs07NightFogAmount() * mix(OBS07_LIGHT_FOG_DAY, 1.0, Obs07Night());
+|	scattering *= beamAmount;
 |	scattering *= mix(1.0, 0.5, smoothstep(0.3, 1.0, luma(color) * exposureSSBO));
 |	#ifdef IS_ANGELICA
 |		scattering *= mix(0.4, 1.0, smoothstep(0.02, 0.2, luma(color) * exposureSSBO)); // GTNH: softer in dark places
@@ -3348,7 +3563,32 @@ o 78f6e292231c 6774f4804bf7
 =3
 =4
 =5
-@mod shaders/lib/settings.glsl 3 - 9cb2ea4d8600fdbfd6b7174c964e95dec1223bb0
+@mod shaders/lib/settings.glsl 8 - 082dbbd5977437845e4bc1f6c2bb5bf0409c05b9
+@hunk 4 5
+o 612627b19c1c 612627b19c1c
+o da39a3ee5e6b da39a3ee5e6b
+o 02d8d3eed8ca 02d8d3eed8ca
+o da39a3ee5e6b da39a3ee5e6b
+=0
++#define OBS07_PATCH_LABEL 0 // [0]
+=1
+=2
+=3
+@hunk 7 7
+o 9f6d4a382a4c 9f6d4a382a4c
+o 87b78c2a1b86 87b78c2a1b86
+o da39a3ee5e6b da39a3ee5e6b
+o def223f29488 def223f29488
+o 64b6de7fd47e 64b6de7fd47e
+o 31c0716fd7c1 31c0716fd7c1
+o da39a3ee5e6b da39a3ee5e6b
+=0
+=1
+=2
++#define MIN_LIGHT_AMOUNT 2.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 15.0 20.0 25.0 30.0 35.0 40.0 45.0 50.0 100.0 ]
+=4
+=5
+=6
 @hunk 7 7
 o d62566921250 d62566921250
 o da39a3ee5e6b da39a3ee5e6b
@@ -3364,42 +3604,81 @@ o 236b2c747eac 236b2c747eac
 =4
 =5
 =6
-@hunk 6 29
+@hunk 9 35
 o da39a3ee5e6b da39a3ee5e6b
 o 7e3994aa9857 7e3994aa9857
 o da39a3ee5e6b da39a3ee5e6b
 o e93055e1a56b e93055e1a56b
 o da39a3ee5e6b da39a3ee5e6b
 o d92c3b3c194e d92c3b3c194e
+o da39a3ee5e6b da39a3ee5e6b
+o 1f8bd6cdaef4 1f8bd6cdaef4
+o 54fb51014052 54fb51014052
 =0
 =1
 =2
 +// OBS07: atmosphere
-+#define OBS07_FOG_DRIFT
-+#define OBS07_LIGHT_FOG 1.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 4.0 6.0 8.0]
++//#define OBS07_FOG_DRIFT
++#define OBS07_LIGHT_FOG 0.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 4.0 6.0 8.0]
 +#define OBS07_LIGHT_FOG_MOON 3.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 4.0]
 +#define OBS07_LIGHT_FOG_AMBIENT 0.5 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 4.0]
 +#define OBS07_LIGHT_FOG_MOTION 1.0 // [0.25 0.5 1.0 1.5 2.0 3.0 5.0]
-+#define OBS07_LIGHT_FOG_DAY 0.1 // [0.0 0.05 0.1 0.2 0.3 0.5 1.0]
-+#define OBS07_GODRAYS 0.6 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0]
++#define OBS07_LIGHT_FOG_DAY 0.0 // [0.0 0.05 0.1 0.2 0.3 0.5 1.0]
++#define OBS07_GODRAYS 0.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0]
 +#define OBS07_GODRAYS_SATURATION 0.3 // [0.0 0.25 0.5 0.75 1.0]
-+#define OBS07_DUST 1.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0]
++#define OBS07_DUST 0.0 // [0.0 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0]
 +#define OBS07_DUST_DAY 0.0 // [0.0 0.1 0.2 0.3 0.5 1.0]
 +#define OBS07_DUST_AMOUNT 0.3 // [0.05 0.1 0.2 0.3 0.35 0.5 0.75 1.0]
 +#define OBS07_DUST_SPEED 1.0 // [0.0 0.5 1.0 1.5 2.0 3.0]
-+#define OBS07_LAMP_BEAM 5.0 // [0.0 0.1 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0 10.0]
++#define OBS07_LAMP_BEAM 0.0 // [0.0 0.1 0.25 0.5 0.75 1.0 1.5 2.0 3.0 5.0 10.0]
 +#define OBS07_LAMP_BEAM_MODE 1 // [0 1]
 +#define OBS07_LAMP_BEAM_LENGTH 3.0 // [0.75 1.0 1.5 2.0 3.0 4.0 6.0]
 +#define OBS07_LAMP_BEAM_HEIGHT 6 // [3 4 6 8 12]
 +#define OBS07_LAMP_BEAM_FOG 4.0 // [0.0 1.0 2.0 3.0 4.0 6.0 8.0 12.0]
 +#define OBS07_DUST_MOTES_IN_BEAM
 +#define OBS07_EMISSIVE_LPV
++#define OBS07_VANILLA_LIGHT_FALLBACK
++//#define OBS07_DH_LIGHT_GLOW
++#define OBS07_NIGHT_VISION 0.15 // [0.02 0.05 0.1 0.15 0.2 0.3 0.5]
 +#define OBS07_DARK_GLASS_LIGHT 0.3 // [0.0 0.1 0.15 0.2 0.25 0.3 0.4 0.5]
 +#define OBS07_GLASS_SUN 0.3 // [0.0 0.1 0.2 0.3 0.4 0.5 0.75 1.0 1.5 2.0 3.0]
 +
 =3
 =4
++#define TOD_Fog_mult 0.85 // [0.00 0.25 0.50 0.75 0.85 1.0 1.25 1.50 1.75 2.00 3.00 4.00 5.00]
+=6
+=7
+=8
+@hunk 7 7
+o 0784279ff686 0784279ff686
+o 3208ad8a8315 3208ad8a8315
+o da39a3ee5e6b da39a3ee5e6b
+o 2f2d68711362 2f2d68711362
+o 7143a409514f 7143a409514f
+o dc2fe8e907a5 dc2fe8e907a5
+o 7e9f8216f794 7e9f8216f794
+=0
+=1
+=2
++#define moon_illuminance 900.0 //[0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 150.0 200.0 300.0 400.0 500.0 600.0 700.0 800.0 900.0 1000.0 2000.0 3000.0 4000.0 5000.0 6000.0 7000.0 8000.0 9000.0 10000.0 11000.0 12000.0 13000.0 14000.0 15000.0 20000.0 30000.0 40000.0 50000.0 60000.0 70000.0 80000.0 90000.0 100000.0 150000.0 200000.0 250000.0 300000.0 400000.0 500000.0]
+=4
 =5
+=6
+@hunk 7 7
+o dc67e3802409 dc67e3802409
+o da39a3ee5e6b da39a3ee5e6b
+o b062dab316cf b062dab316cf
+o abbe941634ae abbe941634ae
+o 708d03a1e0d0 708d03a1e0d0
+o cd80c6ebd66d cd80c6ebd66d
+o c29da232ae06 c29da232ae06
+=0
+=1
+=2
++#define LPV_SIZE 8 // [6 7 8]
+=4
+=5
+=6
 @hunk 7 7
 o 0da1f64c0480 0da1f64c0480
 o baf073722c97 baf073722c97
@@ -3415,8 +3694,23 @@ o a73e0a79c3b3 a73e0a79c3b3
 =4
 =5
 =6
+@hunk 6 8
+o 236b2c747eac 236b2c747eac
+o 702a3798a631 702a3798a631
+o 236b2c747eac 236b2c747eac
+o fcc51fdc70dc fcc51fdc70dc
+o 236b2c747eac 236b2c747eac
+o cb2f00ecb313 cb2f00ecb313
+=0
+=1
+=2
++#if OBS07_PATCH_LABEL > 0
++#endif
+=3
+=4
+=5
 @mod shaders/lib/voxel_write.glsl 3 - cfcad1824276e7e8e9cd1c0a9e951fb2b527a9e8
-@hunk 9 59
+@hunk 9 60
 o 4b6e43576fb2 4b6e43576fb2
 o 2f026e13b1b5 2f026e13b1b5
 o da39a3ee5e6b da39a3ee5e6b
@@ -3468,7 +3762,8 @@ o 7afcdf85cdff 3512b2936533
 +
 +	uint Obs07MicroblockLight() {
 +		vec2 midUV = mc_midTexCoord.xy;
-+		float emission = max(textureLod(specular, midUV, 0.0).a, textureLod(specular, midUV, 2.0).a);
++		// mip 3 too, animated screens (GT tanks) stop blinking
++		float emission = max(max(textureLod(specular, midUV, 0.0).a, textureLod(specular, midUV, 2.0).a), textureLod(specular, midUV, 3.0).a);
 +		if (emission <= 0.0 || emission > 0.999) return 0u;
 +		return Obs07DyeLight(0.7);
 +	}
@@ -3485,7 +3780,7 @@ o 7afcdf85cdff 3512b2936533
 =6
 =7
 =8
-@hunk 12 62
+@hunk 12 68
 o b23bdc264426 236b2c747eac
 o da39a3ee5e6b da39a3ee5e6b
 o 52f48674eff4 66e880d1b395
@@ -3531,7 +3826,12 @@ o da39a3ee5e6b da39a3ee5e6b
 +		// OBS07: glowing APN shapes give light
 +		#ifdef OBS07_EMISSIVE_LPV
 +		#ifdef OBS07_MICROBLOCK_LPV
-+			if (voxelId == 50u) {
++			bool obs07ShapeId = voxelId == 50u;
++			#if defined IS_ANGELICA || MC_VERSION < 11300
++				// GTNH slabs, stairs and partial blocks (51, 52) can glow through PBR too
++				obs07ShapeId = obs07ShapeId || voxelId == 51u || voxelId == 52u;
++			#endif
++			if (obs07ShapeId) {
 +				uint obs07ShapeLight = Obs07MicroblockLight();
 +				#ifdef IRIS_FEATURE_BLOCK_EMISSION_ATTRIBUTE
 +					if (obs07ShapeLight == 0u && at_midBlock.w > 0) obs07ShapeLight = uint(BLOCK_LIGHT_1 + at_midBlock.w - 1);
@@ -3542,7 +3842,8 @@ o da39a3ee5e6b da39a3ee5e6b
 +		#endif
 =3
 =4
-=5
++			// OBS07: mod jars (1731) keep their vanilla glow
++			if ((voxelId == 0u || voxelId == 1731u) && at_midBlock.w > 0) voxelId = uint(BLOCK_LIGHT_1 + at_midBlock.w - 1);
 =6
 =7
 +		// OBS07: unlisted blocks with PBR emission give light
@@ -3581,8 +3882,8 @@ o 0b000dbedeec da39a3ee5e6b
 =3
 =4
 =5
-@mod shaders/shaders.properties 4 - e0dcaff975cc0ad191894af7b1f2a2d975796452
-@hunk 17 13
+@mod shaders/shaders.properties 4 - c5ab9dc3a4c1d8037cf06eae014c2f3f7e00ae24
+@hunk 17 15
 o 0729c156884a 0729c156884a
 o 0df5cd77c1f5 0df5cd77c1f5
 o da39a3ee5e6b da39a3ee5e6b
@@ -3604,16 +3905,18 @@ o 046068fb4f07 046068fb4f07
 =1
 =2
 +# OBS07 presets
-+profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
-+profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
-+profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
-+profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
-+profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
-+profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75
++profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:0.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:0.85 OBS07_GODRAYS:0.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.OBS07_ULTIMATE_VANILLA = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:0.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.3 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:0.85 OBS07_GODRAYS:0.0 !TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.0 OBS07_GLASS_SUN:0.0 OBS07_VANILLA_LIGHT_FALLBACK OBS07_NIGHT_VISION:0.15
++profile.OBS07_ATMOSPHERE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 OBS07_GODRAYS:0.6 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
++profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 =14
 =15
 =16
-@hunk 7 7
+@hunk 20 37
 o 7b1d3f96f134 7b1d3f96f134
 o 4709b6dc51c6 4709b6dc51c6
 o da39a3ee5e6b da39a3ee5e6b
@@ -3621,14 +3924,10 @@ o 730942737905 730942737905
 o da39a3ee5e6b da39a3ee5e6b
 o 50e3cb28a59d 50e3cb28a59d
 o 62e2c26652b1 62e2c26652b1
-=0
-=1
-=2
-+sliders = BEACON_FLOODFILL_BRIGHTNESS HANDHELD_LIGHT_REFLECTIONS PHOTONICS_MAX_SAMPLES PHOTONICS_MAX_LIGHTS PHOTONICS_ALPHA_MODE PATCHY_WAVE_BLEND WAVES_A_RADIUS WAVES_B_RADIUS PHOTONICS_INDIRECT_BRIGHTNESS TEXTURE_RESOLUTION PALE_GARDEN_UNIFORM_DENSITY PALE_GARDEN_CLOUDY_DENSITY PALE_GARDEN_R PALE_GARDEN_G PALE_GARDEN_B GTAO_SLICES RAIN_BRIGHTNESS RAIN_MODE UNDERWATER_BLOOMY_FOG ENCHANT_GLINT_BRIGHTNESS EMISSIVE_TRIMS_STRENGTH RAY_STEPS FISHEYE_STRENGTH SCREENSPACE_CONTACT_SHADOWS PIXELIZATION_STRENGTH MAX_COLORS_PER_CHANNEL RAINBOW_SELECT_BOX CLOUD_SAMPLES AmbientLightThunder_R AmbientLightThunder_G AmbientLightThunder_B GRASS_RANDOMNESS GRASS_WAVY_STRENGTH GRASS_RANGE GRASS_QUALITY GRASS_DENSITY REPLACE_SHORT_GRASS GRASS_THICKNESS_FALLOFF SHORT_GRASS_HEIGHT BASE_GRASS_HEIGHT GRASS_BASE_THICKNESS FILM_GRAIN_STRENGTH PUDDLE_MODE FLASHLIGHT_SHADOWS_STRENGTH LPV_HANDHELD_SHADOWS_STRENGTH AURORA_R AURORA_G AURORA_B AURORA_LOCATION AURORA_MOON AURORA_BRIGHTNESS AURORA_CHANCE WATER_SIM_STRENGTH WATER_SIM_FRAMERATE WATER_SIM_SCALE WATER_SIM_DISTANCE dayStartTick nightStartTick daySpeed nightSpeed FAKE_REFRACTION_AMOUNT FAKE_DISPERSION_AMOUNT REFRACTION_SMUDGE_AMOUNT NORMAL_MAP_MULT DEFERRED_SSR_QUALITY FORWARD_SSR_QUALITY RAINBOW_TIME RAINBOW RAINBOW_DISTANCE RAINBOW_BRIGHTNESS VORTEX_LIGHT_COL_R VORTEX_LIGHT_COL_G VORTEX_LIGHT_COL_B END_LIGHTNING_COL_R END_LIGHTNING_COL_G END_LIGHTNING_COL_B END_HAZE_DENSTIY NETHER_CEILING_SMOKE_DENSITY NETHER_HAZE_DENSITY Max_Filter_Depth_END Min_Shadow_Filter_Radius_END MOON_TIME_OFFSET EARTH_ROTATION_TILT CUSTOM_SHADOWS_QUALITY MOON_LATITUDE MOON_SIZE SUN_SIZE MONTH_LENGTH LIGHTNING_SHADOWS WHITE_BALANCE STARS_BRIGHTNESS STARS_AMOUNT AmbientLightEnd_R AmbientLightEnd_G AmbientLightEnd_B CloudLayer0_distance CloudLayer1_distance CloudLayer2_distance CloudLayer3_distance BLEND_FACTOR_DURING_MOVEMENT CloudLayer0_detail CloudLayer1_detail MIN_LIGHT_AMOUNT_INSIDE CUMULONIMBUS_FADE_TIME CUMULONIMBUS NOISE_RESOLUTION NOISE_INTENSITY NOISE_DROPOFF WAVE_DETAIL DH_CHUNK_FADING CLOUD_MOVEMENT_TYPE LIGHTLEAKFIX_MODE EMISSIVE_ORES_STRENGTH RIPPLE_STRENGTH RIPPLE_INTENSITY CUSTOM_LIGHTNING_SCALE CUSTOM_LIGHTNING_R CUSTOM_LIGHTNING_G CUSTOM_LIGHTNING_B CUSTOM_LIGHTNING_TEX CUSTOM_LIGHTNING_POS_X CUSTOM_LIGHTNING_POS_Y CUSTOM_LIGHTNING_POS_Z CUMULONIMBUS_LIGHTNING_BRIGHTNESS CUMULONIMBUS_LIGHTNING_DELAY ShaderSnow ShaderSnowStrength BorderFogIntensity CAVE_DETECTION ON_FIRE_DISTORT_EFFECT_STRENGTH USE_CUSTOM_SKY_GROUND_LIGHTING_COLORS DIRECTLIGHT_DIFFUSE_R DIRECTLIGHT_DIFFUSE_G DIRECTLIGHT_DIFFUSE_B INDIRECTLIGHT_DIFFUSE_R INDIRECTLIGHT_DIFFUSE_G INDIRECTLIGHT_DIFFUSE_B DIRECTLIGHT_CLOUDS_R DIRECTLIGHT_CLOUDS_G DIRECTLIGHT_CLOUDS_B INDIRECTLIGHT_CLOUDS_R INDIRECTLIGHT_CLOUDS_G INDIRECTLIGHT_CLOUDS_B DIRECTLIGHT_FOG_R DIRECTLIGHT_FOG_G DIRECTLIGHT_FOG_B INDIRECTLIGHT_FOG_R INDIRECTLIGHT_FOG_G INDIRECTLIGHT_FOG_B SKY_GROUND_R SKY_GROUND_G SKY_GROUND_B DOF_DISPERSION_MULT FLASHLIGHT_BRIGHTNESS_MULT FLASHLIGHT_BRIGHTNESS_FALLOFF_MULT FLASHLIGHT_RANGE FLASHLIGHT_SIZE FLASHLIGHT_R FLASHLIGHT_G FLASHLIGHT_B LOW_HEALTH_EFFECT_START CRITICALLY_LOW_HEALTH_EFFECT_START CloudLayer2_scale CloudLayer0_scale CloudLayer1_scale CloudLayer3_scale CloudLayer0_tallness CloudLayer1_tallness EXPOSURE_DARKENING EXPOSURE_BRIGHTENING VIGNETTE_STRENGTH CURVATURE_AMOUNT MINIMUM_WATER_ABSORBANCE CHROMATIC_ABERRATION_STRENGTH SELECT_BOX_COL_R SELECT_BOX_COL_G SELECT_BOX_COL_B LPV_VL_FOG_ILLUMINATION_BRIGHTNESS minRayMarchSteps MOTION_BLUR_STRENGTH OVERDRAW_MAX_DISTANCE DAY0_l3_coverage DAY0_l3_density DAY1_l3_coverage DAY1_l3_density DAY2_l3_coverage DAY2_l3_density DAY3_l3_coverage DAY3_l3_density DAY4_l3_coverage DAY4_l3_density DAY5_l3_coverage DAY5_l3_density DAY6_l3_coverage DAY6_l3_density DAY7_l3_coverage DAY7_l3_density DAY8_l3_coverage DAY8_l3_density DAY9_l3_coverage DAY9_l3_density DAY0_l0_coverage DAY0_l1_coverage DAY0_l2_coverage DAY0_ufog_density DAY0_l0_density DAY0_l1_density DAY0_l2_density DAY0_cfog_density DAY1_l0_coverage DAY1_l1_coverage DAY1_l2_coverage DAY1_ufog_density DAY1_l0_density DAY1_l1_density DAY1_l2_density DAY1_cfog_density DAY2_l0_coverage DAY2_l1_coverage DAY2_l2_coverage DAY2_ufog_density DAY2_l0_density DAY2_l1_density DAY2_l2_density DAY2_cfog_density DAY3_l0_coverage DAY3_l1_coverage DAY3_l2_coverage DAY3_ufog_density DAY3_l0_density DAY3_l1_density DAY3_l2_density DAY3_cfog_density DAY4_l0_coverage DAY4_l1_coverage DAY4_l2_coverage DAY4_ufog_density DAY4_l0_density DAY4_l1_density DAY4_l2_density DAY4_cfog_density DAY5_l0_coverage DAY5_l1_coverage DAY5_l2_coverage DAY5_ufog_density DAY5_l0_density DAY5_l1_density DAY5_l2_density DAY5_cfog_density DAY6_l0_coverage DAY6_l1_coverage DAY6_l2_coverage DAY6_ufog_density DAY6_l0_density DAY6_l1_density DAY6_l2_density DAY6_cfog_density DAY7_l0_coverage DAY7_l1_coverage DAY7_l2_coverage DAY7_ufog_density DAY7_l0_density DAY7_l1_density DAY7_l2_density DAY7_cfog_density DAY8_l0_coverage DAY8_l1_coverage DAY8_l2_coverage DAY8_ufog_density DAY8_l0_density DAY8_l1_density DAY8_l2_density DAY8_cfog_density DAY9_l0_coverage DAY9_l1_coverage DAY9_l2_coverage DAY9_ufog_density DAY9_l0_density DAY9_l1_density DAY9_l2_density DAY9_cfog_density sss_density_multiplier sss_absorbance_multiplier MOTION_AMOUNT TONEMAP WATER_WAVE_SPEED WATER_CAUSTICS_BRIGHTNESS WATER_CAUSTICS_POWER DEBUG_VIEW entityShadowDistanceMul HANDHELD_LIGHT_RANGE CLOUD_SHADOW_AMOUNT CloudLayer0_coverage CloudLayer0_density CloudLayer0_height CloudLayer1_coverage CloudLayer1_density CloudLayer1_height CloudLayer2_coverage CloudLayer2_density CloudLayer2_height CloudLayer3_coverage CloudLayer3_density CloudLayer3_height PLANET_GROUND_BRIGHTNESS FOG_START_HEIGHT WATER_WAVE_STRENGTH SWAMP_UNIFORM_DENSITY SWAMP_CLOUDY_DENSITY SWAMP_R SWAMP_G SWAMP_B JUNGLE_UNIFORM_DENSITY JUNGLE_CLOUDY_DENSITY JUNGLE_R JUNGLE_G JUNGLE_B DARKFOREST_UNIFORM_DENSITY DARKFOREST_CLOUDY_DENSITY DARKFOREST_R DARKFOREST_G DARKFOREST_B NETHER_PLUME_DENSITY END_STORM_DENSTIY LIT_PARTICLE_BRIGHTNESS UPPER_CURVE LOWER_CURVE EMISSIVE_TYPE_SETTING SCALE_FACTOR ambientsss_brightness SSS_TYPE_SETTING Cloud_Speed Cloud_Speed_Rain Cloud_Speed_Thunder ORB_ColMult ORB_X ORB_Y ORB_Z ORB_R ORB_G ORB_B TOD_Fog_mult Morning_Uniform_Fog Noon_Uniform_Fog Evening_Uniform_Fog Night_Uniform_Fog Morning_Cloudy_Fog Noon_Cloudy_Fog Evening_Cloudy_Fog Night_Cloudy_Fog Summer_Leaf_R Summer_Leaf_G Summer_Leaf_B Fall_Leaf_R Fall_Leaf_G Fall_Leaf_B Winter_Leaf_R Winter_Leaf_G Winter_Leaf_B Spring_Leaf_R Spring_Leaf_G Spring_Leaf_B Summer_R Summer_G Summer_B Fall_R Fall_G Fall_B Winter_R Winter_G Winter_B Spring_R Spring_G Spring_B Season_Length CaveFogFallOff CaveFogColor_R CaveFogColor_G CaveFogColor_B indirect_effect GI_Strength ambient_brightness AmbientLightRain_R AmbientLightRain_G AmbientLightRain_B AmbientLight_R AmbientLight_G AmbientLight_B Rain_coverage Thunder_coverage Moon_temp Haze_amount RainFog_amount Sun_temp Puddle_Size Puddle_Reflection_Sharpness LabSSS_Curve Emissive_Curve Emissive_Brightness AO_Strength BLOOMY_FOG WAVY_SPEED WAVY_STRENGTH BLOOM_STRENGTH shadowDistance Sky_Brightness fog_coefficientMieR fog_coefficientMieG fog_coefficientMieB sun_illuminance sunColorG sunColorB sunColorR sky_mieg sky_coefficientMieB sky_coefficientMieG sky_coefficientMieR sky_coefficientRayleighB sky_coefficientRayleighG sky_coefficientRayleighR CLOUDS_QUALITY EXPOSURE_MULTIPLIER MIN_LIGHT_AMOUNT TORCH_R TORCH_G TORCH_B TORCH_AMOUNT shadowMapResolution sunPathRotation BLEND_FACTOR VL_SAMPLES Exposure_Speed POM_DEPTH MAX_ITERATIONS MAX_DIST ambientOcclusionLevel SEA_LEVEL moon_illuminance moonColorR moonColorG moonColorB fog_coefficientRayleighR fog_coefficientRayleighG SATURATION Manual_exposure_value focal fstop MANUAL_FOCUS SHADOW_FILTER_SAMPLE_COUNT Max_Filter_Depth VPS_Search_Samples Min_Shadow_Filter_Radius Max_Shadow_Filter_Radius Water_Top_Layer fog_coefficientRayleighB SHARPENING rayMarchSampleCount Dirt_Amount Dirt_Scatter_R Dirt_Scatter_G Dirt_Scatter_B Dirt_Absorb_R Dirt_Absorb_G Dirt_Absorb_B Water_Absorb_R Water_Absorb_G Water_Absorb_B Purkinje_strength Purkinje_strength Purkinje_R Purkinje_G Purkinje_B DoF_Adaptation_Speed Purkinje_Multiplier CROSSTALK VL_RENDER_SCALE BLOOM_QUALITY VL_RENDER_SCALE RAY_COUNT STEPS STEP_LENGTH cloud_LevelOfDetail cloud_ShadowLevelOfDetail cloud_LevelOfDetailLQ cloud_ShadowLevelOfDetailLQ minRayMarchSteps maxRayMarchSteps minRayMarchStepsLQ maxRayMarchStepsLQ fbmAmount fbmPower1 fbmPower2 ROUGHNESS_THRESHOLD SUN_SPECULAR_MULT reflection_quality DOF_QUALITY DOF_ANAMORPHIC_RATIO AEROCHROME_PINKNESS DOF_JITTER_FOCUS JITTER_STRENGTH SHADOWS_GRADE_R MIDS_GRADE_R HIGHLIGHTS_GRADE_R SHADOWS_GRADE_G MIDS_GRADE_G HIGHLIGHTS_GRADE_G SHADOWS_GRADE_B MIDS_GRADE_B HIGHLIGHTS_GRADE_B SHADOWS_GRADE_MUL MIDS_GRADE_MUL HIGHLIGHTS_GRADE_MUL LPV_SATURATION LPV_TINT_SATURATION LPV_NORMAL_STRENGTH OBS07_LIGHT_FOG_MOTION OBS07_LIGHT_FOG_DAY OBS07_GODRAYS OBS07_GODRAYS_SATURATION OBS07_DUST OBS07_DUST_AMOUNT OBS07_DUST_DAY OBS07_DUST_SPEED OBS07_LAMP_BEAM OBS07_LAMP_BEAM_LENGTH OBS07_LAMP_BEAM_HEIGHT OBS07_LAMP_BEAM_FOG OBS07_DARK_GLASS_LIGHT OBS07_GLASS_SUN OBS07_LIGHT_FOG OBS07_LIGHT_FOG_AMBIENT OBS07_LIGHT_FOG_MOON
-=4
-=5
-=6
-@hunk 9 26
+o 255ff62e36e6 255ff62e36e6
+o 0bfeaf252668 0bfeaf252668
+o 451a59e5527e 451a59e5527e
+o 97b379a1b8a0 97b379a1b8a0
 o 1540420e0c60 1540420e0c60
 o d776ff3bad36 d776ff3bad36
 o 5070df7199c8 5070df7199c8
@@ -3641,13 +3940,24 @@ o b00d89587b6f aa0f70bb1c60
 =0
 =1
 =2
-+[Atmosphere] <empty>            \
-=3
++sliders = BEACON_FLOODFILL_BRIGHTNESS HANDHELD_LIGHT_REFLECTIONS PHOTONICS_MAX_SAMPLES PHOTONICS_MAX_LIGHTS PHOTONICS_ALPHA_MODE PATCHY_WAVE_BLEND WAVES_A_RADIUS WAVES_B_RADIUS PHOTONICS_INDIRECT_BRIGHTNESS TEXTURE_RESOLUTION PALE_GARDEN_UNIFORM_DENSITY PALE_GARDEN_CLOUDY_DENSITY PALE_GARDEN_R PALE_GARDEN_G PALE_GARDEN_B GTAO_SLICES RAIN_BRIGHTNESS RAIN_MODE UNDERWATER_BLOOMY_FOG ENCHANT_GLINT_BRIGHTNESS EMISSIVE_TRIMS_STRENGTH RAY_STEPS FISHEYE_STRENGTH SCREENSPACE_CONTACT_SHADOWS PIXELIZATION_STRENGTH MAX_COLORS_PER_CHANNEL RAINBOW_SELECT_BOX CLOUD_SAMPLES AmbientLightThunder_R AmbientLightThunder_G AmbientLightThunder_B GRASS_RANDOMNESS GRASS_WAVY_STRENGTH GRASS_RANGE GRASS_QUALITY GRASS_DENSITY REPLACE_SHORT_GRASS GRASS_THICKNESS_FALLOFF SHORT_GRASS_HEIGHT BASE_GRASS_HEIGHT GRASS_BASE_THICKNESS FILM_GRAIN_STRENGTH PUDDLE_MODE FLASHLIGHT_SHADOWS_STRENGTH LPV_HANDHELD_SHADOWS_STRENGTH AURORA_R AURORA_G AURORA_B AURORA_LOCATION AURORA_MOON AURORA_BRIGHTNESS AURORA_CHANCE WATER_SIM_STRENGTH WATER_SIM_FRAMERATE WATER_SIM_SCALE WATER_SIM_DISTANCE dayStartTick nightStartTick daySpeed nightSpeed FAKE_REFRACTION_AMOUNT FAKE_DISPERSION_AMOUNT REFRACTION_SMUDGE_AMOUNT NORMAL_MAP_MULT DEFERRED_SSR_QUALITY FORWARD_SSR_QUALITY RAINBOW_TIME RAINBOW RAINBOW_DISTANCE RAINBOW_BRIGHTNESS VORTEX_LIGHT_COL_R VORTEX_LIGHT_COL_G VORTEX_LIGHT_COL_B END_LIGHTNING_COL_R END_LIGHTNING_COL_G END_LIGHTNING_COL_B END_HAZE_DENSTIY NETHER_CEILING_SMOKE_DENSITY NETHER_HAZE_DENSITY Max_Filter_Depth_END Min_Shadow_Filter_Radius_END MOON_TIME_OFFSET EARTH_ROTATION_TILT CUSTOM_SHADOWS_QUALITY MOON_LATITUDE MOON_SIZE SUN_SIZE MONTH_LENGTH LIGHTNING_SHADOWS WHITE_BALANCE STARS_BRIGHTNESS STARS_AMOUNT AmbientLightEnd_R AmbientLightEnd_G AmbientLightEnd_B CloudLayer0_distance CloudLayer1_distance CloudLayer2_distance CloudLayer3_distance BLEND_FACTOR_DURING_MOVEMENT CloudLayer0_detail CloudLayer1_detail MIN_LIGHT_AMOUNT_INSIDE CUMULONIMBUS_FADE_TIME CUMULONIMBUS NOISE_RESOLUTION NOISE_INTENSITY NOISE_DROPOFF WAVE_DETAIL DH_CHUNK_FADING CLOUD_MOVEMENT_TYPE LIGHTLEAKFIX_MODE EMISSIVE_ORES_STRENGTH RIPPLE_STRENGTH RIPPLE_INTENSITY CUSTOM_LIGHTNING_SCALE CUSTOM_LIGHTNING_R CUSTOM_LIGHTNING_G CUSTOM_LIGHTNING_B CUSTOM_LIGHTNING_TEX CUSTOM_LIGHTNING_POS_X CUSTOM_LIGHTNING_POS_Y CUSTOM_LIGHTNING_POS_Z CUMULONIMBUS_LIGHTNING_BRIGHTNESS CUMULONIMBUS_LIGHTNING_DELAY ShaderSnow ShaderSnowStrength BorderFogIntensity CAVE_DETECTION ON_FIRE_DISTORT_EFFECT_STRENGTH USE_CUSTOM_SKY_GROUND_LIGHTING_COLORS DIRECTLIGHT_DIFFUSE_R DIRECTLIGHT_DIFFUSE_G DIRECTLIGHT_DIFFUSE_B INDIRECTLIGHT_DIFFUSE_R INDIRECTLIGHT_DIFFUSE_G INDIRECTLIGHT_DIFFUSE_B DIRECTLIGHT_CLOUDS_R DIRECTLIGHT_CLOUDS_G DIRECTLIGHT_CLOUDS_B INDIRECTLIGHT_CLOUDS_R INDIRECTLIGHT_CLOUDS_G INDIRECTLIGHT_CLOUDS_B DIRECTLIGHT_FOG_R DIRECTLIGHT_FOG_G DIRECTLIGHT_FOG_B INDIRECTLIGHT_FOG_R INDIRECTLIGHT_FOG_G INDIRECTLIGHT_FOG_B SKY_GROUND_R SKY_GROUND_G SKY_GROUND_B DOF_DISPERSION_MULT FLASHLIGHT_BRIGHTNESS_MULT FLASHLIGHT_BRIGHTNESS_FALLOFF_MULT FLASHLIGHT_RANGE FLASHLIGHT_SIZE FLASHLIGHT_R FLASHLIGHT_G FLASHLIGHT_B LOW_HEALTH_EFFECT_START CRITICALLY_LOW_HEALTH_EFFECT_START CloudLayer2_scale CloudLayer0_scale CloudLayer1_scale CloudLayer3_scale CloudLayer0_tallness CloudLayer1_tallness EXPOSURE_DARKENING EXPOSURE_BRIGHTENING VIGNETTE_STRENGTH CURVATURE_AMOUNT MINIMUM_WATER_ABSORBANCE CHROMATIC_ABERRATION_STRENGTH SELECT_BOX_COL_R SELECT_BOX_COL_G SELECT_BOX_COL_B LPV_VL_FOG_ILLUMINATION_BRIGHTNESS minRayMarchSteps MOTION_BLUR_STRENGTH OVERDRAW_MAX_DISTANCE DAY0_l3_coverage DAY0_l3_density DAY1_l3_coverage DAY1_l3_density DAY2_l3_coverage DAY2_l3_density DAY3_l3_coverage DAY3_l3_density DAY4_l3_coverage DAY4_l3_density DAY5_l3_coverage DAY5_l3_density DAY6_l3_coverage DAY6_l3_density DAY7_l3_coverage DAY7_l3_density DAY8_l3_coverage DAY8_l3_density DAY9_l3_coverage DAY9_l3_density DAY0_l0_coverage DAY0_l1_coverage DAY0_l2_coverage DAY0_ufog_density DAY0_l0_density DAY0_l1_density DAY0_l2_density DAY0_cfog_density DAY1_l0_coverage DAY1_l1_coverage DAY1_l2_coverage DAY1_ufog_density DAY1_l0_density DAY1_l1_density DAY1_l2_density DAY1_cfog_density DAY2_l0_coverage DAY2_l1_coverage DAY2_l2_coverage DAY2_ufog_density DAY2_l0_density DAY2_l1_density DAY2_l2_density DAY2_cfog_density DAY3_l0_coverage DAY3_l1_coverage DAY3_l2_coverage DAY3_ufog_density DAY3_l0_density DAY3_l1_density DAY3_l2_density DAY3_cfog_density DAY4_l0_coverage DAY4_l1_coverage DAY4_l2_coverage DAY4_ufog_density DAY4_l0_density DAY4_l1_density DAY4_l2_density DAY4_cfog_density DAY5_l0_coverage DAY5_l1_coverage DAY5_l2_coverage DAY5_ufog_density DAY5_l0_density DAY5_l1_density DAY5_l2_density DAY5_cfog_density DAY6_l0_coverage DAY6_l1_coverage DAY6_l2_coverage DAY6_ufog_density DAY6_l0_density DAY6_l1_density DAY6_l2_density DAY6_cfog_density DAY7_l0_coverage DAY7_l1_coverage DAY7_l2_coverage DAY7_ufog_density DAY7_l0_density DAY7_l1_density DAY7_l2_density DAY7_cfog_density DAY8_l0_coverage DAY8_l1_coverage DAY8_l2_coverage DAY8_ufog_density DAY8_l0_density DAY8_l1_density DAY8_l2_density DAY8_cfog_density DAY9_l0_coverage DAY9_l1_coverage DAY9_l2_coverage DAY9_ufog_density DAY9_l0_density DAY9_l1_density DAY9_l2_density DAY9_cfog_density sss_density_multiplier sss_absorbance_multiplier MOTION_AMOUNT TONEMAP WATER_WAVE_SPEED WATER_CAUSTICS_BRIGHTNESS WATER_CAUSTICS_POWER DEBUG_VIEW entityShadowDistanceMul HANDHELD_LIGHT_RANGE CLOUD_SHADOW_AMOUNT CloudLayer0_coverage CloudLayer0_density CloudLayer0_height CloudLayer1_coverage CloudLayer1_density CloudLayer1_height CloudLayer2_coverage CloudLayer2_density CloudLayer2_height CloudLayer3_coverage CloudLayer3_density CloudLayer3_height PLANET_GROUND_BRIGHTNESS FOG_START_HEIGHT WATER_WAVE_STRENGTH SWAMP_UNIFORM_DENSITY SWAMP_CLOUDY_DENSITY SWAMP_R SWAMP_G SWAMP_B JUNGLE_UNIFORM_DENSITY JUNGLE_CLOUDY_DENSITY JUNGLE_R JUNGLE_G JUNGLE_B DARKFOREST_UNIFORM_DENSITY DARKFOREST_CLOUDY_DENSITY DARKFOREST_R DARKFOREST_G DARKFOREST_B NETHER_PLUME_DENSITY END_STORM_DENSTIY LIT_PARTICLE_BRIGHTNESS UPPER_CURVE LOWER_CURVE EMISSIVE_TYPE_SETTING SCALE_FACTOR ambientsss_brightness SSS_TYPE_SETTING Cloud_Speed Cloud_Speed_Rain Cloud_Speed_Thunder ORB_ColMult ORB_X ORB_Y ORB_Z ORB_R ORB_G ORB_B TOD_Fog_mult Morning_Uniform_Fog Noon_Uniform_Fog Evening_Uniform_Fog Night_Uniform_Fog Morning_Cloudy_Fog Noon_Cloudy_Fog Evening_Cloudy_Fog Night_Cloudy_Fog Summer_Leaf_R Summer_Leaf_G Summer_Leaf_B Fall_Leaf_R Fall_Leaf_G Fall_Leaf_B Winter_Leaf_R Winter_Leaf_G Winter_Leaf_B Spring_Leaf_R Spring_Leaf_G Spring_Leaf_B Summer_R Summer_G Summer_B Fall_R Fall_G Fall_B Winter_R Winter_G Winter_B Spring_R Spring_G Spring_B Season_Length CaveFogFallOff CaveFogColor_R CaveFogColor_G CaveFogColor_B indirect_effect GI_Strength ambient_brightness AmbientLightRain_R AmbientLightRain_G AmbientLightRain_B AmbientLight_R AmbientLight_G AmbientLight_B Rain_coverage Thunder_coverage Moon_temp Haze_amount RainFog_amount Sun_temp Puddle_Size Puddle_Reflection_Sharpness LabSSS_Curve Emissive_Curve Emissive_Brightness AO_Strength BLOOMY_FOG WAVY_SPEED WAVY_STRENGTH BLOOM_STRENGTH shadowDistance Sky_Brightness fog_coefficientMieR fog_coefficientMieG fog_coefficientMieB sun_illuminance sunColorG sunColorB sunColorR sky_mieg sky_coefficientMieB sky_coefficientMieG sky_coefficientMieR sky_coefficientRayleighB sky_coefficientRayleighG sky_coefficientRayleighR CLOUDS_QUALITY EXPOSURE_MULTIPLIER MIN_LIGHT_AMOUNT TORCH_R TORCH_G TORCH_B TORCH_AMOUNT shadowMapResolution sunPathRotation BLEND_FACTOR VL_SAMPLES Exposure_Speed POM_DEPTH MAX_ITERATIONS MAX_DIST ambientOcclusionLevel SEA_LEVEL moon_illuminance moonColorR moonColorG moonColorB fog_coefficientRayleighR fog_coefficientRayleighG SATURATION Manual_exposure_value focal fstop MANUAL_FOCUS SHADOW_FILTER_SAMPLE_COUNT Max_Filter_Depth VPS_Search_Samples Min_Shadow_Filter_Radius Max_Shadow_Filter_Radius Water_Top_Layer fog_coefficientRayleighB SHARPENING rayMarchSampleCount Dirt_Amount Dirt_Scatter_R Dirt_Scatter_G Dirt_Scatter_B Dirt_Absorb_R Dirt_Absorb_G Dirt_Absorb_B Water_Absorb_R Water_Absorb_G Water_Absorb_B Purkinje_strength Purkinje_strength Purkinje_R Purkinje_G Purkinje_B DoF_Adaptation_Speed Purkinje_Multiplier CROSSTALK VL_RENDER_SCALE BLOOM_QUALITY VL_RENDER_SCALE RAY_COUNT STEPS STEP_LENGTH cloud_LevelOfDetail cloud_ShadowLevelOfDetail cloud_LevelOfDetailLQ cloud_ShadowLevelOfDetailLQ minRayMarchSteps maxRayMarchSteps minRayMarchStepsLQ maxRayMarchStepsLQ fbmAmount fbmPower1 fbmPower2 ROUGHNESS_THRESHOLD SUN_SPECULAR_MULT reflection_quality DOF_QUALITY DOF_ANAMORPHIC_RATIO AEROCHROME_PINKNESS DOF_JITTER_FOCUS JITTER_STRENGTH SHADOWS_GRADE_R MIDS_GRADE_R HIGHLIGHTS_GRADE_R SHADOWS_GRADE_G MIDS_GRADE_G HIGHLIGHTS_GRADE_G SHADOWS_GRADE_B MIDS_GRADE_B HIGHLIGHTS_GRADE_B SHADOWS_GRADE_MUL MIDS_GRADE_MUL HIGHLIGHTS_GRADE_MUL LPV_SATURATION LPV_TINT_SATURATION LPV_NORMAL_STRENGTH OBS07_LIGHT_FOG_MOTION OBS07_LIGHT_FOG_DAY OBS07_GODRAYS OBS07_GODRAYS_SATURATION OBS07_DUST OBS07_DUST_AMOUNT OBS07_DUST_DAY OBS07_DUST_SPEED OBS07_LAMP_BEAM OBS07_LAMP_BEAM_LENGTH OBS07_LAMP_BEAM_HEIGHT OBS07_LAMP_BEAM_FOG OBS07_DARK_GLASS_LIGHT OBS07_GLASS_SUN OBS07_LIGHT_FOG OBS07_LIGHT_FOG_AMBIENT OBS07_LIGHT_FOG_MOON
 =4
 =5
+=6
+=7
++OBS07_PATCH_LABEL <empty> \
+=9
+=10
+=11
+=12
+=13
++[Atmosphere] <empty>            \
+=14
+=15
+=16
 +######## ATMOSPHERE (OBS07)
 +    screen.Atmosphere.columns=1
-+    screen.Atmosphere = [Night_Light_Fog] [Godrays_And_Dust] [Lamp_Light_Wells] [Glass_Light] <empty> OBS07_EMISSIVE_LPV
++    screen.Atmosphere = [Night_Light_Fog] [Godrays_And_Dust] [Lamp_Light_Wells] [Glass_Light] <empty> OBS07_EMISSIVE_LPV OBS07_VANILLA_LIGHT_FALLBACK OBS07_NIGHT_VISION
 +
 +        screen.Night_Light_Fog.columns=1
 +        screen.Night_Light_Fog = LPV_VL_FOG_ILLUMINATION LPV_VL_FOG_ILLUMINATION_BRIGHTNESS <empty> OBS07_FOG_DRIFT OBS07_LIGHT_FOG OBS07_LIGHT_FOG_AMBIENT OBS07_LIGHT_FOG_MOON OBS07_LIGHT_FOG_MOTION OBS07_LIGHT_FOG_DAY
@@ -3661,9 +3971,24 @@ o b00d89587b6f aa0f70bb1c60
 +        screen.Glass_Light.columns=1
 +        screen.Glass_Light = OBS07_DARK_GLASS_LIGHT OBS07_GLASS_SUN
 +
+=17
+=18
+=19
+@hunk 7 7
+o 49213723a22f a96362fd91ad
+o da39a3ee5e6b da39a3ee5e6b
+o 9d8f4d00a996 dee153e3aee5
+o 4415356659b6 a11961563c3d
+o da39a3ee5e6b da39a3ee5e6b
+o 503b1e5ddf12 270851a8fef2
+o 6c466cb8560e 5d1dd33144de
+=0
+=1
+=2
++        screen.DISTANT_HORIZONS_SETTINGS = DH_OVERDRAW_PREVENTION OVERDRAW_MAX_DISTANCE DH_CHUNK_FADING <empty> DH_AMBIENT_OCCLUSION DH_SUBSURFACE_SCATTERING OBS07_DH_LIGHT_GLOW DH_SCREENSPACE_REFLECTIONS DH_TAA_JITTER DH_NOISE_TEXTURE NOISE_RESOLUTION NOISE_INTENSITY NOISE_DROPOFF <empty> DISTANT_HORIZONS_SHADOWMAP shadowDistance shadowMapResolution <empty> TOGGLE_VL_FOG VOLUMETRIC_CLOUDS
+=4
+=5
 =6
-=7
-=8
 @hunk 6 9
 o 71c8afd17492 71c8afd17492
 o 236b2c747eac 236b2c747eac
@@ -3680,7 +4005,7 @@ o 4a57eaf9806c 4a57eaf9806c
 =3
 =4
 =5
-@props shaders/shaders.properties 63
+@props shaders/shaders.properties 69
 del profile.POTATO
 del profile.VERY_LOW
 del profile.LOW
@@ -3693,17 +4018,21 @@ del profile.ALTERNATE_HIGH_GRASS
 del profile.VERY_HIGH
 del profile.ULTRA
 add - 1
-|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:7 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:0.8 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_ULTIMATE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:0.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:0.85 OBS07_GODRAYS:0.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 add profile.OBS07_ULTIMATE 1
-|profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_ULTIMATE_VANILLA = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:0.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.3 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:0.85 OBS07_GODRAYS:0.0 !TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.0 OBS07_GLASS_SUN:0.0 OBS07_VANILLA_LIGHT_FALLBACK OBS07_NIGHT_VISION:0.15
+add profile.OBS07_ULTIMATE_VANILLA 1
+|profile.OBS07_ATMOSPHERE = AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.16 BLOOM_STRENGTH:1.0 CLOUD_SAMPLES:10 CloudLayer0_coverage:1.0 CloudLayer0_detail:600.0 CloudLayer0_scale:1.0 CloudLayer1_coverage:1.0 CloudLayer1_scale:1.0 CloudLayer2_coverage:0.6 CloudLayer2_scale:1.0 CloudLayer3_coverage:0.07 CloudLayer3_scale:1.0 Cloud_Speed:1.2 DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:4 Emissive_Brightness:1.0 Exposure_Speed:1.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:16 HANDHELD_LIGHT_REFLECTIONS:100 Haze_amount:1.0 JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:50 LPV_SATURATION:50 LPV_SIZE:8 LPV_TINT_SATURATION:100 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:50 LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:2.0 MIN_LIGHT_AMOUNT_INSIDE:0.5 Night_Uniform_Fog:0.2 OBS07_LIGHT_FOG:1.0 PALE_GARDEN_ENV PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.25 Puddle_Size:1.0 RIPPLE_INTENSITY:0.85 RIPPLE_STRENGTH:1.0 Rain_coverage:0.4 SAND_STORMS SHARPENING:45 SNELLS_WINDOW SNOW_STORMS STARS_AMOUNT:1.0 SWAMP_ENV ShaderSnowStrength:1.0 TORCH_AMOUNT:1.0 TORCH_B:0.25 TORCH_G:0.5 Thunder_coverage:0.4 VL_RENDER_SCALE:0.5 WATER_INTERACTION:2 WATER_WAVE_SPEED:1.0 WATER_WAVE_STRENGTH:1.0 entityShadowDistanceMul:0.25 indirect_effect:SSAO_FILTERED shadowMapResolution:2560 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 OBS07_GODRAYS:0.6 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
+add profile.OBS07_ATMOSPHERE 1
+|profile.OBS07_PERFORMANCE = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 add profile.OBS07_PERFORMANCE 1
-|profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_PERFORMANCE_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:10 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:10 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:10 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1024 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 add profile.OBS07_PERFORMANCE_NOFOG 1
-|profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_NORMAL = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.5 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:4.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 add profile.OBS07_NORMAL 1
-|profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0
+|profile.OBS07_NORMAL_NOFOG = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.125 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:20 CloudLayer0_coverage:0.9 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.9 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.5 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.3 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:20 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:7.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:20 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:70 Haze_amount:0.8 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:90 LPV_SATURATION:70 LPV_SIZE:8 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:20 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER MATERIAL_AO MIN_LIGHT_AMOUNT:7.0 MIN_LIGHT_AMOUNT_INSIDE:7.0 Night_Uniform_Fog:0.1 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT !PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.5 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.35 TORCH_G:0.6 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:8 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.125 CLOUD_MOVEMENT_TYPE:0 DEFERRED_ROUGH_REFLECTION DENOISED_REFLECTIONS Emissive_Curve:2.0 Evening_Uniform_Fog:0.05 Morning_Cloudy_Fog:0.05 Morning_Uniform_Fog:0.01 NORMAL_MAP_MULT:1.0 Night_Cloudy_Fog:0.05 OBS07_DUST:1.0 OBS07_DUST_AMOUNT:0.3 OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:1.0 OBS07_EMISSIVE_LPV OBS07_FOG_DRIFT OBS07_LAMP_BEAM:5.0 OBS07_LAMP_BEAM_HEIGHT:6 OBS07_LAMP_BEAM_LENGTH:3.0 OBS07_LIGHT_FOG_AMBIENT:0.5 OBS07_LIGHT_FOG_DAY:0.1 OBS07_LIGHT_FOG_MOON:3.0 OBS07_LIGHT_FOG_MOTION:1.0 ROUGHNESS_THRESHOLD:30 STARS_BRIGHTNESS:1.0 TOD_Fog_mult:1.0 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 add profile.OBS07_NORMAL_NOFOG 1
-|profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75
+|profile.KURA_BALANCED = !AUTO_EXPOSURE BLEND_FACTOR_DURING_MOVEMENT:0.12 BLOOM_STRENGTH:0.75 CLOUD_SAMPLES:30 CloudLayer0_coverage:0.8 CloudLayer0_detail:550.0 CloudLayer0_scale:0.9 CloudLayer1_coverage:0.8 CloudLayer1_scale:0.9 CloudLayer2_coverage:0.4 CloudLayer2_scale:0.9 CloudLayer3_coverage:0.06 CloudLayer3_scale:0.9 Cloud_Speed:1.5 !DARKFOREST_ENV DEFERRED_SSR_QUALITY:30 EMISSIVE_TYPE_SETTING:2 Emissive_Brightness:4.0 Exposure_Speed:4.0 FORWARD_SSR_QUALITY:30 HANDHELD_LIGHT_RANGE:20 HANDHELD_LIGHT_REFLECTIONS:75 Haze_amount:0.6 !JUNGLE_ENV LPV_COLORED_CANDLES LPV_NORMAL_STRENGTH:70 LPV_SATURATION:70 LPV_SIZE:7 LPV_TINT_SATURATION:110 LPV_VL_FOG_ILLUMINATION_BRIGHTNESS:0 !LPV_VL_FOG_ILLUMINATION_HANDHELD_WATER !MATERIAL_AO MIN_LIGHT_AMOUNT:9.0 MIN_LIGHT_AMOUNT_INSIDE:9.0 Night_Uniform_Fog:0.04 OBS07_LIGHT_FOG:0.0 !PALE_GARDEN_ENV !PER_BIOME_ENVIRONMENT PHOTONICS_ACTIVE POM_DEPTH:0.15 Puddle_Size:0.9 RIPPLE_INTENSITY:0.8 RIPPLE_STRENGTH:0.9 Rain_coverage:0.3 !SAND_STORMS SHARPENING:0 !SNELLS_WINDOW !SNOW_STORMS STARS_AMOUNT:1.75 !SWAMP_ENV ShaderSnowStrength:0.9 TORCH_AMOUNT:1.3 TORCH_B:0.57 TORCH_G:0.75 Thunder_coverage:0.3 VL_RENDER_SCALE:0.25 WATER_INTERACTION:0 WATER_WAVE_SPEED:0.8 WATER_WAVE_STRENGTH:0.9 entityShadowDistanceMul:0.20 indirect_effect:VANILLA_AO shadowMapResolution:1536 VL_SAMPLES:6 !LPV_VL_FOG_ILLUMINATION OBS07_LAMP_BEAM_FOG:0.0 BLEND_FACTOR:0.12 CLOUD_MOVEMENT_TYPE:1 !DEFERRED_ROUGH_REFLECTION !DENOISED_REFLECTIONS Emissive_Curve:1.0 Evening_Uniform_Fog:0.03 Morning_Cloudy_Fog:0.03 Morning_Uniform_Fog:0.02 NORMAL_MAP_MULT:0.5 Night_Cloudy_Fog:0.03 OBS07_DUST:0.0 OBS07_DUST_AMOUNT:0.05 !OBS07_DUST_MOTES_IN_BEAM OBS07_DUST_SPEED:0.0 !OBS07_EMISSIVE_LPV !OBS07_FOG_DRIFT OBS07_LAMP_BEAM:0.0 OBS07_LAMP_BEAM_HEIGHT:3 OBS07_LAMP_BEAM_LENGTH:0.75 OBS07_LIGHT_FOG_AMBIENT:0.0 OBS07_LIGHT_FOG_DAY:0.0 OBS07_LIGHT_FOG_MOON:0.0 OBS07_LIGHT_FOG_MOTION:0.25 ROUGHNESS_THRESHOLD:50 STARS_BRIGHTNESS:1.5 TOD_Fog_mult:0.75 TRANSLUCENT_COLORED_SHADOWS OBS07_DARK_GLASS_LIGHT:0.3 OBS07_GLASS_SUN:0.3
 ins sliders LPV_NORMAL_STRENGTH OBS07_LIGHT_FOG_MOTION
 ins sliders OBS07_LIGHT_FOG_MOTION OBS07_LIGHT_FOG_DAY
 ins sliders OBS07_LIGHT_FOG_DAY OBS07_GODRAYS
@@ -3721,11 +4050,12 @@ ins sliders OBS07_DARK_GLASS_LIGHT OBS07_GLASS_SUN
 ins sliders OBS07_GLASS_SUN OBS07_LIGHT_FOG
 ins sliders OBS07_LIGHT_FOG OBS07_LIGHT_FOG_AMBIENT
 ins sliders OBS07_LIGHT_FOG_AMBIENT OBS07_LIGHT_FOG_MOON
+ins screen <profile> OBS07_PATCH_LABEL
 ins screen [Camera_Settings] [Atmosphere]
 add screen 1
 |    screen.Atmosphere.columns=1
 add screen.Atmosphere.columns 1
-|    screen.Atmosphere = [Night_Light_Fog] [Godrays_And_Dust] [Lamp_Light_Wells] [Glass_Light] <empty> OBS07_EMISSIVE_LPV
+|    screen.Atmosphere = [Night_Light_Fog] [Godrays_And_Dust] [Lamp_Light_Wells] [Glass_Light] <empty> OBS07_EMISSIVE_LPV OBS07_VANILLA_LIGHT_FALLBACK OBS07_NIGHT_VISION
 add screen.Atmosphere 1
 |        screen.Night_Light_Fog.columns=1
 add screen.Night_Light_Fog.columns 1
@@ -3742,6 +4072,7 @@ add screen.Lamp_Light_Wells 1
 |        screen.Glass_Light.columns=1
 add screen.Glass_Light.columns 1
 |        screen.Glass_Light = OBS07_DARK_GLASS_LIGHT OBS07_GLASS_SUN
+ins screen.DISTANT_HORIZONS_SETTINGS DH_SUBSURFACE_SCATTERING OBS07_DH_LIGHT_GLOW
 add uniform.int.dhVoxyRenderDistance 1
 |uniform.int.obs07DayTime = worldDay * 24000 + worldTime
 @mod shaders/world-1/shadow.vsh 1 - c2f54ed816b1599fca585370ade060c1720d5fb2

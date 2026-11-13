@@ -27,7 +27,9 @@ for L in forge1710:1.7.10 forge1201:1.20.1 neoforge1211:1.21.1; do
 	find "$SRC" -name '*.java' -exec sed -i "s/@VERSION@/$VERSION/g" {} +
 	[ -n "$KEYS" ] && sed -i "s|@KEYS@|$KEYS|" "$SRC/obs07/chroma/update/Trust.java"
 	javac -nowarn -Xlint:-options --release 8 -cp build/stubs-$NAME -d "$OUT" $(find "$SRC" -name '*.java')
-	cp -r data/. jar/. meta/$NAME/. "$OUT"/
+	# a loader can carry its own patch data (data-forge1710 = GTNH)
+	DATA=data; [ -d "data-$NAME" ] && DATA="data-$NAME"
+	cp -r "$DATA"/. jar/. meta/$NAME/. "$OUT"/
 	cp CHANGELOG.md "$OUT"/chromapatch/CHANGELOG.md
 	find "$OUT" \( -name '*.toml' -o -name '*.info' \) -exec sed -i "s/@VERSION@/$VERSION/g" {} +
 	[ -f LICENSE.txt ] && cp LICENSE.txt "$OUT"/

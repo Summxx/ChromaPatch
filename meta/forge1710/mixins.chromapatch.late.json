@@ -1,0 +1,7 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "obs07.chroma.forge1710.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": []
+}

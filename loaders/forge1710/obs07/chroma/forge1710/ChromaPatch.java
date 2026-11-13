@@ -12,6 +12,9 @@ public class ChromaPatch {
 	public ChromaPatch() {
 		File dir = GameDir.fml1710();
 		Patcher.run(dir);
-		if (FMLCommonHandler.instance().getSide().isClient()) Client.init(dir);
+		if (FMLCommonHandler.instance().getSide().isClient()) {
+			Client.init(dir);
+			TextAA.init();
+		}
 	}
 }

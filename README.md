@@ -49,7 +49,7 @@ The edit adds an atmosphere pass (lit night fog, godrays, dust, lamp light wells
 # Installation
 
 1. Install **Forge** (1.7.10 or 1.20.1) or **NeoForge** (1.21.1) with a shader mod: **Angelica** on GTNH, **Oculus** on Forge 1.20.1, **Iris** on NeoForge 1.21.1.
-2. Put the **Chroma Patch** jar for your version in `mods/`.
+2. Put the **Chroma Patch** jar for your version in `mods/`. The 1.7.10 jar carries its own GTNH patch.
 3. Download **Eclipse** from its [official GitHub page](https://github.com/Merlin1809/Eclipse-Shader) (Code > Download ZIP) and put the zip in `shaderpacks/`, without extracting it.
 4. Start the game. **`Eclipse-Shader KuraEdit [OBS07-Chroma Patch].zip`** is created in `shaderpacks/`. On the first launch, a welcome page on the title screen shows whether the patch was applied and what it adds.
 5. Select it in the shader menu, then a preset in the profile list (see [Presets](#presets)).
@@ -83,6 +83,8 @@ ProjectRed lamps, A Port Needed lamps and coloured candles emit light in their o
 
 Glowing GregTech blocks in GTNH (coils, machines) emit the matching colour. CodeChicken microblocks have correct face shading, and lit microblocks emit light.
 
+On GTNH, about 1600 more mod blocks are supported: leaves and plants wave, mod glass is tinted, mod lamps, torches and candles give coloured light, partial blocks like slabs and cables let light through, and Thaumcraft jars show their content.
+
 ### Rain, godrays and dust
 
 Rain only wets surfaces exposed to the sky. Godrays appear at sunrise and sunset, tinted by stained glass, with dust in the light.
@@ -95,13 +97,15 @@ Recessed microblock lamps add a beam or a glow in the fog above them. A Port Nee
 
 <img src="docs/screenshots/1.20.1-1.png" alt="Light strips in the rain" width="100%"/>
 
-All new settings are in the **Atmosphere** page of the shader options. Each effect can be reduced or disabled.
+All new settings are in the **Atmosphere** page of the shader options. Each effect can be reduced or disabled. Since 1.0.3 the night fog, godrays, dust and light wells are off by default for the frame rate, the **Atmosphere** preset turns them on.
 
 ### Presets
 
 | Preset | Description |
 | --- | --- |
-| **OBS07 Ultimate** | Full quality, all settings at their defaults. Also restores the base settings after using another preset. |
+| **OBS07 Ultimate** | Full quality, all settings at their defaults, used on a fresh install. Base Eclipse look with the OBS07 block and light support. Also restores the base settings after using another preset. |
+| **OBS07 Ultimate Vanilla** | Ultimate with only the base Eclipse effects, for the best frame rate. Modded and neon light support stays. |
+| **OBS07 Atmosphere** | Ultimate with the OBS07 night fog, godrays, dust and lamp light wells |
 | **OBS07 Normal** | Reduced clouds, shadows and reflections |
 | **OBS07 Normal (No Fog)** | Normal without night fog and light wells |
 | **OBS07 Performance** | For lower-end GPUs and large bases |
@@ -188,11 +192,78 @@ By opening a pull request, you agree that your contribution is included in Chrom
 
 ---
 
+# 1.0.3 on GTNH
+
+| OBS07 Ultimate | OBS07 Ultimate Vanilla |
+| --- | --- |
+| <img src="docs/screenshots/gtnh-1.0.3-ultimate-day.jpg" alt="Ultimate by day" width="100%"/> | <img src="docs/screenshots/gtnh-1.0.3-vanilla-day.jpg" alt="Ultimate Vanilla by day" width="100%"/> |
+| <img src="docs/screenshots/gtnh-1.0.3-ultimate-night.jpg" alt="Ultimate at night" width="100%"/> | <img src="docs/screenshots/gtnh-1.0.3-vanilla-night.jpg" alt="Ultimate Vanilla at night" width="100%"/> |
+
+Thaumcraft jars show their essentia again, with clearer glass.
+
+<img src="docs/screenshots/gtnh-1.0.3-jars.jpg" alt="Thaumcraft jars" width="100%"/>
+
+The light of a GregTech super tank no longer blinks with its animated screen.
+
+<img src="docs/screenshots/gtnh-1.0.3-tank.jpg" alt="Super tank in a cave" width="100%"/>
+
+Et Futurum lanterns light their surroundings, also in hand.
+
+<img src="docs/screenshots/gtnh-1.0.3-lantern.jpg" alt="Lantern in a cave" width="100%"/>
+
+---
+
 # Changelog
 
 The same changelog is shown in game: once after each new version, and in the new version notice.
 
 <!-- changelog -->
+
+### Chroma Patch 1.0.3
+- GTNH: GregTech multiblock effects (space elevator, black hole, Godforge...) stay in place with shader packs that render at a lower resolution (FSR)
+- GTNH: text on signs and Nuclear Control panels stays on its block with FSR too (font antialiasing is turned off while the world is drawn)
+- The 1.7.10 jar now has its own GTNH patch, so GTNH changes no longer touch the 1.20.1 and 1.21.1 packs
+- Includes Eclipse GTNH patch 1.0.3 (1.7.10) and Eclipse patch 1.0.3 (1.20.1, 1.21.1)
+
+### Eclipse GTNH patch 1.0.3
+- About 1600 more GTNH blocks supported: mod leaves and plants wave, mod glass (GregTech, BartWorks, Chisel, Tinkers...) is tinted like stained glass, mod lamps, torches, candles, lanterns, glowing flowers, crystals, fires and portals give light in their colour
+- Slabs, stairs, fences, cables, pipes, rails and other partial blocks from mods no longer block coloured light
+- Light sources the shader cannot see (invisible light blocks, Nitor, Thaumic Tinkerer gases, fireflies) keep their vanilla light, option Keep Vanilla Block Light
+- Lanterns, soul torches, end rods and mod torches and candles light up when held in either hand
+- Lanterns and torches worn on the belt light up when Dynamic Lights Shader Force is on in Angelica's video settings
+- Thaumcraft jars and jars from other mods show their essentia and brains again, and their glass is clearer
+- Glow berries, Biomes O' Plenty glowing coral and Twilight Forest firefly jars give coloured light
+- Botania mana glass and elven glass are tinted glass
+- Glowing slabs and stairs from resource packs light their surroundings
+- White lamps are capped so they no longer drown coloured neon from far away
+- The base Eclipse look is back by default: night light fog, fog drift, godrays, dust and lamp light wells are off in Ultimate, about twice the frame rate in our tests
+- New preset Atmosphere: our night fog, godrays, dust and light wells, light fog at night only
+- New preset Ultimate Vanilla: only the base Eclipse effects (no coloured translucent shadows, no glass light) for the best frame rate, modded and neon light support stays
+- Lamp light wells are skipped by day, faster with Atmosphere
+- Brighter nights: stronger moonlight and outdoor minimum light
+- Less fog in Ultimate (fog density 0.85)
+- Floodfill size 8 by default and in Ultimate, coloured light reaches further
+- New option Night Vision Strength, night vision is no longer barely visible (also with fixed exposure presets like KuraBalanced)
+- New option Far Lights Glow (Distant Horizons), off by default: far lights no longer show as strong white blobs
+- Animated glowing textures (GregTech tank screens) no longer make their light blink
+- Glowing microblocks and shapes light 80% as far as a full lamp (was 60%)
+- Every preset now also resets coloured translucent shadows and glass light
+- The patch version is shown at the top of the shader options, under the Eclipse version
+
+### Eclipse patch 1.0.3
+- The base Eclipse look is back by default: night light fog, fog drift, godrays, dust and lamp light wells are off in Ultimate, about twice the frame rate in our tests
+- New preset Atmosphere: our night fog, godrays, dust and light wells, light fog at night only
+- New preset Ultimate Vanilla: only the base Eclipse effects (no coloured translucent shadows, no glass light) for the best frame rate, modded and neon light support stays
+- Lamp light wells are skipped by day, faster with Atmosphere
+- Brighter nights: stronger moonlight and outdoor minimum light
+- Less fog in Ultimate (fog density 0.85)
+- Floodfill size 8 by default and in Ultimate, coloured light reaches further
+- New option Night Vision Strength, night vision is no longer barely visible (also with fixed exposure presets like KuraBalanced)
+- New option Far Lights Glow (Distant Horizons), off by default: far lights no longer show as strong white blobs
+- Animated glowing textures (GregTech tank screens) no longer make their light blink
+- Glowing microblocks and shapes light 80% as far as a full lamp (was 60%)
+- Every preset now also resets coloured translucent shadows and glass light
+- The patch version is shown at the top of the shader options, under the Eclipse version
 
 ### Chroma Patch 1.0.2
 - GTNH: glowing blocks, microblocks and lamps light their surroundings again (Angelica ignored their ids since 1.0.1)
